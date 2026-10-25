@@ -1,0 +1,317 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{土力学快速查阅手册（期末考试 /
+考研版）}\label{ux571fux529bux5b66ux5febux901fux67e5ux9605ux624bux518cux671fux672bux8003ux8bd5-ux8003ux7814ux7248}
+
+面向大学生期末考试与考研复习的土力学系统性速查手册。\textbf{分章节建立文档，公式完整析出}，考前可用于系统过一遍公式，考场可快速定位某一公式。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{项目结构}\label{ux9879ux76eeux7ed3ux6784}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+路径
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+说明
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{README.md}（根目录） & 项目总览 README（项目首页） \\
+\texttt{markdown版本/} & 全部 Markdown 源文档（README、各章、总册） \\
+\texttt{markdown版本/README.md} & 本说明文件（手册使用说明） \\
+\texttt{markdown版本/00-全书公式速查总表.md} \textasciitilde{}
+\texttt{08-地基承载力.md} & 各章 Markdown 源文档 \\
+\texttt{markdown版本/土力学速查手册-总册.md} & 合并总册（封面 + 目录 +
+各章全文，不含 README） \\
+\texttt{PDF导出/} & 各章与总册的 PDF（学术黑白 A4，pandoc + xelatex
+构建） \\
+\texttt{LaTeX版本/} & 每个 Markdown 对应的独立可编译 \texttt{.tex}
+源文件 \\
+\texttt{.claude/pdf-build/} & 构建管线（版式模板、Lua
+过滤器、构建脚本） \\
+\end{longtable}
+}
+
+\subsubsection{LaTeX 版本说明}\label{latex-ux7248ux672cux8bf4ux660e}
+
+\texttt{LaTeX版本/} 中每个 \texttt{.tex} 均由对应 Markdown
+生成，内嵌本手册版式模板（ctex
+中文字体、三线表、页眉页脚），\textbf{独立自包含}------直接用
+\texttt{xelatex} 编译即可得到与 \texttt{PDF导出/} 一致版式的 PDF：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 在项目根目录执行}
+\ExtensionTok{xelatex} \StringTok{"LaTeX版本/土力学速查手册{-}总册.tex"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  各章 \texttt{.tex} 对应单章 PDF；\texttt{土力学速查手册-总册.tex}
+  已含居中封面与带页码目录。
+\item
+  修改 Markdown 后（在项目根目录）重新生成 LaTeX
+  版本：\texttt{bash\ .claude/pdf-build/build\_tex.sh}；一键导出全部
+  PDF：\texttt{bash\ .claude/pdf-build/build.sh}。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{使用说明}\label{ux4f7fux7528ux8bf4ux660e}
+
+\subsubsection{目录导航}\label{ux76eeux5f55ux5bfcux822a}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+章节
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+文件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+内容
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+速查总表 & 00-全书公式速查总表 &
+全部核心公式按主题一表汇总，考前最后冲刺首选 \\
+第一章 & 01-土的物理性质与分类 &
+三相比例指标及其换算、塑性指数、土的分类 \\
+第二章 & 02-土的渗透性与渗流 & 达西定律、渗透系数、渗透力、流土与管涌 \\
+第三章 & 03-土中应力计算 & 自重应力、基底压力、附加应力（角点法） \\
+第四章 & 04-土的压缩性与地基沉降计算 & e-p
+曲线、分层总和法、规范法、固结理论 \\
+第五章 & 05-土的抗剪强度 & 库仑公式、莫尔-库仑准则、三轴/直剪试验 \\
+第六章 & 06-土压力与挡土墙 & 静止土压力、朗肯土压力、库仑土压力 \\
+第七章 & 07-土坡稳定分析 & 无黏性土坡、圆弧滑动法、瑞典条分法、毕肖普 \\
+第八章 & 08-地基承载力 &
+临塑荷载、临界荷载、太沙基极限承载力、深宽修正 \\
+\end{longtable}
+}
+
+\subsubsection{快速入手路径}\label{ux5febux901fux5165ux624bux8defux5f84}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{考前 2 小时}：直接看「00-全书公式速查总表」。
+\item
+  \textbf{逐章复习}：按目录顺序，每章以「本章导览 →
+  核心公式（参数/单位/适用说明）→ 公式索引小结」结构展开。
+\item
+  \textbf{某个公式记不清}：用编辑器全文搜索关键词（如''固结度''\,``朗肯''），或在章末「本章公式索引」定位。
+\end{itemize}
+
+\subsubsection{公式渲染说明}\label{ux516cux5f0fux6e32ux67d3ux8bf4ux660e}
+
+本手册公式使用 \textbf{LaTeX 数学语法}，在以下环境可正常显示：
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Typora}：默认支持，打开即可见。
+\item
+  \textbf{Obsidian}：需开启「设置 → 编辑器 → 数学公式」。
+\item
+  ** VS Code + Markdown Preview Enhanced**：默认支持。
+\item
+  \textbf{GitHub} 网页预览：默认支持 KaTeX 渲染。
+\end{itemize}
+
+排版约定：行内公式用 \texttt{\$...\$}，独立公式用
+\texttt{\$\$...\$\$}，关键结论用 \texttt{\textbackslash{}boxed\{\}}
+高亮，多步推导用
+\texttt{\$\$\textbackslash{}begin\{aligned\}...\textbackslash{}end\{aligned\}\$\$}。
+
+不想在编辑器中预览公式时，可直接用 \texttt{LaTeX版本/} 中的
+\texttt{.tex} 文件编译成 PDF（见「项目结构 · LaTeX 版本说明」）。
+
+\subsubsection{编写维护约定（后续扩充规范）}\label{ux7f16ux5199ux7ef4ux62a4ux7ea6ux5b9aux540eux7eedux6269ux5145ux89c4ux8303}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{文件命名}：\texttt{NN-章节主题.md}，NN 两位数字保持排序。
+\item
+  \textbf{公式编号}：不依赖自动编号，正文用「公式
+  1-1、1-2\ldots」手工编号，首个数字为章号。
+\item
+  \textbf{公式三段式}：每个公式后必须有「参数说明」「单位」「适用条件/注意」三段，保证可独立阅读理解。
+\item
+  \textbf{新章节模板}：沿用「本章导览 → 核心公式 →
+  本章公式索引小结」结构，并在「00-全书公式速查总表」中登记新公式。
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{符号约定全局统一：见 00-全书公式速查总表
+顶部的「〇、符号约定速查」（含 \(C_c\)、\(C_u\) 双义警示）。重力加速度取
+\(g=10\,\mathrm{m/s^2}\)，水重度
+\(\gamma_w=10\,\mathrm{kN/m^3}\)，多数教材与考试用值。}
+
+\end{document}

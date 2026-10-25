@@ -1,0 +1,392 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第八章
+地基承载力}\label{ux7b2cux516bux7ae0-ux5730ux57faux627fux8f7dux529b}
+
+\begin{quote}
+\textbf{本章导览}：地基承载力=地基不出现剪切破坏、沉降在允许范围内的承载能力。考试核心：①
+临塑荷载/临界荷载公式（提出背景与适用）；②
+太沙基极限承载力公式（条基为主，方/圆乘系数）；③
+规范的\textbf{深宽修正公式}（真题高频）。概念题常考破坏模式分类。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.1
+地基破坏模式（概念）}\label{ux5730ux57faux7834ux574fux6a21ux5f0fux6982ux5ff5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3913}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2609}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3478}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+破坏模式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+特征
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+常见土
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{整体剪切破坏} & 地基形成连续贯通滑裂面，地表隆起，\(p\text{-}s\)
+曲线有明显陡降点 & 密实砂土、坚硬黏土、埋深浅 \\
+\textbf{局部剪切破坏} & 滑裂面未贯通地面，仍有一定强度 & 中密砂土 \\
+\textbf{冲剪破坏} & 基础下方土被压入、周围土几乎不动，\(p\text{-}s\)
+曲线无拐点，只下沉 & 松砂、软土、埋深大 \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  判别要点（简答）：随相对密度/密实度和埋深增大，破坏模式整体→局部→冲剪；\(p\)-\(s\)
+  曲线「有无转折点」是区分的关键特征。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.2
+临塑荷载与临界荷载（塑性区深度判别法）}\label{ux4e34ux5851ux8377ux8f7dux4e0eux4e34ux754cux8377ux8f7dux5851ux6027ux533aux6df1ux5ea6ux5224ux522bux6cd5}
+
+\subsubsection{\texorpdfstring{公式 8-1　临塑荷载（塑性区最大深度
+\(z_{\max}=0\)）}{公式 8-1　临塑荷载（塑性区最大深度 z\_\{\textbackslash max\}=0）}}\label{ux516cux5f0f-8-1-ux4e34ux5851ux8377ux8f7dux5851ux6027ux533aux6700ux5927ux6df1ux5ea6-z_max0}
+
+\[\boxed{p_{cr}=\frac{\pi\left(\gamma_1 d+c\cot\varphi\right)}{\cot\varphi-\dfrac{\pi}{2}+\varphi}+\gamma_1 d}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_{cr}\)
+  为临塑荷载（\(\mathrm{kPa}\)）------使地基中塑性区刚出现（深度为零）的基底压力；\(\gamma_1\)
+  为基底埋深 \(d\) 范围内土的重度（成层取加权平均）；\(c,\varphi\)
+  为持力层抗剪强度指标；\(d\) 为基底埋深（m）。
+\item
+  \textbf{角度单位}：\(\varphi,c\cot\varphi\)
+  等三角函数中角度用\textbf{弧度}，\(\varphi-\dfrac{\pi}{2}\)
+  项即弧度制。
+\item
+  \textbf{注意}：\(p_{cr}\)
+  是「允许塑性区深度为零」的基准，工程偏保守，故引出 \(p_{1/4}\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式 8-2　临界荷载
+\(p_{1/4}\)（塑性区深度
+\(z_{\max}=\dfrac{B}{4}\)）}{公式 8-2　临界荷载 p\_\{1/4\}（塑性区深度 z\_\{\textbackslash max\}=\textbackslash dfrac\{B\}\{4\}）}}\label{ux516cux5f0f-8-2-ux4e34ux754cux8377ux8f7d-p_14ux5851ux6027ux533aux6df1ux5ea6-z_maxdfracb4}
+
+\[p_{\frac{1}{4}}=p_{cr}+\frac{\pi\,\gamma\,B}{4\left(\cot\varphi-\dfrac{\pi}{2}+\varphi\right)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(B\) 为基础宽度；\(\gamma\)
+  为\textbf{基底以下}持力层土的重度（水位以下用
+  \(\gamma'\)）；其余同公式 8-1。
+\item
+  \textbf{工程意义}：工程设计常用 \(p_{1/4}\)（允许塑性区深达
+  B/4），除以安全系数后作为持力层承载力。《建筑地基基础设计规范》的承载力特征值即与之衔接。
+\item
+  \textbf{注意}：比较两式------\(p_{1/4}\) 比 \(p_{cr}\)
+  多了「\(\gamma B\)」项，反映宽度效应；埋深由 \(\gamma_1 d\)
+  项反映。两式分母相同（\(\Phi=\cot\varphi-\dfrac{\pi}{2}+\varphi\)）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.3
+极限承载力理论公式}\label{ux6781ux9650ux627fux8f7dux529bux7406ux8bbaux516cux5f0f}
+
+\subsubsection{公式
+8-3　太沙基极限承载力公式（条形基础、基底粗糙）}\label{ux516cux5f0f-8-3-ux592aux6c99ux57faux6781ux9650ux627fux8f7dux529bux516cux5f0fux6761ux5f62ux57faux7840ux57faux5e95ux7c97ux7cd9}
+
+\[\boxed{p_u=c\,N_c+\gamma_1 d\,N_q+\frac{1}{2}\gamma B\,N_\gamma}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_u\) 为极限承载力（\(\mathrm{kPa}\)）；\(c\)
+  为持力层黏聚力；\(\gamma_1\) 为基底以上土重度（埋深 \(d\)
+  超载项）；\(\gamma\) 为基底以下土重度；\(B\)
+  基础宽度；\(N_c,N_q,N_\gamma\) 为\textbf{太沙基承载力系数}（仅
+  \(\varphi\) 的函数，查表）。
+\item
+  \textbf{适用}：地基均匀、条形基础、基底粗糙、整体剪切破坏。
+\item
+  \textbf{总公式含义}：三项分别来自黏聚力、埋深超载、基底宽度------记忆法「\(c\)
+  项 + 埋深项 + 宽度项」。
+\end{itemize}
+
+\subsubsection{公式
+8-4　方形与圆形基础的太沙基极限承载力}\label{ux516cux5f0f-8-4-ux65b9ux5f62ux4e0eux5706ux5f62ux57faux7840ux7684ux592aux6c99ux57faux6781ux9650ux627fux8f7dux529b}
+
+方形基础：
+
+\[p_u=1.3c\,N_c+\gamma_1 d\,N_q+0.4\gamma B\,N_\gamma\]
+
+圆形基础：
+
+\[p_u=1.3c\,N_c+\gamma_1 d\,N_q+0.6\gamma R\,N_\gamma\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：方形/圆形较条形多出形状系数：\(N_c\) 项
+  \(\times1.3\)，\(N_\gamma\) 项方 \(0.4\)、圆
+  \(0.6\)；粗心最容易漏掉系数。
+\end{itemize}
+
+\subsubsection{公式
+8-5　太沙基承载力系数（表达式与查表）}\label{ux516cux5f0f-8-5-ux592aux6c99ux57faux627fux8f7dux529bux7cfbux6570ux8868ux8fbeux5f0fux4e0eux67e5ux8868}
+
+\[N_q=\frac{e^{\left(\frac{3\pi}{2}-\varphi\right)\tan\varphi}}{2\cos^2\left(45^{\circ}+\frac{\varphi}{2}\right)}\]
+
+\[N_c=\left(N_q-1\right)\cot\varphi\]
+
+\[N_\gamma\approx1.8\left(N_q-1\right)\tan\varphi\quad(\text{太沙基建议})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{角度单位}：指数与三角中用弧度（\(\varphi\)
+  为弧度，\(\left(45^{\circ}+\varphi/2\right)\) 中
+  \(45^{\circ}=\pi/4\)）。
+\item
+  \textbf{注意}：各教材 \(N_\gamma\) 表达式不尽相同（Vesic/Prantdl
+  等），考试以\textbf{查表给值}为主，表达式记到「约式」即可；\(N_q,N_c\)
+  关系式 \(\left(N_q-1\right)\cot\varphi\) 通用。
+\item
+  \textbf{往往还给出局部剪切破坏处理}：取
+  \(c^*=\dfrac{2}{3}c,\ \tan\varphi^*=\dfrac{2}{3}\tan\varphi\)
+  后按同式算 \(p_u\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.4
+规范地基承载力特征值（深宽修正公式）}\label{ux89c4ux8303ux5730ux57faux627fux8f7dux529bux7279ux5f81ux503cux6df1ux5bbdux4feeux6b63ux516cux5f0f}
+
+\subsubsection{公式
+8-6　承载力特征值修正}\label{ux516cux5f0f-8-6-ux627fux8f7dux529bux7279ux5f81ux503cux4feeux6b63}
+
+\[\boxed{f_a=f_{ak}+\eta_b\,\gamma\,(b-3)+\eta_d\,\gamma_m\,(d-0.5)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(f_a\)
+  为修正后地基承载力特征值（\(\mathrm{kPa}\)）；\(f_{ak}\)
+  为\textbf{静载荷试验或经验所得的地基承载力特征值}；\(\eta_b,\eta_d\)
+  为\textbf{宽度、深度修正系数}（按持力层土类查规范表）；\(b\)
+  为基础宽度（m，\textbf{\(b\le6\)}，大于 6 按 6 取）；\(d\)
+  为基础埋深（m，\textbf{\(d\ge0.5\)}，小于 0.5 按 0.5 取）；\(\gamma\)
+  为基底以下土的天然重度（\textbf{水位以下用浮重度}
+  \(\gamma'\)）；\(\gamma_m\)
+  为基底以上土的\textbf{加权平均重度}（水位以下取浮重度）。
+\item
+  \textbf{物理意义}：埋深越深、宽度越大，承载力越高（破坏土体更大）------修正正是考虑这一深度宽度效应。
+\item
+  \textbf{注意}：\(b\)、\(d\) 的上下限取值是典型考点；\(\gamma\) 与
+  \(\gamma_m\) 一「下」一「上」，别混。
+\item
+  \textbf{示例修正系数（部分，查表为准）}：黏性土
+  \(\eta_b=0,0.3,0.5,\ \eta_d=1.0,1.6,2.2\)（按 e、\(I_L\)）；砂土
+  \(\eta_b=0.3\sim3.0,\ \eta_d=1.6\sim4.4\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式 8-7　载荷试验确定
+\(f_{ak}\)（概念）}{公式 8-7　载荷试验确定 f\_\{ak\}（概念）}}\label{ux516cux5f0f-8-7-ux8f7dux8377ux8bd5ux9a8cux786eux5b9a-f_akux6982ux5ff5}
+
+\begin{itemize}
+\tightlist
+\item
+  \(p\)-\(s\) 曲线：\textbf{比例界限荷载 \(p_{cr}'\)} 或
+  \textbf{极限荷载 \(p_u\) 除以 2（安全系数 2 取小）}作为特征值；
+\item
+  承载力分别为比例界限与半极限两个里的\textbf{较小值}；
+\item
+  加压板尺寸、深度影响按规范换算（宽度修正用公式 8-6）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.5
+承载力的三方面关系（辨析）}\label{ux627fux8f7dux529bux7684ux4e09ux65b9ux9762ux5173ux7cfbux8fa8ux6790}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{承载力特征值 \(f_{ak}\)（或修正后
+  \(f_a\)）}：设计用，允许地基不破坏且沉降可用；
+\item
+  \textbf{临塑/临界荷载
+  \(p_{cr},p_{1/4}\)}：以「塑性区深度」为判据的理论值；
+\item
+  \textbf{极限承载力 \(p_u\)}：地基整体剪切破坏瞬间的荷载（上限）。
+\item
+  关系：\(p_{cr}\lesssim p_{1/4}<p_u\)，取安全系数后得容许承载力
+  \([p_a]=p_u/F_s\)（\(F_s\approx2\sim3\)）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+8-1 &
+\(p_{cr}=\dfrac{\pi(\gamma_1d+c\cot\varphi)}{\cot\varphi-\pi/2+\varphi}+\gamma_1d\)
+& 临塑荷载 \\
+8-2 & \(p_{1/4}=p_{cr}+\dfrac{\pi\gamma B}{4A}\) & 临界荷载 \\
+8-3 & \(p_u=cN_c+\gamma_1dN_q+\dfrac{1}{2}\gamma BN_\gamma\) &
+太沙基极限承载力（条形） \\
+8-4 & 方/圆乘 1.3、0.4、0.6 & 方/圆形基础 \\
+8-5 &
+\(N_q=\dfrac{e^{(\frac{3\pi}{2}-\varphi)\tan\varphi}}{2\cos^2(45^{\circ}+\varphi/2)},\ N_c=(N_q-1)\cot\varphi\)
+& 承载力系数 \\
+8-6 & \(f_a=f_{ak}+\eta_b\gamma(b-3)+\eta_d\gamma_m(d-0.5)\) &
+规范深宽修正 \\
+8-7 & 载荷试验 \(f_{ak}\) & 试验确定 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 太沙基公式「\(c\) 项 + 埋深项 +
+宽度项」三件套，方/圆别漏 1.3、0.4、0.6 系数；② 深宽修正的
+\(b\le6\)、\(d\ge0.5\) 上下限；\(b,\,d\) 修正里 \(\gamma\) 与
+\(\gamma_m\) 一个在下、一个在上；③ 水位以下一律 \(\gamma'\)；④
+\(N_\gamma\) 表达式每教材不同，考试\textless 以查表为主；⑤ 概念题分清
+\(p_{cr},p_{1/4},p_u,f_{ak}\) 的关系。
+\end{quote}
+
+\end{document}

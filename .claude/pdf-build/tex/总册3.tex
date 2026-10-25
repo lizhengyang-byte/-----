@@ -1,0 +1,3337 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{center}
+\vspace{3.5cm}
+{\fontsize{26pt}{34pt}\selectfont\heiti 土力学速查手册}
+\vspace{1.2cm}
+{\fontsize{15pt}{20pt}\selectfont 期末考试 / 考研 通用版}
+\vspace{2.8cm}
+{\fontsize{15pt}{20pt}\selectfont\kaishu 整理：李尚儒 · 成都锦城学院}
+\end{center}
+
+\newpage
+
+\setcounter{tocdepth}{1}
+\begin{center}
+{\fontsize{18pt}{24pt}\selectfont\heiti 目录}
+\end{center}
+\tableofcontents
+
+\newpage
+
+\section{全书公式速查总表}\label{ux5168ux4e66ux516cux5f0fux901fux67e5ux603bux8868}
+
+\begin{quote}
+\textbf{用途}：考前最后冲刺 2
+小时只翻这一份。按「主题」分栏，每个公式一行，附「适用/注意」与「出处（章节公式号）」便于回翻正文。详尽的参数、单位、推导与易错辨析见各章正文（目录见
+README）。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{〇、符号约定速查（全局统一）}\label{ux7b26ux53f7ux7ea6ux5b9aux901fux67e5ux5168ux5c40ux7edfux4e00}
+
+重力加速度取 \(g=10\,\mathrm{m/s^2}\)，水重度
+\(\gamma_w=10\,\mathrm{kN/m^3}\)，\(\rho_w=1\,\mathrm{g/cm^3}\)；含
+\(\pi\) 的公式中三角函数一律用\textbf{弧度}。
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+符号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+含义
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+单位
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(d_s\) & 土粒相对密度（比重） & --- \\
+\(\omega,\ \omega_L,\ \omega_P\) & 含水率、液限、塑限 & \% \\
+\(I_p,\ I_L\) & 塑性指数、液性指数 & ---（\(I_p\) 数值不带 \%） \\
+\(e,\ n,\ S_r\) & 孔隙比、孔隙率、饱和度 & --- \\
+\(\rho,\rho_d,\rho_{sat},\rho'\) & 密度、干密度、饱和密度、浮密度 &
+\(\mathrm{g/cm^3}\) \\
+\(\gamma,\gamma_d,\gamma_{sat},\gamma'\) &
+重度、干重度、饱和重度、浮重度 & \(\mathrm{kN/m^3}\) \\
+\(\sigma,\sigma',u\) & 总应力、有效应力、孔隙水压力 &
+\(\mathrm{kPa}\) \\
+\(\sigma_1,\sigma_3\) & 大、小主应力 & \(\mathrm{kPa}\) \\
+\(c,\varphi\)；\(c',\varphi'\) & 总应力指标；有效应力指标 &
+\(\mathrm{kPa}\)，° \\
+\(\tau_f\) & 抗剪强度 & \(\mathrm{kPa}\) \\
+\(c_u\) & 不排水抗剪强度（三轴 UU / 十字板） & \(\mathrm{kPa}\) \\
+\(C_u\) & 不均匀系数（级配，第一章） & --- \\
+\(C_c\) & ◆ 双义：第一章=曲率系数；第四章=压缩指数 & --- \\
+\(C_s\) & 回弹指数（第四章） & --- \\
+\(d_{10},d_{30},d_{60}\) & 级配曲线上累计含量对应粒径 & mm \\
+\(k,\ i,\ j\) & 渗透系数、水力梯度、渗透力 &
+\(\mathrm{cm/s}\)、---、\(\mathrm{kN/m^3}\) \\
+\(E_s,\ a,\ m_v\) & 压缩模量、压缩系数、体积压缩系数 &
+\(\mathrm{MPa}\)、\(\mathrm{MPa^{-1}}\) \\
+\(p_c,\ p_0,\ OCR\) & 先期固结压力、现有自重应力、超固结比 &
+\(\mathrm{kPa}\)、--- \\
+\(c_v,\ T_v,\ U,\ H\) & 固结系数、时间因子、固结度、排水距离 &
+\(\mathrm{m^2/a}\)、---、---、m \\
+\(K_0,\ K_a,\ K_p\) & 静止、主动、被动土压力系数 & --- \\
+\(E_a,E_0,E_p\) & 主动、静止、被动土压力合力（每米墙长） &
+\(\mathrm{kN/m}\) \\
+\(p,\ p_0,\ p_{cr},\ p_{1/4},\ p_u\) &
+基底压力、附加压力、临塑荷载、临界荷载、极限承载力 & \(\mathrm{kPa}\) \\
+\(f_{ak},\ f_a\) & 地基承载力特征值、深宽修正后特征值 &
+\(\mathrm{kPa}\) \\
+\(F_s\) & 安全系数 & --- \\
+\(B,\ b,\ d,\ H\) & 基础宽度、条宽、埋深、挡墙/土层高 & m \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{一、土的物理性质与三相换算（第一章）}\label{ux4e00ux571fux7684ux7269ux7406ux6027ux8d28ux4e0eux4e09ux76f8ux6362ux7b97ux7b2cux4e00ux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+含水率 & \(\omega=\dfrac{m_w}{m_s}\times100\%\) &
+分母是\textbf{干土}质量 & 1-1 \\
+密度/重度 & \(\rho=\dfrac{m}{V},\quad \gamma=\rho g\)（\(g=10\)） &
+\(1\,\mathrm{g/cm^3}\leftrightarrow10\,\mathrm{kN/m^3}\) & 1-2 \\
+土粒比重 & \(d_s=\dfrac{m_s}{V_s\rho_w}\) &
+\(\rho_w=1\,\mathrm{g/cm^3}\) & 1-3 \\
+孔隙比/孔隙率 & \(e=\dfrac{V_v}{V_s},\ n=\dfrac{V_v}{V}=\dfrac{e}{1+e}\)
+& \(e=\dfrac{n}{1-n}\) & 1-4 \\
+饱和度 & \(S_r=\dfrac{V_w}{V_v}\times100\%\) & 饱和土 \(S_r=1\) & 1-5 \\
+干密度 & \(\rho_d=\dfrac{m_s}{V}\) & 压实控制指标 & 1-6 \\
+饱和/浮密度 & \(\rho'=\rho_{sat}-\rho_w\) & 水下自重用
+\(\gamma'=\gamma_{sat}-\gamma_w\) & 1-7 \\
+\textbf{换算总式} &
+\(e=\dfrac{d_s(1+\omega)}{\rho}-1,\ n=\dfrac{e}{1+e},\ S_r=\dfrac{\omega d_s}{e}\)
+& 已知 \(\rho,\omega,d_s\) 全推；以 \(m_s=1\) 为基准可现场推导 &
+1-8/1-9 \\
+重度组 &
+\(\gamma=\dfrac{d_s(1+\omega)}{1+e}\gamma_w,\ \gamma_d=\dfrac{d_s}{1+e}\gamma_w,\ \gamma_{sat}=\dfrac{d_s+e}{1+e}\gamma_w,\ \gamma'=\dfrac{d_s-1}{1+e}\gamma_w\)
+& 给 \(d_s,e\) 直接出四个重度 & 1-10/1-11 \\
+塑性指数 & \(I_p=\omega_L-\omega_P\) & 粉土 \(I_p\le10\) & 1-14 \\
+液性指数 & \(I_L=\dfrac{\omega-\omega_P}{I_p}\) & \(I_L>1\) 流塑 &
+1-15 \\
+相对密实度 & \(D_r=\dfrac{e_{max}-e}{e_{max}-e_{min}}\) & 无黏性土 &
+1-16 \\
+级配评价 &
+\(C_u=\dfrac{d_{60}}{d_{10}},\ C_c=\dfrac{d_{30}^2}{d_{60}d_{10}}\) &
+良好：\(C_u\ge5\) 且 \(C_c=1\sim3\) & 1-17 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{二、渗透性与渗流（第二章）}\label{ux4e8cux6e17ux900fux6027ux4e0eux6e17ux6d41ux7b2cux4e8cux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+达西定律 & \(v=ki=k\dfrac{\Delta h}{L}\) & 层流；\(v\) 为虚拟流速 &
+2-1 \\
+实际流速 & \(v'=v/n\) & 孔隙中平均流速 & 2-2 \\
+渗流量 & \(Q=kiA\) & --- & 2-3 \\
+常水头试验 & \(k=\dfrac{VL}{Aht}\) & 砂土 & 2-4 \\
+变水头试验 & \(k=2.3\dfrac{aL}{At}\lg\dfrac{h_1}{h_2}\) & 黏性土 &
+2-5 \\
+成层水平向 & \(k_x=\dfrac{\sum k_ih_i}{H}\) & 平行渗流 & 2-6 \\
+成层竖直向 & \(k_z=\dfrac{H}{\sum h_i/k_i}\) & 垂直渗流，别倒置 & 2-6 \\
+经验估算 & \(k\approx Cd_{10}^{\,2}\) & Hazen 式；无试验资料时估值 &
+2-8 \\
+渗透力 & \(j=i\gamma_w\) & 方向\textbf{顺水流}，体积力 & 2-9 \\
+临界梯度 & \(i_{cr}=\dfrac{\gamma'}{\gamma_w}=\dfrac{d_s-1}{1+e}\) &
+流土判据 \(i>i_{cr}\) & 2-11 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{三、土中应力（第三章）}\label{ux4e09ux571fux4e2dux5e94ux529bux7b2cux4e09ux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+自重应力 & \(\sigma_{cz}=\sum\gamma_ih_i\) & 水位以下用
+\(\gamma'\)；隔水层顶面加 \(\gamma_w h_w\) & 3-1/3-2 \\
+基底压力(中心) & \(p=\dfrac{N+G}{A}\) & \(G\) 含基础上的土重 & 3-5 \\
+偏心（\(e\le B/6\)） &
+\(p_{max,min}=\dfrac{N+G}{lB}\left(1\pm\dfrac{6e}{B}\right)\) &
+核心区判别 & 3-6 \\
+大偏心（\(e>B/6\)） & \(p_{max}=\dfrac{2(N+G)}{3al},\ a=\dfrac{B}{2}-e\)
+& 三角形分布，\(p_{min}=0\) & 3-7 \\
+基底附加压力 & \(p_0=p-\gamma_m d\) & 沉降计算\textbf{用它} & 3-8 \\
+集中力解 & \(\sigma_z=\dfrac{3Pz^3}{2\pi R^5}\) & 布辛内斯克 & 3-9 \\
+矩形角点法 & \(\sigma_z=\alpha_c p_0\) & 角点在 \(M\)
+处，\(m=l/z,n=b/z\) & 3-10 \\
+\textbf{平均附加应力系数} &
+\(\bar\alpha_c=\dfrac{1}{z}\int_0^z\alpha_c\,dz\) &
+应力面积法用（\textbf{平均}系数表，与角点 α 两套表） & 3-11 \\
+条形荷载 &
+\(\sigma_z=\dfrac{p_0}{\pi}\left[\beta+\sin\beta\cos(\alpha_1-\alpha_2)\right]\)
+& 角度用弧度 & 3-13 \\
+有效应力原理 & \(\sigma=\sigma'+u\) & 决定强度与变形的是 \(\sigma'\) &
+3-14 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{四、压缩性、沉降与固结（第四章）}\label{ux56dbux538bux7f29ux6027ux6c89ux964dux4e0eux56faux7ed3ux7b2cux56dbux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+压缩系数 & \(a=\dfrac{e_1-e_2}{p_2-p_1}\) & 压缩性评价用 \(a_{1-2}\) &
+4-1 \\
+压缩模量 & \(E_s=\dfrac{1+e_1}{a}\) & 与 \(a\) 互推 & 4-2 \\
+压缩指数 & \(C_c=\dfrac{\Delta e}{\lg(p_2/p_1)}\) & e-lgp 直线段 &
+4-3 \\
+超固结比 & \(OCR=\dfrac{p_c}{p_0}\) & \(OCR>1\) 超固结 & 4-4 \\
+e-lgp 沉降 & 正常固结
+\(s=\dfrac{C_c}{1+e_0}h\lg\dfrac{p_0+\Delta p}{p_0}\)；超固结分段（回弹用
+\(C_s\)） & 按 OCR 与终点应力选式 & 4-8 \\
+分层总和法 & \(s_i=\dfrac{e_1-e_2}{1+e_1}h_i\)（或
+\(\dfrac{\Delta p_i}{E_s}h_i\)） & 压缩层底
+\(\sigma_z\le0.2\sigma_{cz}\) & 4-5/4-6 \\
+规范法 &
+\(s=\psi_s\sum\dfrac{p_0}{E_s}\left(z_i\bar\alpha_i-z_{i-1}\bar\alpha_{i-1}\right)\)
+& 平均附加应力系数 \(\bar\alpha\)（查表）+ \(\psi_s\) & 4-7 \\
+固结系数 & \(c_v=\dfrac{kE_s}{\gamma_w}\) & 一维固结 & 4-9 \\
+时间因子 & \(T_v=\dfrac{c_vt}{H^2}\) & 双面排水 \(H=H_0/2\) & 4-10 \\
+固结度小 & \(U_t=2\sqrt{T_v/\pi}\) & \(0<U\le60\%\) & 4-12 \\
+固结度大 & \(U_t=1-\dfrac{8}{\pi^2}e^{-\pi^2T_v/4}\) & \(U>60\%\) &
+4-12 \\
+\end{longtable}
+}
+
+\begin{quote}
+注：4-12 的 \(U\)--\(T_v\)
+关系对应\textbf{初始超孔压均匀分布}；三角形等非均匀分布不适用（见正文
+4-12 旁说明）。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{五、抗剪强度（第五章）}\label{ux4e94ux6297ux526aux5f3aux5ea6ux7b2cux4e94ux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+库仑公式(总应力) & \(\tau_f=c+\sigma\tan\varphi\) & 砂土 \(c=0\) &
+5-1 \\
+库仑公式(有效) & \(\tau_f=c'+(\sigma-u)\tan\varphi'\) & 真正决定强度的是
+\(\sigma'\) & 5-2 \\
+\textbf{任意平面应力} &
+\(\sigma=\dfrac{\sigma_1+\sigma_3}{2}+\dfrac{\sigma_1-\sigma_3}{2}\cos2\theta,\ \tau=\dfrac{\sigma_1-\sigma_3}{2}\sin2\theta\)
+& 莫尔圆几何基础 & 5-3 \\
+破坏判定 & 莫尔圆与包线 \(\tau=c+\sigma\tan\varphi\) 相切 &
+相切=极限平衡，越过=破坏 & 5-4 \\
+极限平衡条件 &
+\(\sigma_1=\sigma_3\tan^2\left(45^{\circ}+\dfrac{\varphi}{2}\right)+2c\tan\left(45^{\circ}+\dfrac{\varphi}{2}\right)\)
+& 与 \(\sigma_3=f(\sigma_1)\) 两式等价 & 5-5 \\
+破裂面方位 &
+\(\alpha_f=45^{\circ}+\dfrac{\varphi}{2}\)（与大主应力作用面夹角） & ---
+& 5-6 \\
+\textbf{无侧限强度} & \(q_u=2c_u,\ c_u=\dfrac{q_u}{2}\) & \(\varphi=0\)
+特例，饱和黏土 & 5-7 \\
+孔压系数 &
+\(\Delta u=B\left[\Delta\sigma_3+A(\Delta\sigma_1-\Delta\sigma_3)\right]\)
+& 饱和土 \(B=1\) & 5-11 \\
+\end{longtable}
+}
+
+\textbf{试验与指标对照（简答高频）}：直剪 快剪/固结快剪/慢剪 ≈ 三轴
+UU/CU/CD；饱和黏土 UU 得 \(c_u,\varphi_u=0\)；CU 同时得总应力
+\(c_{cu},\varphi_{cu}\) 与有效应力 \(c',\varphi'\)；慢剪 ≈
+有效应力指标。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{六、土压力与挡土墙（第六章）}\label{ux516dux571fux538bux529bux4e0eux6321ux571fux5899ux7b2cux516dux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+三者关系 & \(E_a<E_0<E_p\) & 墙远离/静止/挤压 & 6-1 \\
+静止系数 & \(K_0=1-\sin\varphi'\) & Jaky 正常固结土 & 6-2 \\
+朗肯系数 &
+\(K_a=\tan^2\left(45^{\circ}-\dfrac{\varphi}{2}\right),\ K_p=\tan^2\left(45^{\circ}+\dfrac{\varphi}{2}\right)\)
+& \(K_aK_p=1\) & 6-3 \\
+主动(无黏) & \(p_a=\gamma zK_a,\ E_a=\dfrac{1}{2}\gamma H^2K_a\) &
+三角形，作用点距底 \(H/3\) & 6-4 \\
+主动(黏性) &
+\(p_a=\gamma zK_a-2c\sqrt{K_a},\ z_0=\dfrac{2c}{\gamma\sqrt{K_a}},\ E_a=\dfrac{1}{2}\gamma(H-z_0)^2K_a\)
+& 忽略墙顶拉应力区 & 6-5 \\
+被动(无黏) & \(E_p=\dfrac{1}{2}\gamma H^2K_p\) & --- & 6-6 \\
+被动(黏性) & \(E_p=\dfrac{1}{2}\gamma H^2K_p+2cH\sqrt{K_p}\) & 梯形分布
+& 6-7 \\
+抗倾覆 & \(K_t=\dfrac{Wx_0}{E_ay_0}\ge1.5\) & 对墙趾取矩 & 6-11 \\
+抗滑 & \(K_s=\dfrac{(W+E_{ay})\mu}{E_{ax}}\ge1.3\) & 用水平分量 &
+6-12 \\
+\end{longtable}
+}
+
+\textbf{库仑适用}：墙背倾斜、粗糙（\(\delta\ne0\)）、填土面倾斜
+\(\beta\)；\(K_a\) 一般式见第六章公式 6-9；当
+\(\alpha=90^{\circ},\delta=0,\beta=0\) 退化为朗肯。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{七、土坡稳定（第七章）}\label{ux4e03ux571fux5761ux7a33ux5b9aux7b2cux4e03ux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+安全系数定义 & \(F_s=\dfrac{\text{抗滑}}{\text{滑动力(矩)}}\) &
+\(F_s\ge1.0\) & 7-1 \\
+无黏性土坡 & \(F_s=\dfrac{\tan\varphi}{\tan\beta}\) & 与坡高无关 &
+7-2 \\
+\textbf{顺坡渗流} &
+\(F_s=\dfrac{\gamma'}{\gamma_{sat}}\cdot\dfrac{\tan\varphi}{\tan\beta}\)
+& 无黏性土坡渗流平行坡面，比 7-2 多乘 \(\gamma'/\gamma_{sat}\) & 7-7 \\
+整体圆弧(φ=0) & \(F_s=\dfrac{c_uLR}{Wd}\) & 均质饱和软黏土 & 7-3 \\
+稳定数 & \(N_s=\dfrac{c}{\gamma H_{cr}}\) & 泰勒图解法 & 7-4 \\
+瑞典条分法 &
+\(F_s=\dfrac{\sum\left[c_il_i+(W_i\cos\alpha_i-u_il_i)\tan\varphi_i\right]}{\sum W_i\sin\alpha_i}\)
+& 忽略条间力，偏保守 & 7-5 \\
+简化毕肖普 &
+\(F_s=\dfrac{\sum\dfrac{c'b+(W-ub)\tan\varphi'}{\cos\alpha(1+\tan\alpha\tan\varphi'/F_s)}}{\sum W\sin\alpha}\)
+& 有效应力、隐式迭代 & 7-6 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{八、地基承载力（第八章）}\label{ux516bux5730ux57faux627fux8f7dux529bux7b2cux516bux7ae0}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2424}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3939}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1818}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+公式名
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+适用 / 注意
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+出处
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+临塑荷载 &
+\(p_{cr}=\dfrac{\pi\left(\gamma_1d+c\cot\varphi\right)}{\cot\varphi-\pi/2+\varphi}+\gamma_1d\)
+& 塑性区深度=0；角度用弧度 & 8-1 \\
+临界荷载 &
+\(p_{1/4}=p_{cr}+\dfrac{\pi\gamma B}{4\left(\cot\varphi-\pi/2+\varphi\right)}\)
+& 塑性区深 \(B/4\)；φ=0 时 B 项消失 & 8-2 \\
+太沙基(条形) & \(p_u=cN_c+\gamma_1dN_q+\dfrac{1}{2}\gamma BN_\gamma\) &
+「c+埋深+宽度」三项 & 8-3 \\
+方形 & \(p_u=1.3cN_c+\gamma_1dN_q+0.4\gamma BN_\gamma\) & 形状系数别漏 &
+8-4 \\
+圆形 & \(p_u=1.3cN_c+\gamma_1dN_q+0.6\gamma RN_\gamma\) & --- & 8-4 \\
+承载力系数 &
+\(N_q=\dfrac{e^{(3\pi/2-\varphi)\tan\varphi}}{2\cos^2(45^{\circ}+\varphi/2)},\ N_c=(N_q-1)\cot\varphi\)
+& 查表为主 & 8-5 \\
+\textbf{深宽修正} &
+\(f_a=f_{ak}+\eta_b\gamma(b-3)+\eta_d\gamma_m(d-0.5)\) &
+\(b\le6,\ d\ge0.5\)；\(\gamma\) 在下、\(\gamma_m\) 在上 & 8-6 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{九、高频易混对（考前 30
+秒自查）}\label{ux4e5dux9ad8ux9891ux6613ux6df7ux5bf9ux8003ux524d-30-ux79d2ux81eaux67e5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4706}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5294}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+易混对
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+判别记法
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\rho_d\) vs \(d_s\) & 干密度=整体去除水；比重=纯土粒相对水 \\
+\(n\) vs \(e\) & \(n\) 分母 ×总 V；\(e\) 分母 ×\(V_s\) \\
+\(C_c\)（曲率系数 vs 压缩指数） & 第一章级配评价 vs 第四章
+e-lgp------相同符号、含义不同 \\
+\(C_u\) vs \(c_u\) & 不均匀系数（第一章） vs
+不排水强度（第五章），看清大小写 \\
+\(I_p\) vs \(I_L\) & 一个是范围（材料属性），一个是状态 \\
+\(a\) vs \(E_s\) & \(E_s=\dfrac{1+e_1}{a}\)，反向 \\
+\(\gamma\) vs \(\gamma'\) & 水位以下一律 \(\gamma'\) \\
+\(p\) vs \(p_0\) & 沉降计算用 \(p_0=p-\gamma_md\) \\
+总应力 vs 有效应力 \(c,\varphi\) & 用 \(\sigma'\) 得
+\(c',\varphi'\)，取决于排水 \\
+朗肯 vs 库仑 & 竖直/光滑/水平 → 朗肯；倾斜/粗糙/倾斜 → 库仑 \\
+\(K_a\) vs \(K_p\) & \(K_p=1/K_a\) \\
+\(E_s\) 沉降 vs \(U\) & 先 \(T_v=\dfrac{c_vt}{H^2}\)，再查 \(U-T_v\) \\
+均匀 vs 三角形初始孔压 & 固结度 \(U\)--\(T_v\)
+曲线不同，均匀分布式不可直接套非均匀分布 \\
+临塑 vs 临界荷载 & \(p_{1/4}=p_{cr}+\)「宽度项」，φ=0 时二者相等 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{各公式的参数说明、单位与推导细节请回翻对应章节。祝考试顺利。}
+
+\newpage
+
+\section{第一章
+土的物理性质与工程分类}\label{ux7b2cux4e00ux7ae0-ux571fux7684ux7269ux7406ux6027ux8d28ux4e0eux5de5ux7a0bux5206ux7c7b}
+
+\begin{quote}
+\textbf{本章导览}：本章是全部后续章节的计算基础，考试中以\textbf{三相比例指标的定义与互相换算}为最高频考点（几乎每年必考），其次是液限/塑限与土的分类判别。计算题常给出任意三个实测指标，要求推出其余指标------建议背熟「换算组」（公式
+1-8 至 1-13）。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.1
+土的三相组成与基本记号}\label{ux571fux7684ux4e09ux76f8ux7ec4ux6210ux4e0eux57faux672cux8bb0ux53f7}
+
+土 = 固相（土粒）+ 液相（水）+ 气相（空气）。按质量、体积分别记为：
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+物理量 & 记号 & & 物理量 & 记号 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+土粒质量 & \(m_s\) & & 土粒体积 & \(V_s\) \\
+水质量 & \(m_w\) & & 水体积 & \(V_w\) \\
+空气质量 & \(m_a\approx0\) & & 空气体积 & \(V_a\) \\
+土样总质量 & \(m=m_s+m_w\) & & 孔隙体积 & \(V_v=V_w+V_a\) \\
+--- & --- & & 总体积 & \(V=V_s+V_v\) \\
+\end{longtable}
+}
+
+实验中直接测得的三个基本指标：\textbf{密度 \(\rho\)、含水率
+\(\omega\)、土粒相对密度 \(d_s\)}，其余指标均可由它们换算。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.2
+三相比例指标（九个基本指标定义）}\label{ux4e09ux76f8ux6bd4ux4f8bux6307ux6807ux4e5dux4e2aux57faux672cux6307ux6807ux5b9aux4e49}
+
+\subsubsection{公式
+1-1　含水率}\label{ux516cux5f0f-1-1-ux542bux6c34ux7387}
+
+\[\omega=\frac{m_w}{m_s}\times100\%\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\omega\)
+  为含水率（\%）------土中水的质量与土粒质量之比；\(m_w\)、\(m_s\)
+  同上节。
+\item
+  \textbf{单位}：无量纲（常以百分数表达）。
+\item
+  \textbf{注意}：含水率以\textbf{干土质量}为分母，切莫写成
+  \(m_w/(m_s+m_w)\)。
+\end{itemize}
+
+\subsubsection{公式
+1-2　土的质量密度与重度}\label{ux516cux5f0f-1-2-ux571fux7684ux8d28ux91cfux5bc6ux5ea6ux4e0eux91cdux5ea6}
+
+\[\rho=\frac{m}{V},\qquad \gamma=\rho g=\frac{mg}{V}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\rho\) 为土的质量密度（\(\mathrm{g/cm^3}\) 或
+  \(\mathrm{kg/m^3}\)）；\(\gamma\)
+  为土的重度（\(\mathrm{kN/m^3}\)）；\(g\) 为重力加速度，取
+  \(10\,\mathrm{m/s^2}\)；\(m\)、\(V\) 为总质量与总体积。
+\item
+  \textbf{换算}：\(1\,\mathrm{kN/m^3}=1000\,\mathrm{kg/m^3}\times10\,\mathrm{m/s^2}/1000\)，即
+  \(\gamma(\mathrm{kN/m^3})=10\rho(\mathrm{g/cm^3})\)。
+\item
+  \textbf{注意}：水的重度
+  \(\gamma_w=10\,\mathrm{kN/m^3}\)，\(\rho_w=1\,\mathrm{g/cm^3}\)。
+\end{itemize}
+
+\subsubsection{公式
+1-3　土粒相对密度（土粒比重）}\label{ux516cux5f0f-1-3-ux571fux7c92ux76f8ux5bf9ux5bc6ux5ea6ux571fux7c92ux6bd4ux91cd}
+
+\[d_s=\frac{m_s}{V_s\rho_w}=\frac{m_s}{V_s}\cdot\frac{1}{\rho_w}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(d_s\)
+  为土粒相对密度（无量纲），数值上等于土粒密度与 4℃
+  纯水密度之比；\(\rho_w\) 取 \(1\,\mathrm{g/cm^3}\)（此时
+  \(d_s=\rho_s/\rho_w\)，\(\rho_s\) 为土粒密度）。
+\item
+  \textbf{经验值}：砂土 \(2.65\)，粉土 \(2.68\)，黏性土
+  \(2.72\sim2.75\)。
+\item
+  \textbf{注意}：\(d_s\) 与土的密度 \(\rho\)
+  是\textbf{完全不同}的概念，前者是土粒自身，后者是三相整体的平均密度。
+\end{itemize}
+
+\subsubsection{公式
+1-4　孔隙比与孔隙率}\label{ux516cux5f0f-1-4-ux5b54ux9699ux6bd4ux4e0eux5b54ux9699ux7387}
+
+\[e=\frac{V_v}{V_s},\qquad n=\frac{V_v}{V}\times100\%\]
+
+\[n=\frac{e}{1+e},\qquad e=\frac{n}{1-n}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e\) 为孔隙比；\(n\)
+  为孔隙率（\%）；\(V_v\)、\(V_s\)、\(V\) 意义同上。
+\item
+  \textbf{换算}：二者一一对应，考试中常需互转。\(e\) 常为小数（砂土
+  \(0.4\sim0.8\)，黏性土 \(0.6\sim1.2\)）。
+\item
+  \textbf{注意}：\(e\) 以 \(V_s\) 为分母，\(n\) 以 \(V\)
+  为分母，分子都是 \(V_v\)，切勿混淆分母。
+\end{itemize}
+
+\subsubsection{公式
+1-5　饱和度}\label{ux516cux5f0f-1-5-ux9971ux548cux5ea6}
+
+\[S_r=\frac{V_w}{V_v}\times100\%\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(S_r\)
+  为饱和度（\%），反映孔隙被水充满的程度。\(S_r=100\%\)
+  即饱和土；\(S_r=0\) 即干土。
+\item
+  \textbf{工程分类参考}：稍湿 \(S_r<50\%\)，很湿 \(50\sim80\%\)，饱和
+  \(>80\%\)。
+\end{itemize}
+
+\subsubsection{公式
+1-6　干密度与干重度}\label{ux516cux5f0f-1-6-ux5e72ux5bc6ux5ea6ux4e0eux5e72ux91cdux5ea6}
+
+\[\rho_d=\frac{m_s}{V},\qquad \gamma_d=\rho_d g\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\rho_d\) 为干密度；\(\gamma_d\)
+  为干重度（\(\mathrm{kN/m^3}\)）。烘干后土的质量与总体积之比。
+\item
+  \textbf{用途}：填土压实质量控制以 \(\rho_d\)（或压实系数
+  \(\lambda_c=\rho_d/\rho_{d,\max}\)）为标准。
+\end{itemize}
+
+\subsubsection{公式
+1-7　饱和密度与浮密度（有效重度）}\label{ux516cux5f0f-1-7-ux9971ux548cux5bc6ux5ea6ux4e0eux6d6eux5bc6ux5ea6ux6709ux6548ux91cdux5ea6}
+
+\[\rho_{sat}=\frac{m_s+V_v\rho_w}{V}=\frac{m_s+V_v}{V}\,\mathrm{(g/cm^3)}\]
+
+\[\rho'=\frac{m_s-\rho_w V_s}{V}\approx\rho_{sat}-\rho_w,\qquad \gamma'=\gamma_{sat}-\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\rho_{sat}\) 为饱和密度；\(\rho'\)
+  为浮密度（水中单位体积土所受浮力折减后的等效密度）；\(\gamma'\)
+  为浮重度（有效重度）。\(\gamma_{sat}=\rho_{sat}g\)。
+\item
+  \textbf{单位}：\(\rho\) 用 \(\mathrm{g/cm^3}\)，\(\gamma\) 用
+  \(\mathrm{kN/m^3}\)。
+\item
+  \textbf{注意}：\textbf{水下自重应力计算必须用
+  \(\gamma'\)；\(\gamma'=\gamma_{sat}-\gamma_w\)}
+  是最常用的换算关系（浮力原理），推导时用阿基米德浮力：土粒体积 \(V_s\)
+  排开水重 \(\rho_w V_s g\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.3
+三相比例指标的互相换算（考点核心）}\label{ux4e09ux76f8ux6bd4ux4f8bux6307ux6807ux7684ux4e92ux76f8ux6362ux7b97ux8003ux70b9ux6838ux5fc3}
+
+令 \(\rho_w=1\,\mathrm{g/cm^3}\)，设一个代表性三相图（以 \(V_s=1\) 或
+\(m_s=1\)
+为基准即可推出全部关系）。\textbf{掌握以下换算组}，考试任一已知组合均可求解：
+
+\subsubsection{\texorpdfstring{公式 1-8　已知 \(\rho,\omega,d_s\) →
+求全部}{公式 1-8　已知 \textbackslash rho,\textbackslash omega,d\_s → 求全部}}\label{ux516cux5f0f-1-8-ux5df2ux77e5-rhoomegad_s-ux6c42ux5168ux90e8}
+
+\[e=\frac{d_s(1+\omega)\rho_w}{\rho}-1=\frac{d_s(1+\omega)}{\rho}-1\quad(\rho_w=1)\]
+
+\[n=\frac{e}{1+e},\qquad S_r=\frac{\omega d_s}{e},\qquad \rho_d=\frac{\rho}{1+\omega}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{推导骨架}（以 \(m_s=1\) 为基准）：令 \(m_s=1\)，则
+  \(m_w=\omega\)，\(V_s=\dfrac{1}{d_s}\)（因
+  \(d_s=\dfrac{m_s}{V_s\rho_w}=\dfrac{1}{V_s}\)），\(V_w=\omega\)，\(m=1+\omega\)，\(V=\dfrac{m}{\rho}=\dfrac{1+\omega}{\rho}\)；于是
+  \(V_v=V-V_s\)，由
+  \(e=\dfrac{V_v}{V_s}\)、\(n=\dfrac{V_v}{V}\)、\(S_r=\dfrac{V_w}{V_v}\)
+  逐项化简即得上式。
+\item
+  \textbf{单位}：\(\rho\) 用 \(\mathrm{g/cm^3}\) 时与 \(\rho_w=1\)
+  直接相除；若 \(\rho\) 给的是 \(\mathrm{kN/m^3}\) 需先换回。
+\item
+  \textbf{注意}：这是\textbf{唯一必须记住的推导链}------考场上一旦忘公式，用「\(m_s=1\)
+  基准法」30 秒内可全推出来。
+\end{itemize}
+
+\subsubsection{公式
+1-9　饱和度-孔隙比-含水率关系（常用总式）}\label{ux516cux5f0f-1-9-ux9971ux548cux5ea6-ux5b54ux9699ux6bd4-ux542bux6c34ux7387ux5173ux7cfbux5e38ux7528ux603bux5f0f}
+
+\[\boxed{S_r=\frac{\omega d_s}{e}}\]
+
+\(\omega,\ d_s,\ e,\ S_r\)
+四者知三求一。特别地，\textbf{饱和土（\(S_r=1\)）}时：
+
+\[e=\omega_{sat} d_s,\qquad \omega_{sat}=\frac{e}{d_s}=\frac{n}{d_s(1-n)}\]
+
+\subsubsection{公式
+1-10　密度/干密度/孔隙比互转}\label{ux516cux5f0f-1-10-ux5bc6ux5ea6ux5e72ux5bc6ux5ea6ux5b54ux9699ux6bd4ux4e92ux8f6c}
+
+\[\rho=\rho_d(1+\omega)\]
+
+\[\rho_d=\frac{d_s}{1+e}\quad(\rho_w=1),\qquad \rho=\frac{d_s(1+\omega)}{1+e}\]
+
+\[\gamma=\frac{d_s(1+\omega)}{1+e}\gamma_w,\qquad \gamma_d=\frac{d_s}{1+e}\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：各符号同上；乘以 \(\gamma_w\) 即得对应重度单位
+  \(\mathrm{kN/m^3}\)。
+\item
+  \textbf{注意}：计算时务必统一 \(d_s\)（无量纲）与
+  \(\rho_w=1\ \mathrm{g/cm^3}\)；若直接代 \(\gamma\) 表达式则
+  \(\gamma_w=10\ \mathrm{kN/m^3}\)。
+\end{itemize}
+
+\subsubsection{公式
+1-11　饱和密度/浮密度的另一种表达式}\label{ux516cux5f0f-1-11-ux9971ux548cux5bc6ux5ea6ux6d6eux5bc6ux5ea6ux7684ux53e6ux4e00ux79cdux8868ux8fbeux5f0f}
+
+\[\rho_{sat}=\frac{d_s+e}{1+e},\qquad \rho'=\frac{d_s-1}{1+e}\]
+
+\[\gamma_{sat}=\frac{d_s+e}{1+e}\gamma_w,\qquad \gamma'=\frac{d_s-1}{1+e}\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{推导要点}：令 \(V_s=1\)，则
+  \(V_v=e\)，\(V=1+e\)，\(m_s=d_s\)，恰好可验。显然
+  \(\rho'=\rho_{sat}-\rho_w\) 与公式 1-7 一致。
+\item
+  \textbf{注意}：此组公式将「重度计算」压缩为仅依赖
+  \(d_s,e\)，考试粒子题（给 \(d_s,e\) 求
+  \(\gamma,\gamma_d,\gamma_{sat},\gamma'\)）直接用。
+\end{itemize}
+
+\subsubsection{公式
+1-12　用密度直接求浮重度}\label{ux516cux5f0f-1-12-ux7528ux5bc6ux5ea6ux76f4ux63a5ux6c42ux6d6eux91cdux5ea6}
+
+\[\gamma'=\gamma_{sat}-\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：地下水位以下土层若给的是\textbf{湿密度}，一般按\textbf{饱和处理}（水位以下地基土通常
+  \(S_r=100\%\)），即令 \(\rho=\rho_{sat}\)
+  后用上式；若题目明示非饱和，按「水中自重 = 总重 −
+  浮力」逐分步计算（浮力 = \(V_s\gamma_w\)）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.4
+黏性土的物理状态指标}\label{ux9ecfux6027ux571fux7684ux7269ux7406ux72b6ux6001ux6307ux6807}
+
+\subsubsection{公式
+1-13　界限含水率与稠度}\label{ux516cux5f0f-1-13-ux754cux9650ux542bux6c34ux7387ux4e0eux7a20ux5ea6}
+
+\[\omega_L\ \text{（液限）：} \ \text{流动}\leftrightarrow\text{可塑}\]
+\[\omega_P\ \text{（塑限）：} \ \text{可塑}\leftrightarrow\text{半固态}\]
+\[\omega_S\ \text{（缩限）：} \ \text{半固态}\leftrightarrow\text{固态}\]
+
+\subsubsection{公式
+1-14　塑性指数}\label{ux516cux5f0f-1-14-ux5851ux6027ux6307ux6570}
+
+\[\boxed{I_p=\omega_L-\omega_P}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(I_p\) 为塑性指数（直接以百分数数值表示，不带 \%
+  号），数值越大，黏粒含量越高、可塑范围越宽。
+\item
+  \textbf{工程分类}：粉土 \(I_p\le10\)；黏性土 \(I_p>10\)（其中黏土
+  \(I_p>17\)，粉质黏土 \(10<I_p\le17\)）。
+\item
+  \textbf{注意}：塑性指数各教材取下限临界值方式不同（有的取 \(I_p>17\)
+  为黏土），以本校教材为准。
+\end{itemize}
+
+\subsubsection{公式
+1-15　液性指数与稠度状态}\label{ux516cux5f0f-1-15-ux6db2ux6027ux6307ux6570ux4e0eux7a20ux5ea6ux72b6ux6001}
+
+\[I_L=\frac{\omega-\omega_P}{I_p}=\frac{\omega-\omega_P}{\omega_L-\omega_P}\]
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\(I_L\) 范围 & 稠度状态 & 力学行为 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(I_L\le0\) & 坚硬（固态） & 强度高 \\
+\(0<I_L\le0.25\) & 硬塑 & --- \\
+\(0.25<I_L\le0.75\) & 可塑 & 一般地基/填土控制 \\
+\(0.75<I_L\le1.0\) & 软塑 & --- \\
+\(I_L>1\) & 流塑 & 强度低，需处理 \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意点}：\(I_L\) 描述\textbf{天然状态}黏性土的软硬，\(I_p\)
+  描述\textbf{可塑范围}，一个是状态量、一个是材料属性，勿混。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.5
+无黏性土的密实度}\label{ux65e0ux9ecfux6027ux571fux7684ux5bc6ux5b9eux5ea6}
+
+\subsubsection{公式
+1-16　相对密实度}\label{ux516cux5f0f-1-16-ux76f8ux5bf9ux5bc6ux5b9eux5ea6}
+
+\[D_r=\frac{e_{max}-e}{e_{max}-e_{min}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e_{max}\)、\(e_{min}\)
+  为最大、最小孔隙比（试验测出）；\(e\) 为天然孔隙比。\(D_r=0\sim1\)。
+\item
+  \textbf{分级}：松散 \(0<D_r\le1/3\)；中密 \(1/3<D_r\le2/3\)；密实
+  \(2/3<D_r\le1\)。
+\item
+  \textbf{注意}：只适用于\textbf{无黏性土}；砂土也可用标准贯入锤击数
+  \(N\) 判别（\(N>30\) 密实，\(10<N\le30\) 中密，\(N\le10\) 松散）。
+\end{itemize}
+
+\subsubsection{公式
+1-17　颗粒级配评价指标}\label{ux516cux5f0f-1-17-ux9897ux7c92ux7ea7ux914dux8bc4ux4ef7ux6307ux6807}
+
+\[C_u=\frac{d_{60}}{d_{10}},\qquad C_c=\frac{d_{30}^{\,2}}{d_{60}\,d_{10}}\]
+
+\begin{itemize}
+\item
+  \textbf{参数说明}：\(d_{60},d_{30},d_{10}\) 为累计含量达
+  \(60\%、30\%、10\%\) 时对应的粒径（mm），\(d_{10}\)
+  又称有效粒径；\(C_u\) 为不均匀系数，\(C_c\) 为曲率系数。
+\item
+  \textbf{判别}：级配良好需 \textbf{\(C_u\ge5\) 且 \(C_c=1\sim3\)}
+  同时满足（粗粒土）。
+\item
+  \textbf{工程意义}：\(C_u\) 越大级配越良好、易于压实；\(C_u\)
+  过小的均粒土不密实。
+\item
+  \begin{quote}
+  \textbf{双义警示}：\(C_c\) 在此是\textbf{曲率系数}（级配），而在第四章
+  e-lgp
+  压缩曲线中另作\textbf{压缩指数}------两处含义不同，跨章复习注意区分；\(C_u\)（不均匀系数）与第五章
+  \(c_u\)（不排水抗剪强度）也仅大小写之别，阅读时看清下标。
+  \end{quote}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.6
+土的工程分类（速记）}\label{ux571fux7684ux5de5ux7a0bux5206ux7c7bux901fux8bb0}
+
+\subsubsection{大类划分（按粒径组成）}\label{ux5927ux7c7bux5212ux5206ux6309ux7c92ux5f84ux7ec4ux6210}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5385}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+大类
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+粒组组成（mm）
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+特征
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+碎石土 & 粒径 \(>2\,\mathrm{mm}\) 含量 \(>50\%\) & 由碎石/角砾组成 \\
+砂土 & \(>2\,\mathrm{mm}\) 含量 \(\le50\%\)，\(>0.075\,\mathrm{mm}\)
+含量 \(>50\%\) & 砾砂/粗砂/中砂/细砂/粉砂 \\
+粉土 & \(>0.075\,\mathrm{mm}\) 含量 \(\le50\%\)，塑性指数 \(I_p\le10\) &
+介于砂土与黏性土之间 \\
+黏性土 & \(I_p>10\) & 粉质黏土 \(10<I_p\le17\)，黏土 \(I_p>17\) \\
+\end{longtable}
+}
+
+\subsubsection{黏性土的判别要点}\label{ux9ecfux6027ux571fux7684ux5224ux522bux8981ux70b9}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{用 \(I_p\) 分类，用 \(I_L\) 判状态}------两类指标分工不同。
+\item
+  判别流程：先判断是否粉土（按粒径与 \(I_p\)），再按 \(I_p\)
+  细分黏性土。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.7
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1-1 & \(\omega=m_w/m_s\) & 含水率 \\
+1-2 & \(\rho=m/V,\ \gamma=\rho g\) & 密度/重度 \\
+1-3 & \(d_s=m_s/(V_s\rho_w)\) & 土粒比重 \\
+1-4 & \(e=V_v/V_s,\ n=V_v/V,\ n=e/(1+e)\) & 孔隙比/孔隙率 \\
+1-5 & \(S_r=V_w/V_v\) & 饱和度 \\
+1-6 & \(\rho_d=m_s/V\) & 干密度 \\
+1-7 & \(\rho_{sat}=\rho_{sat},\rho'=\rho_{sat}-\rho_w\) & 饱和/浮密度 \\
+1-8 & \(e=\dfrac{d_s(1+\omega)}{\rho}-1\) & 已知 \(\rho,\omega,d_s\)
+换算 \\
+1-9 & \(S_r=\omega d_s/e\) & 四量互求 \\
+1-10 & \(\rho_d=\dfrac{d_s}{1+e},\ \rho=\dfrac{d_s(1+\omega)}{1+e}\) &
+重度组 \\
+1-11 &
+\(\gamma_{sat}=\dfrac{d_s+e}{1+e}\gamma_w,\ \gamma'=\dfrac{d_s-1}{1+e}\gamma_w\)
+& 饱和/浮重度 \\
+1-14 & \(I_p=\omega_L-\omega_P\) & 塑性指数 \\
+1-15 & \(I_L=\dfrac{\omega-\omega_P}{I_p}\) & 液性指数 \\
+1-16 & \(D_r=\dfrac{e_{max}-e}{e_{max}-e_{min}}\) & 相对密实度 \\
+1-17 &
+\(C_u=\dfrac{d_{60}}{d_{10}},\ C_c=\dfrac{d_{30}^2}{d_{60}d_{10}}\) &
+级配评价 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 三相换算以「\(m_s=1\)」为基准可防止一切记混；②
+地下水位以下一律 \(\gamma'\)；③ \(S_r=\omega d_s/e\)
+记得指数与饱和度随时互推；④ 水利/岩土考题常给「饱和重度
+\(\gamma_{sat}\)」直接使用，不再绕密度。
+\end{quote}
+
+\newpage
+
+\section{第二章
+土的渗透性与渗流}\label{ux7b2cux4e8cux7ae0-ux571fux7684ux6e17ux900fux6027ux4e0eux6e17ux6d41}
+
+\begin{quote}
+\textbf{本章导览}：本章核心是\textbf{达西定律 +
+渗透力的概念}。期末考试计算题常见：常/变水头试验求渗透系数、多层土等效渗透系数、渗流引起的临界状态判别（流土）。考研则常结合有效应力原理考「渗透压力对有效应力的影响」简答题。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.1 达西定律}\label{ux8fbeux897fux5b9aux5f8b}
+
+\subsubsection{公式
+2-1　达西定律（层流渗透基本规律）}\label{ux516cux5f0f-2-1-ux8fbeux897fux5b9aux5f8bux5c42ux6d41ux6e17ux900fux57faux672cux89c4ux5f8b}
+
+\[v=k\,i=k\frac{\Delta h}{L}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(v\) 为渗透流速（虚拟流速，\(\mathrm{m/d}\) 或
+  \(\mathrm{cm/s}\)）；\(k\) 为渗透系数；\(i=\dfrac{\Delta h}{L}\)
+  为水力梯度（无量纲）；\(\Delta h\) 为上下游总水头差（m），\(L\)
+  为渗流路径长度（m）。
+\item
+  \textbf{单位}：\(k\) 量的单位与 \(v\)
+  相同------\(\mathrm{m/s}\)、\(\mathrm{cm/s}\)、\(\mathrm{m/d}\)（记住
+  \(1\,\mathrm{cm/s}\approx864\,\mathrm{m/d}\)）。
+\item
+  \textbf{适用}：\textbf{层流}（绝大多数土中地下渗流）。粗砾石、卵石中为紊流时不适用。
+\item
+  \textbf{注意}：\(v\)
+  是\textbf{假想的全断面流速}，不是真正的孔隙中流速。
+\end{itemize}
+
+\subsubsection{公式
+2-2　实际孔隙流速与虚拟流速}\label{ux516cux5f0f-2-2-ux5b9eux9645ux5b54ux9699ux6d41ux901fux4e0eux865aux62dfux6d41ux901f}
+
+\[v'=\frac{v}{n}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(v'\) 为实际平均孔隙流速；\(n\)
+  为孔隙率。因水流只在孔隙断面中流动，\(v' = Q/(nA) = v/n\)。
+\item
+  \textbf{注意}：\(v'\) 是平均概化速度，实际孔道中流速分布并不均匀。
+\end{itemize}
+
+\subsubsection{公式
+2-3　渗透流量（连续流）}\label{ux516cux5f0f-2-3-ux6e17ux900fux6d41ux91cfux8fdeux7eedux6d41}
+
+\[Q=vA=kiA\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(Q\) 为渗流量（\(\mathrm{m^3/d}\)）；\(A\)
+  为过水断面面积（垂直于渗流方向）；其余同公式 2-1。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.2 渗透系数}\label{ux6e17ux900fux7cfbux6570}
+
+\subsubsection{公式
+2-4　常水头试验（适用砂土等透水性较强的土）}\label{ux516cux5f0f-2-4-ux5e38ux6c34ux5934ux8bd5ux9a8cux9002ux7528ux7802ux571fux7b49ux900fux6c34ux6027ux8f83ux5f3aux7684ux571f}
+
+\[k=\frac{QL}{Ah}=\frac{V\,L}{A\,h\,t}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(Q\) 为时间 \(t\) 内的渗流量（\(V=Qt\)）；\(L\)
+  为试样高度；\(A\) 为试样横截面积；\(h\) 为恒定水头差。
+\item
+  \textbf{单位}：\(L,h\) 用 \(\mathrm{cm}\)，\(A\) 用
+  \(\mathrm{cm^2}\)，\(t\) 用 \(\mathrm{s}\)，得 \(k=\mathrm{cm/s}\)。
+\item
+  \textbf{试验原理}：保持水头恒定，测单位时间流量，由达西定律反算。
+\end{itemize}
+
+\subsubsection{公式
+2-5　变水头试验（适用黏性土等透水性弱的土）}\label{ux516cux5f0f-2-5-ux53d8ux6c34ux5934ux8bd5ux9a8cux9002ux7528ux9ecfux6027ux571fux7b49ux900fux6c34ux6027ux5f31ux7684ux571f}
+
+\[k=2.3\frac{aL}{At}\lg\frac{h_1}{h_2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(a\) 为测压管（量管）横截面积；\(h_1,h_2\)
+  为试验开始、结束时水头差；\(t\) 为测读时间；其余同前。
+\item
+  \textbf{注意}：试验过程中水头差 \(h\)
+  随时间变化，积分达西定律得到上式；\(2.3=\ln10\)。
+\end{itemize}
+
+\subsubsection{公式
+2-6　成层土等效渗透系数（平行/垂直渗流）}\label{ux516cux5f0f-2-6-ux6210ux5c42ux571fux7b49ux6548ux6e17ux900fux7cfbux6570ux5e73ux884cux5782ux76f4ux6e17ux6d41}
+
+平行层面渗流（水平等效渗透系数）：
+
+\[k_{x}=\frac{k_1h_1+k_2h_2+\cdots+k_nh_n}{H}=\frac{\sum k_i h_i}{\sum h_i}\]
+
+垂直层面渗流（竖直等效渗透系数）：
+
+\[k_{z}=\frac{H}{\dfrac{h_1}{k_1}+\dfrac{h_2}{k_2}+\cdots}=\frac{\sum h_i}{\sum \dfrac{h_i}{k_i}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(k_i,h_i\) 为第 \(i\) 层渗透系数与厚度；\(H\)
+  为总厚。
+\item
+  \textbf{结论}：\(k_x>k_z\)（平行渗流快），即\textbf{水平向等效渗透系数总大于竖直向}；这是成层土的定向性。
+\item
+  \textbf{注意}：整体流量一样时，垂直渗流电水头损失按 \(h_i/k_i\)
+  加权------计算两层时特别容易代错分母。
+\end{itemize}
+
+\subsubsection{公式
+2-7　渗透系数经验值（速记表）}\label{ux516cux5f0f-2-7-ux6e17ux900fux7cfbux6570ux7ecfux9a8cux503cux901fux8bb0ux8868}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+土类 & 渗透系数 \(k\)（cm/s） & 土类 & 渗透系数 \(k\)（cm/s） \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+粗砂/砾砂 & \(10^{-1}\sim10^{-2}\) & 粉土 & \(10^{-4}\sim10^{-5}\) \\
+中砂 & \(10^{-2}\sim10^{-3}\) & 粉质黏土 & \(10^{-5}\sim10^{-6}\) \\
+细砂 & \(10^{-3}\sim10^{-4}\) & 黏土 & \(<10^{-6}\) \\
+\end{longtable}
+}
+
+\subsubsection{公式 2-8　渗透系数的经验估算（Hazen
+公式）}\label{ux516cux5f0f-2-8-ux6e17ux900fux7cfbux6570ux7684ux7ecfux9a8cux4f30ux7b97hazen-ux516cux5f0f}
+
+\[k\approx C\,d_{10}^{\,2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(d_{10}\) 为有效粒径（mm）；\(C\)
+  为经验系数（细砂常取 \(100\sim150\)）；代入后 \(k\) 单位
+  \(\mathrm{cm/s}\)。
+\item
+  \textbf{适用}：级配较均匀的中细砂，在无试验资料时作初步估算；粗粒、级配不均土不适用。
+\item
+  \textbf{注意}：这是经验式，考试出现时按题目给的形式直接代入；与真实值可有量级差异。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.3
+渗透力（动水力）与渗透破坏}\label{ux6e17ux900fux529bux52a8ux6c34ux529bux4e0eux6e17ux900fux7834ux574f}
+
+\subsubsection{公式
+2-9　渗透力}\label{ux516cux5f0f-2-9-ux6e17ux900fux529b}
+
+\[j=i\,\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(j\)
+  为渗透力（单位体积土体内渗流施加于土粒的力，\(\mathrm{kN/m^3}\)）；\(i\)
+  为水力梯度；\(\gamma_w=10\,\mathrm{kN/m^3}\)。
+\item
+  \textbf{方向}：\textbf{顺渗流方向}（由高水头指向低水头）。如竖直向上渗流，渗透力向上，相当于\textbf{减小有效应力}。
+\item
+  \textbf{注意}：渗透力是\textbf{体积力}，方向与渗流方向一致；它作用于土颗粒，改变有效应力，挤压或拉疏土体。
+\end{itemize}
+
+\subsubsection{公式
+2-10　竖直向上渗流时的有效应力}\label{ux516cux5f0f-2-10-ux7ad6ux76f4ux5411ux4e0aux6e17ux6d41ux65f6ux7684ux6709ux6548ux5e94ux529b}
+
+\[\sigma'=\gamma'h-j\,h=(\gamma'-i\gamma_w)h\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\gamma'\) 为浮重度；\(h\)
+  为考察深度（或土柱高度）；\(\sigma'\) 为有效应力；\(j\) 同前。
+\item
+  \textbf{物理意义}：向上渗流的渗透力部分抵消土体自重引起的有效应力。
+\end{itemize}
+
+\subsubsection{公式
+2-11　流土（流动）破坏------临界水力梯度}\label{ux516cux5f0f-2-11-ux6d41ux571fux6d41ux52a8ux7834ux574fux4e34ux754cux6c34ux529bux68afux5ea6}
+
+\[i_{cr}=\frac{\gamma'}{\gamma_w}=\frac{d_s-1}{1+e}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(i_{cr}\) 为临界水力梯度；\(\gamma'\)
+  为浮重度；\(d_s,e\) 为土粒相对密度与孔隙比。
+\item
+  \textbf{推导}：取单位土柱，向上渗流使有效应力降为零
+  \(\Rightarrow i_{cr}\gamma_w=\gamma'\)。
+\item
+  \textbf{判据}：\(i>i_{cr}\)
+  时发生\textbf{流土}（土体整体浮动、翻涌）。
+\item
+  \textbf{注意}：工程安全要求 \(i\le i_{cr}/K\)（\(K\) 为安全系数，通常
+  2 左右）；考试计算流土临界条件时用 \(i_{cr}=\dfrac{d_s-1}{1+e}\)
+  一步到位。
+\end{itemize}
+
+\subsubsection{公式 2-12　管涌}\label{ux516cux5f0f-2-12-ux7ba1ux6d8c}
+
+\begin{itemize}
+\tightlist
+\item
+  管涌：在渗流作用下，细颗粒被渗流从骨架孔隙中\textbf{带走、掏空}的渐进破坏，多发生于级配不均的无黏性土，\textbf{临界梯度}常小于流土的
+  \(i_{cr}\)，与粒径组合有关。
+\item
+  \textbf{判别要点}：流土＝整体（黏性土/粉细砂），管涌＝颗粒逐个被带走（砂砾层、级配不连续）。
+\item
+  \textbf{工程措施}：降低水头（防渗墙、减压井）、加反滤层、压重------考前常考「措施题」，背三类方向。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.4
+渗流场与流网（概念层）}\label{ux6e17ux6d41ux573aux4e0eux6d41ux7f51ux6982ux5ff5ux5c42}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{流网}：由流线（渗流路径，与等势线正交）与等势线组成的正交网格。
+\item
+  \textbf{测管水头}：\(h= z + \dfrac{u}{\gamma_w}\)，渗流由\textbf{总水头}（\(z+\dfrac{u}{\gamma_w}+\dfrac{v^2}{2g}\)，土的渗流中流速项可略）高者向低者流动。
+\item
+  \textbf{水头损失}：上下游水头差 \(\Delta h\)
+  分配在每个流段的等水头降；流网格数 \(N_d\) 与水力梯度关系
+  \(i=\dfrac{\Delta h}{N_d\,\Delta l}\)。
+\item
+  \textbf{注意}：渗流场中渗透力由\textbf{水头梯度}驱动，与土的压实程度无关。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.5
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2-1 & \(v=ki\) & 达西定律 \\
+2-2 & \(v'=v/n\) & 实际孔隙流速 \\
+2-3 & \(Q=kiA\) & 渗流量 \\
+2-4 & \(k=\dfrac{VL}{Aht}\) & 常水头试验 \\
+2-5 & \(k=2.3\dfrac{aL}{At}\lg\dfrac{h_1}{h_2}\) & 变水头试验 \\
+2-6 & \(k_x=\dfrac{\sum k_ih_i}{H},\ k_z=\dfrac{H}{\sum h_i/k_i}\) &
+成层土等效渗透系数 \\
+2-8 & \(k\approx Cd_{10}^2\) & 渗透系数经验估算（Hazen） \\
+2-9 & \(j=i\gamma_w\) & 渗透力 \\
+2-10 & \(\sigma'=\gamma'h-jh\) & 向上渗流有效应力 \\
+2-11 & \(i_{cr}=\dfrac{d_s-1}{1+e}\) & 临界水力梯度（流土） \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 达西定律中的 \(v\) 是虚拟流速，算孔隙流速再除以
+\(n\)；② 渗透力方向是「顺水流」，算有效应力增减先判渗流方向；③
+多层土垂直渗流求 \(k_z\) 用「厚度除以渗透系数」的通分式，勿倒置；④
+临界梯度公式 \(i_{cr}=(d_s-1)/(1+e)\) 要能独立推导（从 \(\sigma'=0\)）。
+\end{quote}
+
+\newpage
+
+\section{第三章
+土中应力计算}\label{ux7b2cux4e09ux7ae0-ux571fux4e2dux5e94ux529bux8ba1ux7b97}
+
+\begin{quote}
+\textbf{本章导览}：本章分两大块------\textbf{自重应力}（由土体自重产生，是「不变荷载」）与\textbf{附加应力}（由建筑物荷载产生，导致沉降）。期末考试计算题：①
+成层土自重应力竖图；② 基底压力与偏心判别；③
+矩形均布荷载角点法求附加应力。\textbf{「分层总和法需要画自重应力+附加应力分布图」是专业课综合题主线}，务必把本章算准。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.1 自重应力}\label{ux81eaux91cdux5e94ux529b}
+
+\subsubsection{公式
+3-1　均质土层自重应力}\label{ux516cux5f0f-3-1-ux5747ux8d28ux571fux5c42ux81eaux91cdux5e94ux529b}
+
+\[\sigma_{cz}=\gamma z\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma_{cz}\) 为深度 \(z\)
+  处竖向自重应力（\(\mathrm{kPa}\)）；\(\gamma\)
+  为土层重度（\(\mathrm{kN/m^3}\)）；\(z\) 为计算深度（m）。
+\item
+  \textbf{单位}：\(\mathrm{kPa}=\mathrm{kN/m^2}\)，注意与
+  \(\mathrm{kN/m^3}\times\mathrm{m}\) 对应。
+\end{itemize}
+
+\subsubsection{公式
+3-2　成层土自重应力（叠加）}\label{ux516cux5f0f-3-2-ux6210ux5c42ux571fux81eaux91cdux5e94ux529bux53e0ux52a0}
+
+\[\sigma_{cz}=\sum_{i=1}^{n}\gamma_i h_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\gamma_i,h_i\) 为第 \(i\) 层重度与厚度；\(n\)
+  为计算深度以上土层数。
+\item
+  \textbf{作图注意}：每一层内 \(\sigma_{cz}\)
+  随深度\textbf{线性增大}，图形为折线；在层面处连续、斜率即该层
+  \(\gamma_i\)。
+\item
+  \textbf{地下水位以下}：粉土/砂土用浮重度
+  \(\gamma_i'=\gamma_{sat,i}-\gamma_w\)；不透水的黏性土层用\textbf{饱和重度}
+  \(\gamma_{sat}\) 参与自重（但总应力层面仍加静水压力，见公式 3-4）。
+\end{itemize}
+
+\subsubsection{公式
+3-3　地下水位以下用浮重度}\label{ux516cux5f0f-3-3-ux5730ux4e0bux6c34ux4f4dux4ee5ux4e0bux7528ux6d6eux91cdux5ea6}
+
+\[\sigma_{cz}=\sum_{i=1}^{w}\gamma_i h_i+\sum_{j=w+1}^{n}\gamma_j' h_j\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(w\) 为地下水位以上层数；\(\gamma_j'\)
+  为水位以下各层浮重度。
+\item
+  \textbf{注意}：此时算的是\textbf{总自重压力}（含孔隙水压力部分），与有效应力（公式
+  3-10）相区分。
+\end{itemize}
+
+\subsubsection{公式
+3-4　不透水层处自重应力突变}\label{ux516cux5f0f-3-4-ux4e0dux900fux6c34ux5c42ux5904ux81eaux91cdux5e94ux529bux7a81ux53d8}
+
+\[\sigma_{cz}=\sum\gamma_i h_i+\gamma_w h_w\quad(\text{作用于不透水层顶面})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：水的自重 \(\gamma_w h_w\)
+  全部传递给下伏不透水（隔水）层顶面，故指标在此处\textbf{发生跳跃}。
+\item
+  \textbf{注意}：只在\textbf{不透水层顶面}才加
+  \(\gamma_w h_w\)；普通透水土层层面处无此跳跃（水压力由土粒骨架承托）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.2
+基底压力（接触压力）}\label{ux57faux5e95ux538bux529bux63a5ux89e6ux538bux529b}
+
+设基础上作用竖向荷载 \(N\)（上部结构传来），基础与台阶上土自重
+\(G\)，基础底面面积 \(A=l\times B\)，基础埋深 \(d\)。
+
+\subsubsection{公式
+3-5　中心荷载基底压力}\label{ux516cux5f0f-3-5-ux4e2dux5fc3ux8377ux8f7dux57faux5e95ux538bux529b}
+
+\[p=\frac{N+G}{A}\]
+
+\[G=\gamma_{G}\,A\,d\quad(\text{平均重度取 }20\text{ })\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p\)
+  为基底平均压力（\(\mathrm{kPa}\)）；\(\gamma_G\)
+  为基础与台阶上土平均重度，常取 \(20\,\mathrm{kN/m^3}\)（水下取
+  \(20-\gamma_w\) 即 \(10\)，或用浮容重）。单位：\(N\) 为
+  \(\mathrm{kN}\)，\(A\) 为 \(\mathrm{m^2}\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式 3-6　偏心荷载基底压力（小偏心
+\(e\le B/6\)）}{公式 3-6　偏心荷载基底压力（小偏心 e\textbackslash le B/6）}}\label{ux516cux5f0f-3-6-ux504fux5fc3ux8377ux8f7dux57faux5e95ux538bux529bux5c0fux504fux5fc3-ele-b6}
+
+\[\boxed{p_{max,min}=\frac{N+G}{lB}\left(1\pm\frac{6e}{B}\right)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e=\dfrac{M}{N+G}\) 为偏心距（\(M\)
+  为对基底中心的总力矩）；\(l\)
+  为与偏心方向垂直方向的基底边长（宽度），\(B\) 为偏心方向基底边长。
+\item
+  \textbf{使用条件}：\(e\le B/6\)（合力落在基底核心内有压区），\(p_{min}\ge0\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式
+3-7　大偏心（\(e>B/6\)）------局部脱离}{公式 3-7　大偏心（e\textgreater B/6）------局部脱离}}\label{ux516cux5f0f-3-7-ux5927ux504fux5fc3eb6ux5c40ux90e8ux8131ux79bb}
+
+\[p_{max}=\frac{2(N+G)}{3al},\qquad a=\frac{B}{2}-e\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(a\) 为合力作用点到受压边缘距离；此时
+  \(p_{min}=0\)（受压区被压缩到底边一侧），三角形分布。
+\item
+  \textbf{注意}：基底不允许出现拉应力------\(e>B/6\)
+  即判别为「脱离」，公式 3-6 的 \(p_{min}<0\) 无物理意义，必须改用 3-7。
+\item
+  \textbf{临界}：\(e=B/6\) 时
+  \(p_{min}=0,\ p_{max}=\dfrac{2(N+G)}{lB}=2p_{aver}\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.3
+基底附加压力（净压力）}\label{ux57faux5e95ux9644ux52a0ux538bux529bux51c0ux538bux529b}
+
+\subsubsection{公式
+3-8　基底附加压力}\label{ux516cux5f0f-3-8-ux57faux5e95ux9644ux52a0ux538bux529b}
+
+\[p_0=p-\gamma_m d=\frac{N+G}{A}-\sum\gamma_i d_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_0\)
+  为基底附加压力（\(\mathrm{kPa}\)）------真正引起地基沉降的净增量；\(\gamma_m d\)
+  为基底以上土的自重压力（成层土的加权平均重度 \(\gamma_m\) × 埋深
+  \(d\)）。
+\item
+  \textbf{来源}：基础位置挖掉原有土体（自重
+  \(\gamma_m d\)），再放上上部荷载 \(p\)，净增量即 \(p_0\)。
+\item
+  \textbf{注意}：\textbf{沉降计算一律用 \(p_0\)}，不是
+  \(p\)------这是最常见的丢分点。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.4
+附加应力（地基中应力分布）}\label{ux9644ux52a0ux5e94ux529bux5730ux57faux4e2dux5e94ux529bux5206ux5e03}
+
+\subsubsection{公式
+3-9　集中力作用下（布辛内斯克解）}\label{ux516cux5f0f-3-9-ux96c6ux4e2dux529bux4f5cux7528ux4e0bux5e03ux8f9bux5185ux65afux514bux89e3}
+
+\[\sigma_z=\frac{3P}{2\pi}\frac{z^3}{R^5}=\frac{3P}{2\pi z^2}\frac{1}{\left[1+\left(\frac{r}{z}\right)^2\right]^{5/2}}=\frac{\alpha P}{z^2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(P\) 为集中力（\(\mathrm{kN}\)）；\(z\)
+  为地表下深度；\(r\)
+  为距作用点水平距离；\(R=\sqrt{r^2+z^2}\)；\(\alpha=\dfrac{3}{2\pi}\dfrac{1}{(1+(r/z)^2)^{5/2}}\)
+  为集中力附加应力系数。
+\item
+  \textbf{特征}：沿深度衰减快；同一深度水平向远离荷载点快速衰减。
+\item
+  \textbf{用途}：理论基石，考试以验证性小题出现；实际计算一般用矩形荷载角点法。
+\end{itemize}
+
+\subsubsection{公式
+3-10　矩形均布荷载角点下的附加应力}\label{ux516cux5f0f-3-10-ux77e9ux5f62ux5747ux5e03ux8377ux8f7dux89d2ux70b9ux4e0bux7684ux9644ux52a0ux5e94ux529b}
+
+\[\sigma_z=\alpha_c\, p_0\]
+
+\[\alpha_c=\frac{1}{2\pi}\left[\arctan\frac{mn}{\sqrt{m^2+n^2+1}}+\frac{mn\left(m^2+n^2+2\right)}{\left(m^2+1\right)\left(n^2+1\right)\sqrt{m^2+n^2+1}}\right]\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(m=l/z,\ n=b/z\)（\(l,b\) 为矩形长边、短边，\(z\)
+  为计算深度）；\(\alpha_c\)
+  为矩形均布荷载\textbf{角点}附加应力系数（表查：按 \(l/b\) 与 \(z/b\)
+  双引数，表见教材附录）。
+\item
+  \textbf{注意}：\(m,n\) 的分母是 \(z\)，查表常用引数为
+  \(l/b\)（横向）与 \(z/b\)（纵向）；两边的次序别混淆。
+\item
+  \textbf{极限验证}：\(z\to0\) 时
+  \(\sigma_z\to p_0/4\)（角点处恰为四分之一荷载），可用以检验公式/查表是否正确。
+\end{itemize}
+
+\subsubsection{公式
+3-11　平均附加应力系数（应力面积法用）}\label{ux516cux5f0f-3-11-ux5e73ux5747ux9644ux52a0ux5e94ux529bux7cfbux6570ux5e94ux529bux9762ux79efux6cd5ux7528}
+
+\[\bar\alpha_c=\frac{1}{z}\int_0^z\alpha_c\,dz\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\bar\alpha_c\) 为从基底到深度 \(z\)
+  的\textbf{平均}附加应力系数（查表，引数与角点法同）；\(\alpha_c\)
+  为公式 3-10 的角点系数。
+\item
+  \textbf{用途}：第四章规范法（应力面积法）需用应力面积
+  \(z\bar\alpha_c\) 计算，此式给出两者的联系。
+\item
+  \textbf{注意}：这是\textbf{平均系数}，与角点系数 \(\alpha_c\)
+  是\textbf{两套表}，沉降计算时别用混。
+\end{itemize}
+
+\subsubsection{公式
+3-12　角点法（任意竖向位置点）}\label{ux516cux5f0f-3-12-ux89d2ux70b9ux6cd5ux4efbux610fux7ad6ux5411ux4f4dux7f6eux70b9}
+
+任一点 \(M\) 的附加应力 = 把荷载面分割、使 \(M\)
+位于各子矩形\textbf{角点}，按叠加或相减：
+
+\begin{itemize}
+\tightlist
+\item
+  \(M\) 在矩形内（或边界上）：子矩形相加；
+\item
+  \(M\) 在矩形外：\(ABCD\) 面积 = 大矩形 − 小矩形\ldots（或「大矩形 +
+  小矩形 − 二小矩形」），按角点法代数叠加。
+\end{itemize}
+
+\[\sigma_z=\sum_{i}\alpha_{c,i}\,p_0\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：角点法是\textbf{矩形均布荷载}专属；\(M\)
+  点必须落在每个参与矩形的一角，分割规则以「使 \(M\) 处于角点」为原则。
+\item
+  考试技巧：先画矩形分割示意图，写清每个 \(l_i,b_i,z\) 再查
+  \(\alpha_{c,i}\)，最后求和/求差。
+\end{itemize}
+
+\subsubsection{公式
+3-13　条形均布荷载下的附加应力（平面问题）}\label{ux516cux5f0f-3-13-ux6761ux5f62ux5747ux5e03ux8377ux8f7dux4e0bux7684ux9644ux52a0ux5e94ux529bux5e73ux9762ux95eeux9898}
+
+\[\sigma_z=\frac{p_0}{\pi}\Big[\beta+\sin\beta\,\cos(\alpha_1-\alpha_2)\Big]\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\alpha_1,\alpha_2\)
+  为由计算点向条形荷载\textbf{两侧边缘}作的连线与竖直线夹角；\(\beta=\alpha_1+\alpha_2\)
+  为两连线夹角。角度\textbf{用弧度}。
+\item
+  \textbf{特例}：位于中心线下方时
+  \(\alpha_1=\alpha_2\)，\(\sigma_z=\dfrac{p_0}{\pi}(\beta+\sin\beta)\)，其中
+  \(\beta=2\arctan\dfrac{B}{2z}\)。
+\item
+  \textbf{注意}：条形荷载按\textbf{每米长度}计算（平面应变），荷载强度
+  \(p_0\) 单位 \(\mathrm{kPa}\)，不再乘宽度。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.5
+有效应力原理（贯穿全书）}\label{ux6709ux6548ux5e94ux529bux539fux7406ux8d2fux7a7fux5168ux4e66}
+
+\subsubsection{公式
+3-14　有效应力原理}\label{ux516cux5f0f-3-14-ux6709ux6548ux5e94ux529bux539fux7406}
+
+\[\sigma=\sigma'\,+u\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma\) 为总应力；\(\sigma'\)
+  为有效应力（土颗粒骨架承担）；\(u\) 为孔隙水压力。
+\item
+  \textbf{静水条件下}：地下水位以下 \(\sigma'=\sigma-u=\gamma' z\)。
+\item
+  \textbf{向上渗流时}：\(\sigma'=\gamma' z-jz\)（渗透力抵消有效应力，见公式
+  2-10）。
+\item
+  \textbf{注意}：\textbf{决定土的强度和变形的是有效应力
+  \(\sigma'\)}；总应力与孔隙水压力分开计算后再合成------三轴试验强度指标用有效应力表达（见第五章）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-2}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3-1 & \(\sigma_{cz}=\gamma z\) & 均质土自重应力 \\
+3-2 & \(\sigma_{cz}=\sum\gamma_ih_i\) & 成层土自重应力 \\
+3-3 & 水位以下用 \(\gamma'\) & 水下自重应力 \\
+3-4 & 不透水层顶面加 \(\gamma_wh_w\) & 不透水层处突变 \\
+3-5 & \(p=\dfrac{N+G}{A}\) & 中心荷载基底压力 \\
+3-6 & \(p_{max,min}=\dfrac{N+G}{lB}(1\pm\dfrac{6e}{B})\) &
+偏心荷载（小偏心） \\
+3-7 & \(p_{max}=\dfrac{2(N+G)}{3al}\) & 大偏心局部承压 \\
+3-8 & \(p_0=p-\gamma_md\) & 基底附加压力 \\
+3-9 & \(\sigma_z=\dfrac{3Pz^3}{2\pi R^5}\) & 集中力布辛内斯克解 \\
+3-10 & \(\sigma_z=\alpha_cp_0\) & 矩形角点法 \\
+3-11 & \(\bar\alpha_c=\dfrac{1}{z}\int_0^z\alpha_c\,dz\) &
+平均附加应力系数（规范法用） \\
+3-12 & 角点法叠加/相减 \(\sigma_z=\sum\alpha_{c,i}p_0\) &
+任意竖向位置点 \\
+3-13 &
+\(\sigma_z=\dfrac{p_0}{\pi}(\beta+\sin\beta\cos(\alpha_1-\alpha_2))\) &
+条形荷载 \\
+3-14 & \(\sigma=\sigma'+u\) & 有效应力原理 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 附加应力系数表「先 \(l/b\)、后
+\(z/b\)」，点必在矩形角点上；② 沉降计算用 \(p_0\)；③ 偏心判别先算
+\(e\le B/6\) 还是 \(e>B/6\)，再选公式 3-6 或 3-7；④
+不透水层顶面自重应力「跳跃」，图形上别画成连续斜线。
+\end{quote}
+
+\newpage
+
+\section{第四章
+土的压缩性与地基沉降计算}\label{ux7b2cux56dbux7ae0-ux571fux7684ux538bux7f29ux6027ux4e0eux5730ux57faux6c89ux964dux8ba1ux7b97}
+
+\begin{quote}
+\textbf{本章导览}：本章是\textbf{专业课最核心大题}------常考「分层总和法/规范法求最终沉降」与「一维固结求任意时刻沉降」两大计算题，另有压缩系数/压缩模量/压缩指数的概念小题。综合性极强，务必把「试验曲线
+→ 压缩指标 → 沉降公式 → 固结时间」这条链打通。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.1
+压缩性指标（由室内压缩试验得到）}\label{ux538bux7f29ux6027ux6307ux6807ux7531ux5ba4ux5185ux538bux7f29ux8bd5ux9a8cux5f97ux5230}
+
+\subsubsection{公式 4-1　压缩系数（e-p
+曲线）}\label{ux516cux5f0f-4-1-ux538bux7f29ux7cfbux6570e-p-ux66f2ux7ebf}
+
+\[\boxed{a=-\frac{\Delta e}{\Delta p}=\frac{e_1-e_2}{p_2-p_1}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(a\) 为压缩系数（\(\mathrm{MPa^{-1}}\) 或
+  \(\mathrm{kPa^{-1}}\)）；\(e_1,e_2\) 为压力 \(p_1,p_2\)
+  作用下土样孔隙比；负号表示 \(p\) 增大 \(e\) 减小。
+\item
+  \textbf{压缩性评价}（用 \(a_{1-2}\)，即
+  \(p_1=100\,\mathrm{kPa},\ p_2=200\,\mathrm{kPa}\) 区间）：
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(a_{1-2}<0.1\ \mathrm{MPa^{-1}}\)：低压缩性；
+  \item
+    \(0.1\le a_{1-2}<0.5\)：中压缩性；
+  \item
+    \(a_{1-2}\ge0.5\)：高压缩性。
+  \end{itemize}
+\item
+  \textbf{注意}：\(a\)
+  不是常数，随压力区间变化------\textbf{评价必须标明压力段}（标定
+  \(a_{1-2}\) 才可比较）。
+\end{itemize}
+
+\subsubsection{公式
+4-2　压缩模量与体积压缩系数}\label{ux516cux5f0f-4-2-ux538bux7f29ux6a21ux91cfux4e0eux4f53ux79efux538bux7f29ux7cfbux6570}
+
+\[E_s=\frac{p_2-p_1}{e_1-e_2}(1+e_1)=\frac{1+e_1}{a}\]
+
+\[m_v=\frac{a}{1+e_1}=\frac{1}{E_s}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(E_s\) 为侧限压缩模量（\(\mathrm{MPa}\)）；\(m_v\)
+  为体积压缩系数；\(a,e_1\) 同上。
+\item
+  \textbf{注意}：\(E_s\) 与 \(a\) 互成倒数关系但\textbf{必须配上
+  \((1+e_1)\)}，别只记 \(E_s=1/a\)。
+\item
+  \textbf{单位一致化}：\(a\) 用 \(\mathrm{kPa^{-1}}\) 时 \(E_s\) 得
+  \(\mathrm{kPa}\)；用 \(\mathrm{MPa^{-1}}\) 时得 \(\mathrm{MPa}\)。
+\end{itemize}
+
+\subsubsection{公式 4-3　压缩指数与回弹指数（e-lgp
+曲线）}\label{ux516cux5f0f-4-3-ux538bux7f29ux6307ux6570ux4e0eux56deux5f39ux6307ux6570e-lgp-ux66f2ux7ebf}
+
+\[C_c=\frac{e_1-e_2}{\lg p_2-\lg p_1}=\frac{\Delta e}{\lg(p_2/p_1)}\]
+
+\[C_s=\frac{e_1-e_2}{\lg p_2-\lg p_1}\quad(\text{回弹-再压缩段})\]
+
+\begin{itemize}
+\item
+  \textbf{参数说明}：\(C_c\) 为压缩指数（正常固结段 e-lgp
+  直线斜率）；\(C_s\) 为回弹指数（卸载回弹/再压缩，远小于
+  \(C_c\)，约为其 \(1/10\sim1/5\)）。\(p\) 用 \(\mathrm{kPa}\)。
+\item
+  \textbf{注意}：e-lgp 曲线中正常固结段为直线，斜率为
+  \(C_c\)（随土不同约 \(0.1\sim0.5\)，大于约 \(0.19\)
+  视为高压缩性）；各教材经验表达式不同，考试以给出指标为主，不需死记经验公式。
+\item
+  \begin{quote}
+  \textbf{双义警示}：\(C_c\)
+  在此是\textbf{压缩指数}，而第一章级配评价中作\textbf{曲率系数}------含义不同，注意区分（详见第一章公式
+  1-17 旁提示）。
+  \end{quote}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.2
+应力历史与先期固结压力}\label{ux5e94ux529bux5386ux53f2ux4e0eux5148ux671fux56faux7ed3ux538bux529b}
+
+\subsubsection{公式
+4-4　先期固结压力与超固结比}\label{ux516cux5f0f-4-4-ux5148ux671fux56faux7ed3ux538bux529bux4e0eux8d85ux56faux7ed3ux6bd4}
+
+\[OCR=\frac{p_c}{p_0}\]
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+OCR & 土类 & 意义 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(OCR=1\) & 正常固结土 & 历史上受应力恰为现自重应力 \\
+\(OCR>1\) & 超固结土 & 历史上受过更大固结压力（曾卸荷） \\
+\(OCR<1\) & 欠固结土 & 自重固结未完成（新填土） \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_c\)
+  为先期固结压力（由图中压缩曲线直线段转折点处推得，如 Casagrande
+  图解法）；\(p_0\) 为现有自重应力。
+\item
+  \textbf{注意}：OCR
+  判别是简答题高频点；\textbf{欠固结土的自重沉降仍会继续发展}。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.3
+基础最终沉降计算}\label{ux57faux7840ux6700ux7ec8ux6c89ux964dux8ba1ux7b97}
+
+\subsubsection{公式 4-5　分层总和法原理（e-p
+曲线法）}\label{ux516cux5f0f-4-5-ux5206ux5c42ux603bux548cux6cd5ux539fux7406e-p-ux66f2ux7ebfux6cd5}
+
+对每一层（取 \(h_i\le0.4B\)，压缩层底部满足
+\(\sigma_{z,n}\le0.2\sigma_{cz,n}\)，软土 \(\le0.1\)）：
+
+\[s_i=\frac{e_{1i}-e_{2i}}{1+e_{1i}}\,h_i\]
+
+\[s=\sum_{i=1}^{n}s_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e_{1i}\) 为加荷前该层中部对应初始自重应力
+  \(p_{1i}\) 的孔隙比；\(e_{2i}\) 为加压后对应
+  \(p_{2i}=p_{1i}+\Delta p_i\) 的孔隙比；\(h_i\) 为层厚；\(s_i\)
+  为单层压缩量；\(s\) 为总沉降（cm）。
+\item
+  \textbf{荷载}：\(\Delta p_i\) 取该层\textbf{中点}处附加应力
+  \(\sigma_{z,i}\)（用第三章角点法）。
+\item
+  \textbf{步骤速记}：画分层图 → 算层面自重应力与附加应力 → 由 e-p 曲线查
+  \(e_1,e_2\)（或由 \(E_s=\dfrac{1+e_1}{a_{1-2}}\) 计算）→ 逐层累加。
+\item
+  \textbf{注意}：分母是
+  \(1+e_1\)（初始孔隙比），分子是孔隙比差------变形公式的来源是
+  \(\Delta h/h=\Delta e/(1+e)\)。
+\end{itemize}
+
+\subsubsection{公式
+4-6　用压缩模量表达的每层沉降}\label{ux516cux5f0f-4-6-ux7528ux538bux7f29ux6a21ux91cfux8868ux8fbeux7684ux6bcfux5c42ux6c89ux964d}
+
+\[s_i=\frac{\Delta p_i}{E_{si}}\,h_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(E_{si}\)
+  为该层压缩模量（与附加应力范围对应，一般取 \(p_{1i}\sim p_{2i}\) 段的
+  \(E_s\)）；\(\Delta p_i\) 为该层中点附加应力；\(h_i\) 层厚。
+\item
+  \textbf{适用}：题目直接给 \(E_s\) 时最常用；与公式 4-5
+  完全等价，不要两边都算。
+\end{itemize}
+
+\subsubsection{公式
+4-7　规范法（应力面积法）}\label{ux516cux5f0f-4-7-ux89c4ux8303ux6cd5ux5e94ux529bux9762ux79efux6cd5}
+
+\[s=\psi_s\,s'=\psi_s\sum_{i=1}^{n}\frac{p_0}{E_{si}}\Big(z_i\bar{\alpha}_i-z_{i-1}\bar{\alpha}_{i-1}\Big)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(s'\)
+  为按应力面积原理计算的沉降；\(\bar{\alpha}_i\) 为从基底到第 \(i\)
+  层底的\textbf{平均附加应力系数}（查表，引数与角点法同，为「平均」系数
+  \(\bar\alpha_c\)）；\(z_i\) 为第 \(i\) 层底面到基底的距离；\(p_0\)
+  为基底附加压力；\(\psi_s\) 为沉降经验修正系数（按 \(E_s\) 与
+  \(f_{ak}\) 查规范修正，一般 \(0.2\sim1.4\)）。
+\item
+  \textbf{注意}：应力面积法用「平均附加应力系数
+  \(\bar\alpha\)」而非角点系数 \(\alpha\)，查表两套表，别混用；最终乘
+  \(\psi_s\) 一步必须保留。
+\item
+  \textbf{压缩层深度}：按 \(\Delta z\)（规范小厚度）控制或
+  \(\sigma_{z}\le0.2\sigma_{cz}\)（软土 0.1）确定。
+\end{itemize}
+
+\subsubsection{公式 4-8　e-lgp
+法（分层，按应力状态分段）}\label{ux516cux5f0f-4-8-e-lgp-ux6cd5ux5206ux5c42ux6309ux5e94ux529bux72b6ux6001ux5206ux6bb5}
+
+\textbf{① 正常固结土（\(p_{0i}=p_{ci}\)）}：
+
+\[s_i=\frac{C_{ci}}{1+e_{0i}}\,h_i\,\lg\frac{p_{0i}+\Delta p_i}{p_{0i}}\]
+
+\textbf{②
+超固结土，且终点应力不超先期固结压力（\(p_{0i}+\Delta p_i\le p_{ci}\)，沿再压缩段）}：
+
+\[s_i=\frac{C_{si}}{1+e_{0i}}\,h_i\,\lg\frac{p_{0i}+\Delta p_i}{p_{0i}}\]
+
+\textbf{③
+超固结土，且终点应力超过先期固结压力（\(p_{0i}+\Delta p_i>p_{ci}\)，先回弹段后压缩段）}：
+
+\[s_i=\frac{C_{si}}{1+e_{0i}}\,h_i\,\lg\frac{p_{ci}}{p_{0i}}+\frac{C_{ci}}{1+e_{0i}}\,h_i\,\lg\frac{p_{0i}+\Delta p_i}{p_{ci}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(C_c\) 压缩指数；\(C_s\) 回弹指数；\(p_0\)
+  该层中部自重应力；\(p_c\) 先期固结压力；\(\Delta p\)
+  该层中点附加应力；\(e_0\) 初始孔隙比。
+\item
+  \textbf{思路}：先按 OCR 判别固结状态 → 判断终点应力与 \(p_c\) 的关系 →
+  选式。① 式只有压缩段；② 全在再压缩段用 \(C_s\)；③ 先 \(C_s\)（从
+  \(p_0\) 到 \(p_c\)）再 \(C_c\)（从 \(p_c\) 到终点）。
+\item
+  \textbf{注意}：\(p\)、\(\Delta p\) 都用 \(\mathrm{kPa}\)，保证 \(\lg\)
+  内无量纲；三类别选错曲线，尤其②别误用 \(C_c\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.4
+一维固结理论（太沙基）}\label{ux4e00ux7ef4ux56faux7ed3ux7406ux8bbaux592aux6c99ux57fa}
+
+\subsubsection{公式
+4-9　固结方程与固结系数}\label{ux516cux5f0f-4-9-ux56faux7ed3ux65b9ux7a0bux4e0eux56faux7ed3ux7cfbux6570}
+
+\[\frac{\partial u}{\partial t}=c_v\frac{\partial^2 u}{\partial z^2}\]
+
+\[c_v=\frac{k(1+e)}{a\gamma_w}=\frac{kE_s}{\gamma_w}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(u\) 为超静孔隙水压力（\(\mathrm{kPa}\)）；\(t\)
+  为时间；\(z\) 为排水坐标；\(c_v\) 为固结系数（\(\mathrm{m^2/a}\) 或
+  \(\mathrm{cm^2/s},\ \mathrm{m^2/d}\)）；\(k\) 渗透系数；\(a,E_s\)
+  为压缩系数与压缩模量；\(e\) 孔隙比；\(\gamma_w=10\ \mathrm{kN/m^3}\)。
+\item
+  \textbf{注意}：固结是\textbf{超静孔隙水压力消散}的过程；同一种土
+  \(c_v\) 需注明试验条件。
+\end{itemize}
+
+\subsubsection{公式
+4-10　时间因子}\label{ux516cux5f0f-4-10-ux65f6ux95f4ux56e0ux5b50}
+
+\[\boxed{T_v=\frac{c_v\,t}{H^2}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(T_v\) 时间因子（无量纲）；\(H\)
+  为\textbf{排水距离}------单面排水取土层全厚
+  \(H_0\)，\textbf{双面排水取 \(H_0/2\)}；\(c_v\)、\(t\) 同前。
+\item
+  \textbf{注意}：\(H\)
+  的取值是最常见丢分点------换向思维：「最近的排水面到该点的距离」。
+\end{itemize}
+
+\subsubsection{公式
+4-11　固结度定义}\label{ux516cux5f0f-4-11-ux56faux7ed3ux5ea6ux5b9aux4e49}
+
+\[U_t=\frac{s_t}{s_\infty}=\frac{\text{时刻 }t\text{ 的沉降}}{\text{最终固结沉降}}\]
+
+\[U_t=1-\frac{\int_0^H u(z,t)\,dz}{\int_0^H u_0(z)\,dz}\quad(\text{按平均孔隙水压力定义})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(U_t\) 为平均固结度；\(s_t\) 为 \(t\)
+  时刻沉降；\(s_\infty\) 为最终沉降；\(u_0\) 为初始超静孔隙水压力。
+\item
+  \textbf{注意}：考试计算有两种路径------已知 \(U_t\) 求
+  \(s_t=s_\infty U_t\)，或反求时间。
+\end{itemize}
+
+\subsubsection{公式 4-12　Tv--Ut
+关系（大面积均布荷载，初始超孔压沿深度均匀分布）}\label{ux516cux5f0f-4-12-tvut-ux5173ux7cfbux5927ux9762ux79efux5747ux5e03ux8377ux8f7dux521dux59cbux8d85ux5b54ux538bux6cbfux6df1ux5ea6ux5747ux5300ux5206ux5e03}
+
+级数解：
+
+\[U_t=1-\frac{8}{\pi^2}\sum_{m=1}^{\infty}\frac{1}{(2m-1)^2}\exp\left[-\frac{(2m-1)^2\pi^2}{4}T_v\right]\]
+
+实用近似式：
+
+\[U_t=2\sqrt{\frac{T_v}{\pi}}\quad(0<U_t\le60\%)\]
+
+\[U_t=1-\frac{8}{\pi^2}\exp\left(-\frac{\pi^2}{4}T_v\right)\quad(U_t>60\%)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：按上述区间选用近似式，误差在工程允许范围；级数式用于精确复核。
+\item
+  \textbf{考试用法}：已知 \(\bar{U}=50\%\)，由
+  \(\bar{U}=2\sqrt{T_v/\pi}\) 反解
+  \(T_v=\dfrac{\pi}{4}\bar{U}^2\)，再代公式 4-10
+  求时间------「求达到某固结度所需时间」必考。
+\item
+  \textbf{注意}：\textbf{沉降量相等时所需时间与 \(H^2\)
+  成正比}（\(t\propto H^2\)），双面排水比单面排水快 4
+  倍------定性判断题高频。
+\item
+  \textbf{初始超孔压分布形状的影响（考研定性题）}：上式针对初始超孔压\textbf{沿深度均匀分布}（大面积均布加载、常见工况）。若初始超孔压呈\textbf{三角形等非均匀分布}，同一
+  \(T_v\) 对应的 \(U_t\) 不同------\textbf{不可把均匀分布的
+  \(U\)--\(T_v\)
+  曲线直接套到非均匀分布上}；精确值需用相应边界条件的级数解（教材附录另有曲线/表格）。一般原则：超孔压越靠\textbf{排水面}集中、水力梯度越大，排水越快；越偏在不透水面一侧则越慢。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.5
+沉降的时间组成（概念）}\label{ux6c89ux964dux7684ux65f6ux95f4ux7ec4ux6210ux6982ux5ff5}
+
+\begin{itemize}
+\tightlist
+\item
+  瞬时沉降 \(s_d\)：加荷瞬间剪切变形（不排水），砂土大、黏土小；
+\item
+  固结沉降
+  \(s_c\)：超静水压力消散引起的体积压缩，\textbf{黏性土的主要部分}；
+\item
+  次固结沉降 \(s_s\)：骨架蠕变，发生于主固结完成后，\(e-\lg t\)
+  曲线上由次固结系数 \(C_\alpha=\dfrac{\Delta e}{\lg t}\) 描述。
+\end{itemize}
+
+\[s=s_d+s_c+s_s\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：分层总和法/规范法算的是\textbf{固结沉降（主固结）}部分；粗粒土通常只考虑瞬时沉降。此考点多为「概念排序
+  + 主次关系」简答题。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+4-1 & \(a=\dfrac{e_1-e_2}{p_2-p_1}\) & 压缩系数 \\
+4-2 & \(E_s=\dfrac{1+e_1}{a},\ m_v=\dfrac{a}{1+e_1}\) &
+压缩模量/体积压缩系数 \\
+4-3 & \(C_c=\dfrac{\Delta e}{\lg(p_2/p_1)}\) & 压缩指数/回弹指数 \\
+4-4 & \(OCR=\dfrac{p_c}{p_0}\) & 先期固结/超固结比 \\
+4-5 & \(s_i=\dfrac{e_1-e_2}{1+e_1}h_i\) & 分层总和法 \\
+4-6 & \(s_i=\dfrac{\Delta p_i}{E_{si}}h_i\) & 压缩模量法 \\
+4-7 & \(s=\psi_s\sum\dfrac{p_0}{E_s}(z\bar\alpha-z\bar\alpha')\) &
+规范应力面积法 \\
+4-8 & ① \(s=\dfrac{C_c}{1+e_0}h\lg\dfrac{p_0+\Delta p}{p_0}\)　② 用
+\(C_s\)　③ 两段相加 & e-lgp 法（按 OCR 分段） \\
+4-9 & \(c_v=\dfrac{kE_s}{\gamma_w}\) & 固结系数 \\
+4-10 & \(T_v=\dfrac{c_vt}{H^2}\) & 时间因子（排水距离） \\
+4-11 &
+\(U_t=\dfrac{s_t}{s_\infty}=1-\dfrac{\int_0^H u\,dz}{\int_0^H u_0\,dz}\)
+& 固结度定义 \\
+4-12 & \(U_t\approx2\sqrt{T_v/\pi}\) 或
+\(1-\dfrac{8}{\pi^2}e^{-\pi^2T_v/4}\) & 固结度估算 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 压缩层底面判别 \(\sigma_z\le0.2\sigma_{cz}\)；②
+双面排水 \(H=H_0/2\)、时间与 \(H^2\) 成正比；③ 「求时间」先求
+\(T_v=\dfrac{\pi}{4}U^2\)（\(U\le60\%\)）；④
+分层总和法每层用\textbf{中点附加应力}；⑤ \(e_{1}\)
+是层顶既有状态的孔隙比，别写成最终值。
+\end{quote}
+
+\newpage
+
+\section{第五章
+土的抗剪强度}\label{ux7b2cux4e94ux7ae0-ux571fux7684ux6297ux526aux5f3aux5ea6}
+
+\begin{quote}
+\textbf{本章导览}：土的破坏是\textbf{剪切破坏}，抗剪强度是第三、四、六、七、八章共同的「基础材料参数」。考试重点：①
+莫尔-库仑准则与极限平衡条件（判断是否破坏）------必考计算；②
+三种排水条件试验对应哪组指标（\(c,\varphi\)）------简答题高频；③
+破裂面方位（45°+φ/2）。\textbf{有效应力指标是主线}。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.1
+库仑公式与抗剪强度指标}\label{ux5e93ux4ed1ux516cux5f0fux4e0eux6297ux526aux5f3aux5ea6ux6307ux6807}
+
+\subsubsection{公式
+5-1　总应力法抗剪强度公式（库仑公式）}\label{ux516cux5f0f-5-1-ux603bux5e94ux529bux6cd5ux6297ux526aux5f3aux5ea6ux516cux5f0fux5e93ux4ed1ux516cux5f0f}
+
+\[\boxed{\tau_f=c+\sigma\,\tan\varphi}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\tau_f\) 为抗剪强度（\(\mathrm{kPa}\)）；\(c\)
+  为黏聚力（粘聚力，\(\mathrm{kPa}\)）；\(\sigma\)
+  为剪切面上的法向（总）应力；\(\varphi\) 为内摩擦角（°）。
+\item
+  \textbf{土类特征}：砂土
+  \(c=0,\ \varphi\approx28^{\circ}\sim45^{\circ}\)；粉土 \(c\)
+  小；黏性土 \(c\) 显著（\(10\sim100\ \mathrm{kPa}\)）。
+\item
+  \textbf{注意}：\(\sigma\) 用弧度/角度一致化；\(\tan\varphi\)
+  在计算中直接用数值。
+\end{itemize}
+
+\subsubsection{公式
+5-2　有效应力法抗剪强度公式}\label{ux516cux5f0f-5-2-ux6709ux6548ux5e94ux529bux6cd5ux6297ux526aux5f3aux5ea6ux516cux5f0f}
+
+\[\tau_f=c'+\sigma'\tan\varphi'=c'+(\sigma-u)\tan\varphi'\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(c'\) 为有效黏聚力；\(\varphi'\)
+  为有效内摩擦角；\(u\) 为孔隙水压力；\(\sigma'=\sigma-u\)
+  为有效法向应力。
+\item
+  \textbf{注意}：\textbf{真正决定强度的是有效应力}------考试常给「总应力+孔压」，先求
+  \(\sigma'\) 再用 \(c',\varphi'\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.2
+莫尔-库仑破坏准则}\label{ux83abux5c14-ux5e93ux4ed1ux7834ux574fux51c6ux5219}
+
+\subsubsection{公式
+5-3　莫尔应力圆（任意平面上的应力状态）}\label{ux516cux5f0f-5-3-ux83abux5c14ux5e94ux529bux5706ux4efbux610fux5e73ux9762ux4e0aux7684ux5e94ux529bux72b6ux6001}
+
+\[\sigma=\frac{\sigma_1+\sigma_3}{2}+\frac{\sigma_1-\sigma_3}{2}\cos 2\theta\]
+
+\[\tau=\frac{\sigma_1-\sigma_3}{2}\sin 2\theta\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma,\tau\) 为与 \(\sigma_1\) 方向成 \(\theta\)
+  角的斜平面上的法向应力与剪应力；\(\sigma_1,\sigma_3\) 为大、小主应力。
+\item
+  \textbf{验证}：\(\theta=0\) 时
+  \(\sigma=\sigma_1,\tau=0\)；\(\theta=90^{\circ}\) 时
+  \(\sigma=\sigma_3,\tau=0\)------两个极端对回来即大、小主应力作用面。
+\item
+  \textbf{莫尔圆}：圆心
+  \(\left(\dfrac{\sigma_1+\sigma_3}{2},\,0\right)\)，半径
+  \(\dfrac{\sigma_1-\sigma_3}{2}\)；圆上每一点对应该方向平面的应力状态。这是全部莫尔-库仑分析的几何基础，\textbf{必记}。
+\end{itemize}
+
+\subsubsection{公式
+5-4　莫尔破坏准则（应力圆与强度包线相切）}\label{ux516cux5f0f-5-4-ux83abux5c14ux7834ux574fux51c6ux5219ux5e94ux529bux5706ux4e0eux5f3aux5ea6ux5305ux7ebfux76f8ux5207}
+
+\[\tau_f=f(\sigma):\quad \tau_f=c+\sigma\tan\varphi\]
+
+\begin{itemize}
+\tightlist
+\item
+  当莫尔圆与强度包线 \(\tau=c+\sigma\tan\varphi\)
+  \textbf{相切}时土体达到极限平衡（剪切破坏）。
+\item
+  ① 圆在包线下方------安全；② 圆与包线\textbf{相切}------极限平衡；③
+  圆超出包线------已破坏。
+\end{itemize}
+
+\subsubsection{公式
+5-5　极限平衡条件（主应力表达）}\label{ux516cux5f0f-5-5-ux6781ux9650ux5e73ux8861ux6761ux4ef6ux4e3bux5e94ux529bux8868ux8fbe}
+
+\[\sigma_1=\sigma_3\tan^2\left(45^{\circ}+\frac{\varphi}{2}\right)+2c\,\tan\left(45^{\circ}+\frac{\varphi}{2}\right)\]
+
+\[\sigma_3=\sigma_1\tan^2\left(45^{\circ}-\frac{\varphi}{2}\right)-2c\,\tan\left(45^{\circ}-\frac{\varphi}{2}\right)\]
+
+无黏性土（\(c=0\)）：
+
+\[\frac{\sigma_1}{\sigma_3}=\tan^2\left(45^{\circ}+\frac{\varphi}{2}\right)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma_1,\sigma_3\)
+  为大、小主应力；其余同前。两式等价，给一对主应力判极限平衡时用任一式验证。
+\item
+  \textbf{注意}：\(\tan^2(45^{\circ}+\varphi/2)=K_p\)（被动土压力系数）、\(\tan^2(45^{\circ}-\varphi/2)=K_a\)（主动土压力系数），与第六章呼应对照记忆。
+\item
+  \textbf{30 秒推导（考场自验用）}：把公式 5-3
+  的莫尔圆代入库仑破坏条件------由几何关系
+  \(\sin\varphi=\dfrac{\sigma_1-\sigma_3}{\sigma_1+\sigma_3+2c\cot\varphi}\)，交叉相乘后令
+  \(1-\sin\varphi=2\sin^2(45^{\circ}-\varphi/2)\)
+  等三角恒等式化简，即得上式；\(c=0\) 时直接得
+  \(\dfrac{\sigma_1}{\sigma_3}=\tan^2(45^{\circ}+\varphi/2)\)。
+\end{itemize}
+
+\subsubsection{公式
+5-6　破裂面方位}\label{ux516cux5f0f-5-6-ux7834ux88c2ux9762ux65b9ux4f4d}
+
+\[\alpha_f=45^{\circ}+\frac{\varphi}{2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{含义}：破坏面与\textbf{最大主应力作用面}（垂直于 \(\sigma_1\)
+  方向的平面）的夹角为
+  \(45^{\circ}+\varphi/2\)；等价地，破坏面与\textbf{大主应力方向}夹角为
+  \(45^{\circ}-\varphi/2\)。
+\item
+  \textbf{考试用法}：三轴试验破坏面试样的倾斜角度即用此判定；挡土墙后主动/被动滑动面也由它推导。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.3
+抗剪强度试验与对应指标}\label{ux6297ux526aux5f3aux5ea6ux8bd5ux9a8cux4e0eux5bf9ux5e94ux6307ux6807}
+
+\subsubsection{公式
+5-7　无侧限（单轴）抗压强度试验}\label{ux516cux5f0f-5-7-ux65e0ux4fa7ux9650ux5355ux8f74ux6297ux538bux5f3aux5ea6ux8bd5ux9a8c}
+
+\[q_u=2c_u,\qquad c_u=\frac{q_u}{2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(q_u\) 为无侧限抗压强度（单轴压缩，\(\sigma_3=0\)
+  破坏时 \(\sigma_1=q_u\)）；\(c_u\) 为不排水抗剪强度。
+\item
+  \textbf{推导}：把 \(\sigma_1=q_u,\ \sigma_3=0\) 代入公式 5-5 的
+  \(\sigma_1=f(\sigma_3)\)，饱和黏土 \(\varphi=0\) 时得 \(q_u=2c_u\)。
+\item
+  \textbf{注意}：本质上是 \(\varphi_u=0\) 条件的 UU
+  特例；仅适用饱和黏性土，取值随水含量波动大。
+\end{itemize}
+
+\subsubsection{公式
+5-8　直剪试验三种方法}\label{ux516cux5f0f-5-8-ux76f4ux526aux8bd5ux9a8cux4e09ux79cdux65b9ux6cd5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3793}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+试验方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+排水条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+得到的指标
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+快剪（不固结不排水 Q） & 不固结、不排水 &
+\(c_q,\ \varphi_q\)（总应力） \\
+固结快剪（固结不排水 R） & 先固结、后不排水剪切 &
+\(c_{cq},\ \varphi_{cq}\)（总应力） \\
+慢剪（固结排水 S） & 固结并排水剪切 &
+\(c_s,\ \varphi_s\approx c',\varphi'\) \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：直剪试验\textbf{不能测孔隙水压力}，无法得有效应力指标；排水条件由「开缝（排水）」控制。
+\end{itemize}
+
+\subsubsection{公式
+5-9　三轴试验三种方法（核心对照表）}\label{ux516cux5f0f-5-9-ux4e09ux8f74ux8bd5ux9a8cux4e09ux79cdux65b9ux6cd5ux6838ux5fc3ux5bf9ux7167ux8868}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+试验
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+固结
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+排水
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+测量
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+指标
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+UU 不固结不排水 & 否 & 剪切时不排水 & 总应力 &
+\(c_u,\ \varphi_u\approx0\) \\
+CU 固结不排水 & 是 & 剪切时不排水 & 总+孔压 &
+\(c_{cu},\varphi_{cu}\)（总）及 \(c',\varphi'\)（有效） \\
+CD 固结排水 & 是 & 剪切时排水 & 总应力 &
+\(c_d,\varphi_d\approx c',\varphi'\) \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{饱和黏土
+  UU}：\(\varphi_u=0\)，\(\tau_f=c_u\)（不排水强度，与围压无关），莫尔圆被水平包线相切，试验步骤快------选择/填空高频。
+\item
+  \textbf{CU 试验}：同时量测孔隙水压力可得
+  \(c',\varphi'\)，是\textbf{应用最广}的试验。
+\item
+  \textbf{注意}：试验名称与强度指标的「排水条件」一一对应，\textbf{总应力指标随排水条件而变，有效应力指标不随排水条件而变}。
+\end{itemize}
+
+\subsubsection{公式
+5-10　十字板剪切等现场强度}\label{ux516cux5f0f-5-10-ux5341ux5b57ux677fux526aux5207ux7b49ux73b0ux573aux5f3aux5ea6}
+
+\[\tau_f\ (\text{不排水强度}) \approx \frac{2M}{\pi D^2\left(H+\dfrac{D}{3}\right)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(M\) 为扭矩（\(\mathrm{kN\cdot m}\)）；\(D,H\)
+  为十字板直径与高度（m）。
+\item
+  \textbf{注意}：适用于饱和软黏土现场测不排水强度，计算式按记法记------考试以概念为主。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.4
+孔隙水压力系数（Skempton）}\label{ux5b54ux9699ux6c34ux538bux529bux7cfbux6570skempton}
+
+\subsubsection{公式 5-11　孔隙水压力系数
+B、A}\label{ux516cux5f0f-5-11-ux5b54ux9699ux6c34ux538bux529bux7cfbux6570-ba}
+
+\[\Delta u=B\Big[\Delta\sigma_3+A\big(\Delta\sigma_1-\Delta\sigma_3\big)\Big]\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\Delta\sigma_1,\Delta\sigma_3\)
+  为主应力增量；\(B\) 为各向等压应力增量下的孔压系数------饱和土
+  \(B=1\)，干土 \(B=0\)；\(A\)
+  为偏应力（\(\Delta\sigma_1-\Delta\sigma_3\)）引起的孔压系数，与土性/应力历史有关（正常固结黏土
+  \(\Delta A>0\)，超固结土可能为负）。
+\item
+  \textbf{用法}：由总应力增量和 \(A,B\) 求孔压 → 得 \(\sigma'\) →
+  判稳定；这是「有效应力法」解决实际问题的桥梁。
+\item
+  \textbf{注意}：饱和土三轴中 \(B\) 用于检验试样饱和程度（\(B\ge0.97\)
+  视为饱和）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.5
+影响抗剪强度的因素（简答题素材）}\label{ux5f71ux54cdux6297ux526aux5f3aux5ea6ux7684ux56e0ux7d20ux7b80ux7b54ux9898ux7d20ux6750}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{排水条件}决定用哪组指标（最重要）；
+\item
+  \textbf{土的类型与级配}：砂土摩擦角随级配、密实度增大；
+\item
+  \textbf{有效应力状态与应力历史}：超固结土一般 \(c\) 大；
+\item
+  \textbf{加荷速度/蠕变}：快剪测的强度偏大、长期强度低；
+\item
+  各向异性、含水量（饱和黏土湿强度低）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-4}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+5-1 & \(\tau_f=c+\sigma\tan\varphi\) & 库仑公式（总应力） \\
+5-2 & \(\tau_f=c'+(\sigma-u)\tan\varphi'\) & 库仑公式（有效应力） \\
+5-3 &
+\(\sigma=\dfrac{\sigma_1+\sigma_3}{2}+\dfrac{\sigma_1-\sigma_3}{2}\cos2\theta,\ \tau=\dfrac{\sigma_1-\sigma_3}{2}\sin2\theta\)
+& 任意平面应力（莫尔圆） \\
+5-4 & 莫尔圆与包线相切 & 破坏判定 \\
+5-5 &
+\(\sigma_1=\sigma_3\tan^2(45^{\circ}+\varphi/2)+2c\tan(45^{\circ}+\varphi/2)\)
+& 极限平衡条件 \\
+5-6 & \(\alpha_f=45^{\circ}+\varphi/2\) & 破裂面方位 \\
+5-7 & \(q_u=2c_u\) & 无侧限抗压强度 \\
+5-8/5-9/5-10 & 直剪 / 三轴 / 十字板 试验 & 强度试验 \\
+5-11 & \(\Delta u=B[\Delta\sigma_3+A(\Delta\sigma_1-\Delta\sigma_3)]\) &
+孔压系数 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：①
+判「是否破坏」三选一------算莫尔圆是否越过包线、或验
+\(\sigma_1\ge\sigma_{1f}\)；② 饱和黏土 UU 得
+\(c_u=\tau_f,\ \varphi=0\)；③ 有效应力指标 \(c',\varphi'\)
+与排水条件无关，总应力指标有关；④ 破裂面与大主应力作用面夹角
+45°+φ/2------别反。
+\end{quote}
+
+\newpage
+
+\section{第六章
+土压力与挡土墙}\label{ux7b2cux516dux7ae0-ux571fux538bux529bux4e0eux6321ux571fux5899}
+
+\begin{quote}
+\textbf{本章导览}：核心计算是\textbf{朗肯土压力}（主动/被动，无黏性土与黏性土两类分布），考研常结合挡土墙稳定性（抗倾覆/抗滑）出综合题。库仑土压力主要考公式与\textbf{适用条件辨析}。务必分清三种土压力大小关系与适用条件。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.1 三种土压力}\label{ux4e09ux79cdux571fux538bux529b}
+
+\subsubsection{公式
+6-1　土压力类型与大小关系}\label{ux516cux5f0f-6-1-ux571fux538bux529bux7c7bux578bux4e0eux5927ux5c0fux5173ux7cfb}
+
+\[E_a<E_0<E_p\]
+
+\[E_0=K_0\gamma H\qquad(\text{分布强度 }p_0=K_0\gamma z)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(E_a,E_0,E_p\)
+  为单位墙长的主动、静止、被动土压力合力（\(\mathrm{kN/m}\)）；\(H\)
+  挡墙高度；\(K_0\) 静止土压力系数；\(\gamma z\) 竖向自重应力。
+\item
+  \textbf{触发条件}：墙体\textbf{离开土体}------主动状态（达
+  \(E_a\)）；墙体\textbf{挤压土体}------被动状态（达 \(E_p\)）。
+\item
+  \textbf{注意}：仅当墙有微小位移的方向与大小对应时，土压力才趋近对应值；无位移墙体用静止土压力。
+\end{itemize}
+
+\subsubsection{公式
+6-2　静止土压力系数}\label{ux516cux5f0f-6-2-ux9759ux6b62ux571fux538bux529bux7cfbux6570}
+
+\[K_0=1-\sin\varphi'\quad(\text{正常固结土，Jaky 经验式})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\varphi'\) 为有效内摩擦角；其他经验式常取
+  \(K_0=0.5\sim0.7\)（砂土约 0.4，黏土约 0.5）。
+\item
+  \textbf{注意}：\(K_0\)
+  为\textbf{静止条件}独有；朗肯/库仑土压力系数见下。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.2
+朗肯土压力理论}\label{ux6717ux80afux571fux538bux529bux7406ux8bba}
+
+\textbf{适用条件（背记）}：墙背\textbf{竖直}、墙背\textbf{光滑}（墙土摩擦角
+\(\delta=0\)）、填土面\textbf{水平}。 墙背土单元处于极限平衡：主动时
+\(\sigma_3\) 沿水平向，被动时 \(\sigma_1\) 沿水平向。
+
+\subsubsection{公式
+6-3　主动土压力系数与被主动系数}\label{ux516cux5f0f-6-3-ux4e3bux52a8ux571fux538bux529bux7cfbux6570ux4e0eux88abux4e3bux52a8ux7cfbux6570}
+
+\[K_a=\tan^2\left(45^{\circ}-\frac{\varphi}{2}\right),\qquad K_p=\tan^2\left(45^{\circ}+\frac{\varphi}{2}\right)\]
+
+\[K_a\cdot K_p=1\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：\(K_a<K_0<K_p\)；\(K_p=1/K_a\) 可快速互推。
+\end{itemize}
+
+\subsubsection{公式
+6-4　无黏性土主动土压力（三角形分布）}\label{ux516cux5f0f-6-4-ux65e0ux9ecfux6027ux571fux4e3bux52a8ux571fux538bux529bux4e09ux89d2ux5f62ux5206ux5e03}
+
+\[p_a=\gamma zK_a,\qquad E_a=\frac{1}{2}\gamma H^2K_a\]
+
+破坏面与水平面夹角 \(45^{\circ}+\varphi/2\)；合力作用点距墙底 \(H/3\)。
+
+\subsubsection{公式
+6-5　黏性土主动土压力（含拉应力区与临界深度）}\label{ux516cux5f0f-6-5-ux9ecfux6027ux571fux4e3bux52a8ux571fux538bux529bux542bux62c9ux5e94ux529bux533aux4e0eux4e34ux754cux6df1ux5ea6}
+
+\[p_a=\gamma zK_a-2c\sqrt{K_a}\]
+
+\[z_0=\frac{2c}{\gamma\sqrt{K_a}}\quad(\text{临界深度，拉应力区 }0\sim z_0)\]
+
+\[E_a=\frac{1}{2}\gamma(H-z_0)^2K_a\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(z_0\) 为墙顶拉裂区深度（m）；\(E_a\)
+  合力即三角形区域（从 \(z_0\) 到 \(H\)）面积，作用点在距墙底
+  \((H-z_0)/3\) 处。
+\item
+  \textbf{注意}：沿深度 \(0\sim z_0\)
+  段土压力为负（拉应力），\textbf{不考虑它，从 \(z_0\)
+  起积分}------作图与取合力时别把负段算进去。
+\item
+  若墙顶填土面有均布超载 \(q\)：土压力分布整体上移一个矩形
+  \(\sigma_a=qK_a\)（梯形），零压点（拉应力区底缘）深度修正为：
+\end{itemize}
+
+\[z_0'=\frac{2c\sqrt{K_a}-qK_a}{\gamma K_a}=\frac{2c-q\sqrt{K_a}}{\gamma\sqrt{K_a}}\quad(q<\frac{2c}{\sqrt{K_a}}\ \text{时 }z_0'>0)\]
+
+合力：\(E_a=\dfrac{1}{2}\gamma(H-z_0')^2K_a+qK_a(H-z_0')\)，即「三角形 +
+矩形」两段相加。
+
+\subsubsection{公式
+6-6　无黏性土被动土压力}\label{ux516cux5f0f-6-6-ux65e0ux9ecfux6027ux571fux88abux52a8ux571fux538bux529b}
+
+\[p_p=\gamma zK_p,\qquad E_p=\frac{1}{2}\gamma H^2K_p\]
+
+合力作用点距墙底 \(H/3\)，三角形分布。
+
+\subsubsection{公式
+6-7　黏性土被动土压力}\label{ux516cux5f0f-6-7-ux9ecfux6027ux571fux88abux52a8ux571fux538bux529b}
+
+\[p_p=\gamma zK_p+2c\sqrt{K_p}\]
+
+\[E_p=\frac{1}{2}\gamma H^2K_p+2cH\sqrt{K_p}\]
+
+梯形分布（由 \(z=0\) 处 \(2c\sqrt{K_p}\)
+起），不能用简单的「三角形中心」取合力位置------要按梯形求形心。
+
+\subsubsection{公式
+6-8　朗肯土压力计算步骤汇总（计算题模板）}\label{ux516cux5f0f-6-8-ux6717ux80afux571fux538bux529bux8ba1ux7b97ux6b65ux9aa4ux6c47ux603bux8ba1ux7b97ux9898ux6a21ux677f}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  判断墙型条件是否满足朗肯（竖直、光滑、填土面水平）；
+\item
+  查/算 \(K_a,K_p\)；
+\item
+  区分无黏性土（\(c=0\)，三角形）或黏性土（先算 \(z_0\)，三角形/梯形）；
+\item
+  分布图 → 面积（合力 \(E\)），标注作用点位置；
+\item
+  若有地下水：水位以上用 \(\gamma\)、以下用 \(\gamma'\)
+  且再加\textbf{静水压力}
+  \(p_w=\gamma_w z_w\)（水压力单独叠加，作用于墙身）。
+\end{enumerate}
+
+\begin{quote}
+\textbf{注意}：有地下水的挡土墙，土压力与水压力必须\textbf{分算再叠加}，不能用
+\(\gamma_{sat}\) 直接乘------这是考研综合题的常扣分点。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.3
+库仑土压力理论}\label{ux5e93ux4ed1ux571fux538bux529bux7406ux8bba}
+
+\textbf{适用条件（背记）}：墙背可\textbf{倾斜}、可\textbf{粗糙（\(\delta\ne0\)）}、填土面可\textbf{倾斜
+\(\beta\)}；适用无黏性土（也可推广）。核心思路是\textbf{滑动楔体极限平衡}。
+
+\subsubsection{公式
+6-9　库仑主动土压力系数（一般式）}\label{ux516cux5f0f-6-9-ux5e93ux4ed1ux4e3bux52a8ux571fux538bux529bux7cfbux6570ux4e00ux822cux5f0f}
+
+\[K_a=\frac{\sin^2(\alpha+\varphi)}{\sin^2\alpha\,\sin(\alpha-\delta)\left(1+\sqrt{\dfrac{\sin(\varphi+\delta)\sin(\varphi-\beta)}{\sin(\alpha-\delta)\sin(\alpha+\beta)}}\right)^2}\]
+
+\[E_a=\frac{1}{2}\gamma H^2K_a\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\alpha\) 为墙背与水平面夹角（竖直墙
+  \(\alpha=90^{\circ}\)）；\(\delta\) 为墙背与填土间摩擦角；\(\beta\)
+  为填土面倾角；\(\varphi\) 为填土内摩擦角。
+\item
+  \textbf{退化验证}：令
+  \(\alpha=90^{\circ},\ \delta=0,\ \beta=0\)，上式化为
+  \(K_a=\tan^2(45^{\circ}-\varphi/2)\)------朗肯是库仑的特例。
+\item
+  \textbf{作用点}：无黏性土（三角形分布）作用于距墙底
+  \(H/3\)；合力方向与墙背法线成 \(\delta\) 角（不水平！）。
+\item
+  \textbf{注意}：计算中角度取\textbf{弧度}或角度制要统一；\(\delta\)
+  的符号工程上常偏安全取负。
+\end{itemize}
+
+\subsubsection{公式
+6-10　库仑被动土压力}\label{ux516cux5f0f-6-10-ux5e93ux4ed1ux88abux52a8ux571fux538bux529b}
+
+\[K_p=\frac{\sin^2(\alpha-\varphi)}{\sin^2\alpha\,\sin(\alpha+\delta)\left(1-\sqrt{\dfrac{\sin(\varphi+\delta)\sin(\varphi+\beta)}{\sin(\alpha+\delta)\sin(\alpha+\beta)}}\right)^2},\quad E_p=\frac{1}{2}\gamma H^2K_p\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：\(K_p\) 的 \(\varphi\)
+  全变号、分母括号取减号------公式形似而符号相反，考场照抄易错，建议记住括号里是
+  \(\varphi+\beta\) 且根号前置负号。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.4
+挡土墙的稳定性验算}\label{ux6321ux571fux5899ux7684ux7a33ux5b9aux6027ux9a8cux7b97}
+
+设墙每米自重为 \(W\)（作用线距墙趾 \(x_0\)），主动土压力合力
+\(E_a\)（水平向分量），\(E_a\) 作用点距墙趾竖直高度 \(y_0\)。
+
+\subsubsection{公式
+6-11　抗倾覆稳定}\label{ux516cux5f0f-6-11-ux6297ux503eux8986ux7a33ux5b9a}
+
+\[K_t=\frac{W\,x_0}{E_a\,y_0}\ge1.5\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：规范要求 \(K_t\ge1.5\)（部分教材取
+  1.6）；分母为土压力使墙绕墙趾 A
+  的倾覆力矩。若挡土墙为混凝土，墙背土压力的水平分量为
+  \(E_{ax}=E_a\cos(\delta-\alpha')\)，竖直分量为
+  \(E_{ay}=E_a\sin(\delta-\alpha')\)，用水平分量求倾覆矩即可。
+\item
+  \textbf{注意}：\(x_0,y_0\)
+  都取到墙趾（转动点）的力臂；这是最常配错误的正负号题。
+\end{itemize}
+
+\subsubsection{公式
+6-12　抗滑稳定}\label{ux516cux5f0f-6-12-ux6297ux6ed1ux7a33ux5b9a}
+
+\[K_s=\frac{(W+E_{ay})\mu}{E_{ax}}\ge1.3\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\mu\) 为墙底与地基摩擦系数；\(E_{ax},E_{ay}\)
+  为主动土压力水平、竖向分量；规范要求 \(K_s\ge1.3\)。
+\item
+  \textbf{注意}：竖向分量 \(E_{ay}\)
+  增大了墙底正压力、有助于抗滑，别漏；水平分量才是滑动力。
+\end{itemize}
+
+\subsubsection{公式
+6-13　挡墙基底压力验算}\label{ux516cux5f0f-6-13-ux6321ux5899ux57faux5e95ux538bux529bux9a8cux7b97}
+
+\[p_{max}=\frac{N}{A}\left(1+\frac{6e}{B}\right)\le1.2f\]
+
+\[p_{min}=\frac{N}{A}\left(1-\frac{6e}{B}\right)\ge0,\qquad e=\frac{B}{2}-\frac{M_{稳}-M_{倾}}{N}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(N\) 为基底竖向合力；\(e\) 偏心距；\(B\)
+  基底宽；\(f\) 持力层承载力特征值。判定同第三章公式 3-6/3-7。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.5
+常见挡土墙类型（概念题）}\label{ux5e38ux89c1ux6321ux571fux5899ux7c7bux578bux6982ux5ff5ux9898}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{重力式}：依靠自重抗滑抗倾覆，造价低，适用墙高不大；回填要求低，应用最广。
+\item
+  \textbf{悬臂式}：钢筋混凝土，利用底板土重，适用中等墙高。
+\item
+  \textbf{扶壁式}：悬臂墙+扶壁，适用高墙。
+\item
+  结构形式选择与「挡墙高 + 地基土质」相关------多为判断题/简答题。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+6-1 & \(E_a<E_0<E_p\) & 三种土压力关系 \\
+6-2 & \(K_0=1-\sin\varphi'\) & 静止土压力系数 \\
+6-3 &
+\(K_a=\tan^2(45^{\circ}-\varphi/2),\ K_p=\tan^2(45^{\circ}+\varphi/2)\)
+& 朗肯系数 \\
+6-4 & \(p_a=\gamma zK_a,\ E_a=\dfrac{1}{2}\gamma H^2K_a\) &
+无黏性土主动 \\
+6-5 &
+\(p_a=\gamma zK_a-2c\sqrt{K_a},\ z_0=\dfrac{2c}{\gamma\sqrt{K_a}}\) &
+黏性土主动 \\
+6-6 & \(E_p=\dfrac{1}{2}\gamma H^2K_p\) & 无黏性土被动 \\
+6-7 & \(E_p=\dfrac{1}{2}\gamma H^2K_p+2cH\sqrt{K_p}\) & 黏性土被动 \\
+6-9 & 库仑 \(K_a\) 一般式 & 倾斜/粗糙墙背 \\
+6-10 & 库仑 \(K_p\) 一般式 & 被动状态（符号易混） \\
+6-11 & \(K_t=\dfrac{Wx_0}{E_ay_0}\ge1.5\) & 抗倾覆 \\
+6-12 & \(K_s=\dfrac{(W+E_{ay})\mu}{E_{ax}}\ge1.3\) & 抗滑 \\
+6-13 & \(p_{max}=\dfrac{N}{A}(1+\dfrac{6e}{B})\le1.2f\) &
+挡墙基底压力验算 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 朗肯适用条件脱口而出：竖直、光滑、填土面水平；②
+黏性土主动取合力时\textbf{从 \(z_0\) 开始}、别算拉力区；③
+有水时土压力与水压力\textbf{分算叠加}；④ 库仑 \(K_a\) 公式在
+\(\alpha=90^{\circ},\delta=0,\beta=0\) 时退化为朗肯，可自检；⑤
+抗倾覆对\textbf{墙趾}取矩，抗滑用\textbf{水平分量}。
+\end{quote}
+
+\newpage
+
+\section{第七章
+土坡稳定分析}\label{ux7b2cux4e03ux7ae0-ux571fux5761ux7a33ux5b9aux5206ux6790}
+
+\begin{quote}
+\textbf{本章导览}：考纲集中于两类------\textbf{无黏性土坡}（简单公式
+\(F_s=\tan\varphi/\tan\beta\)，必考）、\textbf{黏性土坡条分法}（瑞典条分法为主，简化毕肖普了解步骤）。期末常考「判断稳定否」与「条分法表格计算」；考研则以推导受力图、公式含义辨析为主。核心思想：\textbf{抗滑力（矩）与滑动力（矩）之比}。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.1 基本概念}\label{ux57faux672cux6982ux5ff5}
+
+\subsubsection{公式
+7-1　安全系数定义（通用）}\label{ux516cux5f0f-7-1-ux5b89ux5168ux7cfbux6570ux5b9aux4e49ux901aux7528}
+
+\[F_s=\frac{\text{抗滑力(矩)}}{\text{滑动力(矩)}}\]
+
+\[F_s=\frac{\tau_{f}}{\tau}=\frac{R\text{（抗滑力矩）}}{M\text{（滑动力矩）}},\qquad F_s\ge1.0\text{ 稳定（工程常要求 }F_s\ge1.2\sim1.5\text{）}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.2
+无黏性土坡（平面滑动）}\label{ux65e0ux9ecfux6027ux571fux5761ux5e73ux9762ux6ed1ux52a8}
+
+\subsubsection{公式
+7-2　无黏性土坡稳定系数}\label{ux516cux5f0f-7-2-ux65e0ux9ecfux6027ux571fux5761ux7a33ux5b9aux7cfbux6570}
+
+\[\boxed{F_s=\frac{\tan\varphi}{\tan\beta}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\varphi\) 为砂土内摩擦角；\(\beta\)
+  为坡角；两者皆取（°）。
+\item
+  \textbf{推导}：沿坡面取土单元，下滑力 \(W\sin\beta\)，抗滑力
+  \(W\cos\beta\tan\varphi\)，令其比即得------与坡高\textbf{无关}。
+\item
+  \textbf{判据}：\(\beta\le\varphi\)
+  恒稳定（无论多高）；\(\beta>\varphi\) 破坏。暴雨/水位骤降时
+  \(\varphi\) 下降（饱和后强度降低）导致滑塌------概念简答题素材。
+\item
+  \textbf{注意}：无黏性土坡稳定\textbf{只取决于坡角}，与坡高无关------这是与黏性土坡的本质区别，考试判断题高频。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{7.3 黏性土坡整体圆弧滑动法（\(\varphi=0\)
+法）}{7.3 黏性土坡整体圆弧滑动法（\textbackslash varphi=0 法）}}\label{ux9ecfux6027ux571fux5761ux6574ux4f53ux5706ux5f27ux6ed1ux52a8ux6cd5varphi0-ux6cd5}
+
+\subsubsection{公式
+7-3　整体圆弧滑动安全系数（力矩平衡）}\label{ux516cux5f0f-7-3-ux6574ux4f53ux5706ux5f27ux6ed1ux52a8ux5b89ux5168ux7cfbux6570ux529bux77e9ux5e73ux8861}
+
+\[F_s=\frac{M_R}{M_S}\]
+
+\textbf{更规范表达}：
+
+\[F_s=\frac{c_u\,L\,R}{W\,d}=\frac{c_u}{W}\cdot\frac{L R}{d}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(c_u\) 为不排水抗剪强度（黏性土饱和快剪
+  \(\varphi_u=0\)）；\(L\) 为滑弧长度；\(R\) 为滑弧半径；\(W\)
+  为滑动土体总重；\(d\) 为 \(W\) 作用线到圆心 O 的水平距离。
+\item
+  \textbf{注意}：本方法适用于均质黏性土、\(\varphi\approx0\)（饱和软黏土）的情形；当
+  \(\varphi>0\) 时需条分法（见 7.4）。
+\end{itemize}
+
+\subsubsection{公式
+7-4　稳定数（泰勒稳定数）}\label{ux516cux5f0f-7-4-ux7a33ux5b9aux6570ux6cf0ux52d2ux7a33ux5b9aux6570}
+
+\[N_s=\frac{c}{\gamma H_{cr}}\]
+
+\[H_{cr}=\frac{c}{\gamma N_s}=\frac{c\,N_{cr}}{\gamma}\quad(N_s\ \text{由坡角与}\ \varphi\ \text{查图})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(H_{cr}\) 为临界（极限）坡高；\(N_s\)
+  为稳定数（泰勒解曲线，按坡角与 \(\varphi\) 查）；\(c,\gamma\)
+  为土强度与重度。
+\item
+  \textbf{用途}：已知坡形求极限坡高、或已知高度判断稳定（\(H\le H_{cr}\)）。
+\item
+  \textbf{注意}：\(N_s\) 随坡角增大而增大；对 \(\varphi=0\) 饱和黏土坡
+  \(N_s\approx0.181\times\cdots\) 具体查表，考试以查图/给数为主。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.4
+条分法（圆弧滑动法的一般情形）}\label{ux6761ux5206ux6cd5ux5706ux5f27ux6ed1ux52a8ux6cd5ux7684ux4e00ux822cux60c5ux5f62}
+
+将滑动土体竖向分为若干土条（每条约宽 \(b_i\)），逐条受力分析后求和。
+
+\subsubsection{公式
+7-5　瑞典条分法（费兰纽斯法，忽略条间作用力）}\label{ux516cux5f0f-7-5-ux745eux5178ux6761ux5206ux6cd5ux8d39ux5170ux7ebdux65afux6cd5ux5ffdux7565ux6761ux95f4ux4f5cux7528ux529b}
+
+\[\boxed{F_s=\frac{\sum\limits_{i=1}^{n}\Big[c_i\,l_i+\big(W_i\cos\alpha_i-u_i\,l_i\big)\tan\varphi_i\Big]}{\sum\limits_{i=1}^{n}W_i\sin\alpha_i}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(W_i\) 为第 \(i\) 条土条自重；\(\alpha_i\)
+  为该条滑面中点切线与水平面夹角；\(l_i\) 为该条滑弧长度；\(u_i\)
+  为滑面上的孔隙水压力；\(c_i,\varphi_i\) 为抗剪强度指标。
+\item
+  \textbf{分析}：分子为抗滑力总和（黏聚力项 +
+  摩擦项），分母为下滑力总和；自重用 \(\sum W\sin\alpha\) 投影。
+\item
+  \textbf{注意}：\(\alpha_i\) 取度，切线与水平夹角------靠近坡顶的条
+  \(\alpha\) 为正、坡底处为负；\(W\cos\alpha_i-u_il_i\)
+  是扣除孔压后的有效法向力。
+\item
+  忽略条间力使结果\textbf{偏保守}（\(F_s\) 偏小）。
+\end{itemize}
+
+\subsubsection{公式
+7-6　简化毕肖普法（条间力只考虑水平分量）}\label{ux516cux5f0f-7-6-ux7b80ux5316ux6bd5ux8096ux666eux6cd5ux6761ux95f4ux529bux53eaux8003ux8651ux6c34ux5e73ux5206ux91cf}
+
+\[F_s=\frac{\sum\limits_{i=1}^{n}\dfrac{\Big[c_i' b_i+\big(W_i-u_i b_i\big)\tan\varphi_i'\Big]}{\cos\alpha_i\left(1+\dfrac{\tan\alpha_i\,\tan\varphi_i'}{F_s}\right)}}{\sum\limits_{i=1}^{n}W_i\sin\alpha_i}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(b_i\)
+  为条宽（\(b_i=l_i\cos\alpha_i\)）；\(c',\varphi'\)
+  为\textbf{有效应力}指标；其余同前。
+\item
+  \textbf{特点}：上式右端含 \(F_s\)（隐式），需\textbf{迭代}：先设
+  \(F_s\) 初值代入右端 → 得新值 → 反复至收敛（一般 2\textasciitilde3
+  次）。
+\item
+  \textbf{注意}：简化毕肖普
+  得到的结果比瑞典法略大（更接近严格解）；某些教材强调「简化毕肖普不满足所有静力平衡」但仍可接受。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.5
+最危险滑动面与判别（图解法/经验法）}\label{ux6700ux5371ux9669ux6ed1ux52a8ux9762ux4e0eux5224ux522bux56feux89e3ux6cd5ux7ecfux9a8cux6cd5}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{费尔纽斯最危险滑面法}：对于均质黏性土坡，最危险滑弧通过\textbf{坡脚}；圆心位于由坡角
+  \(\beta\) 决定的\textbf{两条等角线交点}附近（\(\varphi=0\)
+  时直接由两角定圆心，\(\varphi>0\) 时在交点的径向延长线上试算）。
+\item
+  \textbf{简化处理}：先定圆心范围 → 试算若干圆弧求 \(F_{s,min}\) →
+  该面为最危险滑面。
+\item
+  \textbf{考试呈现}：只要求按给定滑面验算
+  \(F_s\)，最危险面搜索属方法了解。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.6
+渗流作用下的坡稳定性（概念）}\label{ux6e17ux6d41ux4f5cux7528ux4e0bux7684ux5761ux7a33ux5b9aux6027ux6982ux5ff5}
+
+\subsubsection{公式
+7-7　无黏性土坡顺坡渗流（渗流平行坡面）的安全系数}\label{ux516cux5f0f-7-7-ux65e0ux9ecfux6027ux571fux5761ux987aux5761ux6e17ux6d41ux6e17ux6d41ux5e73ux884cux5761ux9762ux7684ux5b89ux5168ux7cfbux6570}
+
+\[F_s=\frac{\gamma'}{\gamma_{sat}}\cdot\frac{\tan\varphi}{\tan\beta}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\gamma',\gamma_{sat}\)
+  为无黏性土的浮重度与饱和重度；\(\varphi,\beta\) 为内摩擦角与坡角。
+\item
+  \textbf{物理意义}：顺坡渗流时流线与坡面平行，下滑力按 \(\gamma_{sat}\)
+  计、抗滑的有效法向力按 \(\gamma'\) 计，故比无渗流的
+  \(F_s=\tan\varphi/\tan\beta\)（公式 7-2）多乘
+  \(\gamma'/\gamma_{sat}\)（常为 0.5 左右）。判据
+  \(\beta\le\arctan\left(\dfrac{\gamma'}{\gamma_{sat}}\tan\varphi\right)\)。
+\item
+  \textbf{其他渗流方向}：渗流方向改变时分母项随之变化------如渗流竖直向下时回到
+  \(F_s=\tan\varphi/\tan\beta\)
+  附近，水平向外渗流时一般比顺坡情形更不利；考试以\textbf{平行坡面（顺坡出流）}为最常见情形。
+\item
+  \textbf{注意}：此式是「无黏性土坡 +
+  渗流」专题的核心式，务必能由「有效应力法受力分析」推导出来。
+\end{itemize}
+
+\subsubsection{渗流对条分法的影响}\label{ux6e17ux6d41ux5bf9ux6761ux5206ux6cd5ux7684ux5f71ux54cd}
+
+\begin{itemize}
+\tightlist
+\item
+  渗流（尤其\textbf{平行坡面向外流}）使坡内孔隙水压力升高、有效应力降低，\(F_s\)
+  下降。
+\item
+  处理：条分法中 \(u_i\)
+  计入孔压（有效应力法）；极端水压（暴雨水位骤升/骤降）是滑坡诱因。
+\item
+  工程措施：排水沟/盲沟、削坡减载、坡脚反压、挡土结构------「措施题」备三类。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.7
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-6}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+7-1 & \(F_s=\dfrac{\text{抗滑}}{\text{滑动}}\) & 定义 \\
+7-2 & \(F_s=\dfrac{\tan\varphi}{\tan\beta}\) & 无黏性土坡 \\
+7-3 & \(F_s=\dfrac{c_uLR}{Wd}\) & 整体圆弧滑动（φ=0 法） \\
+7-4 & \(N_s=\dfrac{c}{\gamma H_{cr}}\) & 泰勒稳定数/极限坡高 \\
+7-5 & 瑞典条分法
+\(F_s=\dfrac{\sum\left[c_il_i+(W_i\cos\alpha_i-u_il_i)\tan\varphi_i\right]}{\sum W_i\sin\alpha_i}\)
+& 一般圆弧滑动（总应力） \\
+7-6 & 简化毕肖普
+\(F_s=\dfrac{\sum\dfrac{c'b+(W-ub)\tan\varphi'}{\cos\alpha(1+\tan\alpha\tan\varphi'/F_s)}}{\sum W\sin\alpha}\)
+& 有效应力条分法 \\
+7-7 &
+\(F_s=\dfrac{\gamma'}{\gamma_{sat}}\cdot\dfrac{\tan\varphi}{\tan\beta}\)
+& 无黏性土坡顺坡渗流 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 无黏性土坡
+\(F_s=\tan\varphi/\tan\beta\)、只看坡角；② 条分法分母是
+\(\sum W_i\sin\alpha_i\)，分子黏聚力项\textbf{乘以弧长}、摩擦项用有效法向力；③
+简化毕肖普是隐式迭代，写清初值与收敛步骤；④ \(\alpha_i\)
+符号别弄反------坡顶条为「下滑」，坡底条可抵消；⑤
+有渗流必用有效应力指标与 \(u_i\)。
+\end{quote}
+
+\newpage
+
+\section{第八章
+地基承载力}\label{ux7b2cux516bux7ae0-ux5730ux57faux627fux8f7dux529b}
+
+\begin{quote}
+\textbf{本章导览}：地基承载力=地基不出现剪切破坏、沉降在允许范围内的承载能力。考试核心：①
+临塑荷载/临界荷载公式（提出背景与适用）；②
+太沙基极限承载力公式（条基为主，方/圆乘系数）；③
+规范的\textbf{深宽修正公式}（真题高频）。概念题常考破坏模式分类。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.1
+地基破坏模式（概念）}\label{ux5730ux57faux7834ux574fux6a21ux5f0fux6982ux5ff5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3913}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2609}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3478}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+破坏模式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+特征
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+常见土
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{整体剪切破坏} & 地基形成连续贯通滑裂面，地表隆起，\(p\text{-}s\)
+曲线有明显陡降点 & 密实砂土、坚硬黏土、埋深浅 \\
+\textbf{局部剪切破坏} & 滑裂面未贯通地面，仍有一定强度 & 中密砂土 \\
+\textbf{冲剪破坏} & 基础下方土被压入、周围土几乎不动，\(p\text{-}s\)
+曲线无拐点，只下沉 & 松砂、软土、埋深大 \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  判别要点（简答）：随相对密度/密实度和埋深增大，破坏模式整体→局部→冲剪；\(p\)-\(s\)
+  曲线「有无转折点」是区分的关键特征。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.2
+临塑荷载与临界荷载（塑性区深度判别法）}\label{ux4e34ux5851ux8377ux8f7dux4e0eux4e34ux754cux8377ux8f7dux5851ux6027ux533aux6df1ux5ea6ux5224ux522bux6cd5}
+
+\subsubsection{\texorpdfstring{公式 8-1　临塑荷载（塑性区最大深度
+\(z_{\max}=0\)）}{公式 8-1　临塑荷载（塑性区最大深度 z\_\{\textbackslash max\}=0）}}\label{ux516cux5f0f-8-1-ux4e34ux5851ux8377ux8f7dux5851ux6027ux533aux6700ux5927ux6df1ux5ea6-z_max0}
+
+\[\boxed{p_{cr}=\frac{\pi\left(\gamma_1 d+c\cot\varphi\right)}{\cot\varphi-\dfrac{\pi}{2}+\varphi}+\gamma_1 d}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_{cr}\)
+  为临塑荷载（\(\mathrm{kPa}\)）------使地基中塑性区刚出现（深度为零）的基底压力；\(\gamma_1\)
+  为基底埋深 \(d\) 范围内土的重度（成层取加权平均）；\(c,\varphi\)
+  为持力层抗剪强度指标；\(d\) 为基底埋深（m）。
+\item
+  \textbf{角度单位}：\(\varphi,c\cot\varphi\)
+  等三角函数中角度用\textbf{弧度}，\(\varphi-\dfrac{\pi}{2}\)
+  项即弧度制。
+\item
+  \textbf{注意}：\(p_{cr}\)
+  是「允许塑性区深度为零」的基准，工程偏保守，故引出 \(p_{1/4}\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式 8-2　临界荷载
+\(p_{1/4}\)（塑性区深度
+\(z_{\max}=\dfrac{B}{4}\)）}{公式 8-2　临界荷载 p\_\{1/4\}（塑性区深度 z\_\{\textbackslash max\}=\textbackslash dfrac\{B\}\{4\}）}}\label{ux516cux5f0f-8-2-ux4e34ux754cux8377ux8f7d-p_14ux5851ux6027ux533aux6df1ux5ea6-z_maxdfracb4}
+
+\[p_{\frac{1}{4}}=p_{cr}+\frac{\pi\,\gamma\,B}{4\left(\cot\varphi-\dfrac{\pi}{2}+\varphi\right)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(B\) 为基础宽度；\(\gamma\)
+  为\textbf{基底以下}持力层土的重度（水位以下用
+  \(\gamma'\)）；其余同公式 8-1。
+\item
+  \textbf{工程意义}：工程设计常用 \(p_{1/4}\)（允许塑性区深达
+  B/4），除以安全系数后作为持力层承载力。《建筑地基基础设计规范》的承载力特征值即与之衔接。
+\item
+  \textbf{注意}：比较两式------\(p_{1/4}\) 比 \(p_{cr}\)
+  多了「\(\gamma B\)」项，反映宽度效应；埋深由 \(\gamma_1 d\)
+  项反映。两式分母相同（\(\Phi=\cot\varphi-\dfrac{\pi}{2}+\varphi\)）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.3
+极限承载力理论公式}\label{ux6781ux9650ux627fux8f7dux529bux7406ux8bbaux516cux5f0f}
+
+\subsubsection{公式
+8-3　太沙基极限承载力公式（条形基础、基底粗糙）}\label{ux516cux5f0f-8-3-ux592aux6c99ux57faux6781ux9650ux627fux8f7dux529bux516cux5f0fux6761ux5f62ux57faux7840ux57faux5e95ux7c97ux7cd9}
+
+\[\boxed{p_u=c\,N_c+\gamma_1 d\,N_q+\frac{1}{2}\gamma B\,N_\gamma}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_u\) 为极限承载力（\(\mathrm{kPa}\)）；\(c\)
+  为持力层黏聚力；\(\gamma_1\) 为基底以上土重度（埋深 \(d\)
+  超载项）；\(\gamma\) 为基底以下土重度；\(B\)
+  基础宽度；\(N_c,N_q,N_\gamma\) 为\textbf{太沙基承载力系数}（仅
+  \(\varphi\) 的函数，查表）。
+\item
+  \textbf{适用}：地基均匀、条形基础、基底粗糙、整体剪切破坏。
+\item
+  \textbf{总公式含义}：三项分别来自黏聚力、埋深超载、基底宽度------记忆法「\(c\)
+  项 + 埋深项 + 宽度项」。
+\end{itemize}
+
+\subsubsection{公式
+8-4　方形与圆形基础的太沙基极限承载力}\label{ux516cux5f0f-8-4-ux65b9ux5f62ux4e0eux5706ux5f62ux57faux7840ux7684ux592aux6c99ux57faux6781ux9650ux627fux8f7dux529b}
+
+方形基础：
+
+\[p_u=1.3c\,N_c+\gamma_1 d\,N_q+0.4\gamma B\,N_\gamma\]
+
+圆形基础：
+
+\[p_u=1.3c\,N_c+\gamma_1 d\,N_q+0.6\gamma R\,N_\gamma\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：方形/圆形较条形多出形状系数：\(N_c\) 项
+  \(\times1.3\)，\(N_\gamma\) 项方 \(0.4\)、圆
+  \(0.6\)；粗心最容易漏掉系数。
+\end{itemize}
+
+\subsubsection{公式
+8-5　太沙基承载力系数（表达式与查表）}\label{ux516cux5f0f-8-5-ux592aux6c99ux57faux627fux8f7dux529bux7cfbux6570ux8868ux8fbeux5f0fux4e0eux67e5ux8868}
+
+\[N_q=\frac{e^{\left(\frac{3\pi}{2}-\varphi\right)\tan\varphi}}{2\cos^2\left(45^{\circ}+\frac{\varphi}{2}\right)}\]
+
+\[N_c=\left(N_q-1\right)\cot\varphi\]
+
+\[N_\gamma\approx1.8\left(N_q-1\right)\tan\varphi\quad(\text{太沙基建议})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{角度单位}：指数与三角中用弧度（\(\varphi\)
+  为弧度，\(\left(45^{\circ}+\varphi/2\right)\) 中
+  \(45^{\circ}=\pi/4\)）。
+\item
+  \textbf{注意}：各教材 \(N_\gamma\) 表达式不尽相同（Vesic/Prantdl
+  等），考试以\textbf{查表给值}为主，表达式记到「约式」即可；\(N_q,N_c\)
+  关系式 \(\left(N_q-1\right)\cot\varphi\) 通用。
+\item
+  \textbf{往往还给出局部剪切破坏处理}：取
+  \(c^*=\dfrac{2}{3}c,\ \tan\varphi^*=\dfrac{2}{3}\tan\varphi\)
+  后按同式算 \(p_u\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.4
+规范地基承载力特征值（深宽修正公式）}\label{ux89c4ux8303ux5730ux57faux627fux8f7dux529bux7279ux5f81ux503cux6df1ux5bbdux4feeux6b63ux516cux5f0f}
+
+\subsubsection{公式
+8-6　承载力特征值修正}\label{ux516cux5f0f-8-6-ux627fux8f7dux529bux7279ux5f81ux503cux4feeux6b63}
+
+\[\boxed{f_a=f_{ak}+\eta_b\,\gamma\,(b-3)+\eta_d\,\gamma_m\,(d-0.5)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(f_a\)
+  为修正后地基承载力特征值（\(\mathrm{kPa}\)）；\(f_{ak}\)
+  为\textbf{静载荷试验或经验所得的地基承载力特征值}；\(\eta_b,\eta_d\)
+  为\textbf{宽度、深度修正系数}（按持力层土类查规范表）；\(b\)
+  为基础宽度（m，\textbf{\(b\le6\)}，大于 6 按 6 取）；\(d\)
+  为基础埋深（m，\textbf{\(d\ge0.5\)}，小于 0.5 按 0.5 取）；\(\gamma\)
+  为基底以下土的天然重度（\textbf{水位以下用浮重度}
+  \(\gamma'\)）；\(\gamma_m\)
+  为基底以上土的\textbf{加权平均重度}（水位以下取浮重度）。
+\item
+  \textbf{物理意义}：埋深越深、宽度越大，承载力越高（破坏土体更大）------修正正是考虑这一深度宽度效应。
+\item
+  \textbf{注意}：\(b\)、\(d\) 的上下限取值是典型考点；\(\gamma\) 与
+  \(\gamma_m\) 一「下」一「上」，别混。
+\item
+  \textbf{示例修正系数（部分，查表为准）}：黏性土
+  \(\eta_b=0,0.3,0.5,\ \eta_d=1.0,1.6,2.2\)（按 e、\(I_L\)）；砂土
+  \(\eta_b=0.3\sim3.0,\ \eta_d=1.6\sim4.4\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式 8-7　载荷试验确定
+\(f_{ak}\)（概念）}{公式 8-7　载荷试验确定 f\_\{ak\}（概念）}}\label{ux516cux5f0f-8-7-ux8f7dux8377ux8bd5ux9a8cux786eux5b9a-f_akux6982ux5ff5}
+
+\begin{itemize}
+\tightlist
+\item
+  \(p\)-\(s\) 曲线：\textbf{比例界限荷载 \(p_{cr}'\)} 或
+  \textbf{极限荷载 \(p_u\) 除以 2（安全系数 2 取小）}作为特征值；
+\item
+  承载力分别为比例界限与半极限两个里的\textbf{较小值}；
+\item
+  加压板尺寸、深度影响按规范换算（宽度修正用公式 8-6）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.5
+承载力的三方面关系（辨析）}\label{ux627fux8f7dux529bux7684ux4e09ux65b9ux9762ux5173ux7cfbux8fa8ux6790}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{承载力特征值 \(f_{ak}\)（或修正后
+  \(f_a\)）}：设计用，允许地基不破坏且沉降可用；
+\item
+  \textbf{临塑/临界荷载
+  \(p_{cr},p_{1/4}\)}：以「塑性区深度」为判据的理论值；
+\item
+  \textbf{极限承载力 \(p_u\)}：地基整体剪切破坏瞬间的荷载（上限）。
+\item
+  关系：\(p_{cr}\lesssim p_{1/4}<p_u\)，取安全系数后得容许承载力
+  \([p_a]=p_u/F_s\)（\(F_s\approx2\sim3\)）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3-7}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+8-1 &
+\(p_{cr}=\dfrac{\pi(\gamma_1d+c\cot\varphi)}{\cot\varphi-\pi/2+\varphi}+\gamma_1d\)
+& 临塑荷载 \\
+8-2 & \(p_{1/4}=p_{cr}+\dfrac{\pi\gamma B}{4A}\) & 临界荷载 \\
+8-3 & \(p_u=cN_c+\gamma_1dN_q+\dfrac{1}{2}\gamma BN_\gamma\) &
+太沙基极限承载力（条形） \\
+8-4 & 方/圆乘 1.3、0.4、0.6 & 方/圆形基础 \\
+8-5 &
+\(N_q=\dfrac{e^{(\frac{3\pi}{2}-\varphi)\tan\varphi}}{2\cos^2(45^{\circ}+\varphi/2)},\ N_c=(N_q-1)\cot\varphi\)
+& 承载力系数 \\
+8-6 & \(f_a=f_{ak}+\eta_b\gamma(b-3)+\eta_d\gamma_m(d-0.5)\) &
+规范深宽修正 \\
+8-7 & 载荷试验 \(f_{ak}\) & 试验确定 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 太沙基公式「\(c\) 项 + 埋深项 +
+宽度项」三件套，方/圆别漏 1.3、0.4、0.6 系数；② 深宽修正的
+\(b\le6\)、\(d\ge0.5\) 上下限；\(b,\,d\) 修正里 \(\gamma\) 与
+\(\gamma_m\) 一个在下、一个在上；③ 水位以下一律 \(\gamma'\)；④
+\(N_\gamma\) 表达式每教材不同，考试\textless 以查表为主；⑤ 概念题分清
+\(p_{cr},p_{1/4},p_u,f_{ak}\) 的关系。
+\end{quote}
+
+\newpage
+
+\end{document}

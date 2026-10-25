@@ -1,0 +1,463 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第五章
+土的抗剪强度}\label{ux7b2cux4e94ux7ae0-ux571fux7684ux6297ux526aux5f3aux5ea6}
+
+\begin{quote}
+\textbf{本章导览}：土的破坏是\textbf{剪切破坏}，抗剪强度是第三、四、六、七、八章共同的「基础材料参数」。考试重点：①
+莫尔-库仑准则与极限平衡条件（判断是否破坏）------必考计算；②
+三种排水条件试验对应哪组指标（\(c,\varphi\)）------简答题高频；③
+破裂面方位（45°+φ/2）。\textbf{有效应力指标是主线}。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.1
+库仑公式与抗剪强度指标}\label{ux5e93ux4ed1ux516cux5f0fux4e0eux6297ux526aux5f3aux5ea6ux6307ux6807}
+
+\subsubsection{公式
+5-1　总应力法抗剪强度公式（库仑公式）}\label{ux516cux5f0f-5-1-ux603bux5e94ux529bux6cd5ux6297ux526aux5f3aux5ea6ux516cux5f0fux5e93ux4ed1ux516cux5f0f}
+
+\[\boxed{\tau_f=c+\sigma\,\tan\varphi}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\tau_f\) 为抗剪强度（\(\mathrm{kPa}\)）；\(c\)
+  为黏聚力（粘聚力，\(\mathrm{kPa}\)）；\(\sigma\)
+  为剪切面上的法向（总）应力；\(\varphi\) 为内摩擦角（°）。
+\item
+  \textbf{土类特征}：砂土
+  \(c=0,\ \varphi\approx28^{\circ}\sim45^{\circ}\)；粉土 \(c\)
+  小；黏性土 \(c\) 显著（\(10\sim100\ \mathrm{kPa}\)）。
+\item
+  \textbf{注意}：\(\sigma\) 用弧度/角度一致化；\(\tan\varphi\)
+  在计算中直接用数值。
+\end{itemize}
+
+\subsubsection{公式
+5-2　有效应力法抗剪强度公式}\label{ux516cux5f0f-5-2-ux6709ux6548ux5e94ux529bux6cd5ux6297ux526aux5f3aux5ea6ux516cux5f0f}
+
+\[\tau_f=c'+\sigma'\tan\varphi'=c'+(\sigma-u)\tan\varphi'\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(c'\) 为有效黏聚力；\(\varphi'\)
+  为有效内摩擦角；\(u\) 为孔隙水压力；\(\sigma'=\sigma-u\)
+  为有效法向应力。
+\item
+  \textbf{注意}：\textbf{真正决定强度的是有效应力}------考试常给「总应力+孔压」，先求
+  \(\sigma'\) 再用 \(c',\varphi'\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.2
+莫尔-库仑破坏准则}\label{ux83abux5c14-ux5e93ux4ed1ux7834ux574fux51c6ux5219}
+
+\subsubsection{公式
+5-3　莫尔应力圆（任意平面上的应力状态）}\label{ux516cux5f0f-5-3-ux83abux5c14ux5e94ux529bux5706ux4efbux610fux5e73ux9762ux4e0aux7684ux5e94ux529bux72b6ux6001}
+
+\[\sigma=\frac{\sigma_1+\sigma_3}{2}+\frac{\sigma_1-\sigma_3}{2}\cos 2\theta\]
+
+\[\tau=\frac{\sigma_1-\sigma_3}{2}\sin 2\theta\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma,\tau\) 为与 \(\sigma_1\) 方向成 \(\theta\)
+  角的斜平面上的法向应力与剪应力；\(\sigma_1,\sigma_3\) 为大、小主应力。
+\item
+  \textbf{验证}：\(\theta=0\) 时
+  \(\sigma=\sigma_1,\tau=0\)；\(\theta=90^{\circ}\) 时
+  \(\sigma=\sigma_3,\tau=0\)------两个极端对回来即大、小主应力作用面。
+\item
+  \textbf{莫尔圆}：圆心
+  \(\left(\dfrac{\sigma_1+\sigma_3}{2},\,0\right)\)，半径
+  \(\dfrac{\sigma_1-\sigma_3}{2}\)；圆上每一点对应该方向平面的应力状态。这是全部莫尔-库仑分析的几何基础，\textbf{必记}。
+\end{itemize}
+
+\subsubsection{公式
+5-4　莫尔破坏准则（应力圆与强度包线相切）}\label{ux516cux5f0f-5-4-ux83abux5c14ux7834ux574fux51c6ux5219ux5e94ux529bux5706ux4e0eux5f3aux5ea6ux5305ux7ebfux76f8ux5207}
+
+\[\tau_f=f(\sigma):\quad \tau_f=c+\sigma\tan\varphi\]
+
+\begin{itemize}
+\tightlist
+\item
+  当莫尔圆与强度包线 \(\tau=c+\sigma\tan\varphi\)
+  \textbf{相切}时土体达到极限平衡（剪切破坏）。
+\item
+  ① 圆在包线下方------安全；② 圆与包线\textbf{相切}------极限平衡；③
+  圆超出包线------已破坏。
+\end{itemize}
+
+\subsubsection{公式
+5-5　极限平衡条件（主应力表达）}\label{ux516cux5f0f-5-5-ux6781ux9650ux5e73ux8861ux6761ux4ef6ux4e3bux5e94ux529bux8868ux8fbe}
+
+\[\sigma_1=\sigma_3\tan^2\left(45^{\circ}+\frac{\varphi}{2}\right)+2c\,\tan\left(45^{\circ}+\frac{\varphi}{2}\right)\]
+
+\[\sigma_3=\sigma_1\tan^2\left(45^{\circ}-\frac{\varphi}{2}\right)-2c\,\tan\left(45^{\circ}-\frac{\varphi}{2}\right)\]
+
+无黏性土（\(c=0\)）：
+
+\[\frac{\sigma_1}{\sigma_3}=\tan^2\left(45^{\circ}+\frac{\varphi}{2}\right)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma_1,\sigma_3\)
+  为大、小主应力；其余同前。两式等价，给一对主应力判极限平衡时用任一式验证。
+\item
+  \textbf{注意}：\(\tan^2(45^{\circ}+\varphi/2)=K_p\)（被动土压力系数）、\(\tan^2(45^{\circ}-\varphi/2)=K_a\)（主动土压力系数），与第六章呼应对照记忆。
+\item
+  \textbf{30 秒推导（考场自验用）}：把公式 5-3
+  的莫尔圆代入库仑破坏条件------由几何关系
+  \(\sin\varphi=\dfrac{\sigma_1-\sigma_3}{\sigma_1+\sigma_3+2c\cot\varphi}\)，交叉相乘后令
+  \(1-\sin\varphi=2\sin^2(45^{\circ}-\varphi/2)\)
+  等三角恒等式化简，即得上式；\(c=0\) 时直接得
+  \(\dfrac{\sigma_1}{\sigma_3}=\tan^2(45^{\circ}+\varphi/2)\)。
+\end{itemize}
+
+\subsubsection{公式
+5-6　破裂面方位}\label{ux516cux5f0f-5-6-ux7834ux88c2ux9762ux65b9ux4f4d}
+
+\[\alpha_f=45^{\circ}+\frac{\varphi}{2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{含义}：破坏面与\textbf{最大主应力作用面}（垂直于 \(\sigma_1\)
+  方向的平面）的夹角为
+  \(45^{\circ}+\varphi/2\)；等价地，破坏面与\textbf{大主应力方向}夹角为
+  \(45^{\circ}-\varphi/2\)。
+\item
+  \textbf{考试用法}：三轴试验破坏面试样的倾斜角度即用此判定；挡土墙后主动/被动滑动面也由它推导。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.3
+抗剪强度试验与对应指标}\label{ux6297ux526aux5f3aux5ea6ux8bd5ux9a8cux4e0eux5bf9ux5e94ux6307ux6807}
+
+\subsubsection{公式
+5-7　无侧限（单轴）抗压强度试验}\label{ux516cux5f0f-5-7-ux65e0ux4fa7ux9650ux5355ux8f74ux6297ux538bux5f3aux5ea6ux8bd5ux9a8c}
+
+\[q_u=2c_u,\qquad c_u=\frac{q_u}{2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(q_u\) 为无侧限抗压强度（单轴压缩，\(\sigma_3=0\)
+  破坏时 \(\sigma_1=q_u\)）；\(c_u\) 为不排水抗剪强度。
+\item
+  \textbf{推导}：把 \(\sigma_1=q_u,\ \sigma_3=0\) 代入公式 5-5 的
+  \(\sigma_1=f(\sigma_3)\)，饱和黏土 \(\varphi=0\) 时得 \(q_u=2c_u\)。
+\item
+  \textbf{注意}：本质上是 \(\varphi_u=0\) 条件的 UU
+  特例；仅适用饱和黏性土，取值随水含量波动大。
+\end{itemize}
+
+\subsubsection{公式
+5-8　直剪试验三种方法}\label{ux516cux5f0f-5-8-ux76f4ux526aux8bd5ux9a8cux4e09ux79cdux65b9ux6cd5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3793}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+试验方法
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+排水条件
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+得到的指标
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+快剪（不固结不排水 Q） & 不固结、不排水 &
+\(c_q,\ \varphi_q\)（总应力） \\
+固结快剪（固结不排水 R） & 先固结、后不排水剪切 &
+\(c_{cq},\ \varphi_{cq}\)（总应力） \\
+慢剪（固结排水 S） & 固结并排水剪切 &
+\(c_s,\ \varphi_s\approx c',\varphi'\) \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：直剪试验\textbf{不能测孔隙水压力}，无法得有效应力指标；排水条件由「开缝（排水）」控制。
+\end{itemize}
+
+\subsubsection{公式
+5-9　三轴试验三种方法（核心对照表）}\label{ux516cux5f0f-5-9-ux4e09ux8f74ux8bd5ux9a8cux4e09ux79cdux65b9ux6cd5ux6838ux5fc3ux5bf9ux7167ux8868}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+试验
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+固结
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+排水
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+测量
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+指标
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+UU 不固结不排水 & 否 & 剪切时不排水 & 总应力 &
+\(c_u,\ \varphi_u\approx0\) \\
+CU 固结不排水 & 是 & 剪切时不排水 & 总+孔压 &
+\(c_{cu},\varphi_{cu}\)（总）及 \(c',\varphi'\)（有效） \\
+CD 固结排水 & 是 & 剪切时排水 & 总应力 &
+\(c_d,\varphi_d\approx c',\varphi'\) \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{饱和黏土
+  UU}：\(\varphi_u=0\)，\(\tau_f=c_u\)（不排水强度，与围压无关），莫尔圆被水平包线相切，试验步骤快------选择/填空高频。
+\item
+  \textbf{CU 试验}：同时量测孔隙水压力可得
+  \(c',\varphi'\)，是\textbf{应用最广}的试验。
+\item
+  \textbf{注意}：试验名称与强度指标的「排水条件」一一对应，\textbf{总应力指标随排水条件而变，有效应力指标不随排水条件而变}。
+\end{itemize}
+
+\subsubsection{公式
+5-10　十字板剪切等现场强度}\label{ux516cux5f0f-5-10-ux5341ux5b57ux677fux526aux5207ux7b49ux73b0ux573aux5f3aux5ea6}
+
+\[\tau_f\ (\text{不排水强度}) \approx \frac{2M}{\pi D^2\left(H+\dfrac{D}{3}\right)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(M\) 为扭矩（\(\mathrm{kN\cdot m}\)）；\(D,H\)
+  为十字板直径与高度（m）。
+\item
+  \textbf{注意}：适用于饱和软黏土现场测不排水强度，计算式按记法记------考试以概念为主。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.4
+孔隙水压力系数（Skempton）}\label{ux5b54ux9699ux6c34ux538bux529bux7cfbux6570skempton}
+
+\subsubsection{公式 5-11　孔隙水压力系数
+B、A}\label{ux516cux5f0f-5-11-ux5b54ux9699ux6c34ux538bux529bux7cfbux6570-ba}
+
+\[\Delta u=B\Big[\Delta\sigma_3+A\big(\Delta\sigma_1-\Delta\sigma_3\big)\Big]\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\Delta\sigma_1,\Delta\sigma_3\)
+  为主应力增量；\(B\) 为各向等压应力增量下的孔压系数------饱和土
+  \(B=1\)，干土 \(B=0\)；\(A\)
+  为偏应力（\(\Delta\sigma_1-\Delta\sigma_3\)）引起的孔压系数，与土性/应力历史有关（正常固结黏土
+  \(\Delta A>0\)，超固结土可能为负）。
+\item
+  \textbf{用法}：由总应力增量和 \(A,B\) 求孔压 → 得 \(\sigma'\) →
+  判稳定；这是「有效应力法」解决实际问题的桥梁。
+\item
+  \textbf{注意}：饱和土三轴中 \(B\) 用于检验试样饱和程度（\(B\ge0.97\)
+  视为饱和）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.5
+影响抗剪强度的因素（简答题素材）}\label{ux5f71ux54cdux6297ux526aux5f3aux5ea6ux7684ux56e0ux7d20ux7b80ux7b54ux9898ux7d20ux6750}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{排水条件}决定用哪组指标（最重要）；
+\item
+  \textbf{土的类型与级配}：砂土摩擦角随级配、密实度增大；
+\item
+  \textbf{有效应力状态与应力历史}：超固结土一般 \(c\) 大；
+\item
+  \textbf{加荷速度/蠕变}：快剪测的强度偏大、长期强度低；
+\item
+  各向异性、含水量（饱和黏土湿强度低）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+5-1 & \(\tau_f=c+\sigma\tan\varphi\) & 库仑公式（总应力） \\
+5-2 & \(\tau_f=c'+(\sigma-u)\tan\varphi'\) & 库仑公式（有效应力） \\
+5-3 &
+\(\sigma=\dfrac{\sigma_1+\sigma_3}{2}+\dfrac{\sigma_1-\sigma_3}{2}\cos2\theta,\ \tau=\dfrac{\sigma_1-\sigma_3}{2}\sin2\theta\)
+& 任意平面应力（莫尔圆） \\
+5-4 & 莫尔圆与包线相切 & 破坏判定 \\
+5-5 &
+\(\sigma_1=\sigma_3\tan^2(45^{\circ}+\varphi/2)+2c\tan(45^{\circ}+\varphi/2)\)
+& 极限平衡条件 \\
+5-6 & \(\alpha_f=45^{\circ}+\varphi/2\) & 破裂面方位 \\
+5-7 & \(q_u=2c_u\) & 无侧限抗压强度 \\
+5-8/5-9/5-10 & 直剪 / 三轴 / 十字板 试验 & 强度试验 \\
+5-11 & \(\Delta u=B[\Delta\sigma_3+A(\Delta\sigma_1-\Delta\sigma_3)]\) &
+孔压系数 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：①
+判「是否破坏」三选一------算莫尔圆是否越过包线、或验
+\(\sigma_1\ge\sigma_{1f}\)；② 饱和黏土 UU 得
+\(c_u=\tau_f,\ \varphi=0\)；③ 有效应力指标 \(c',\varphi'\)
+与排水条件无关，总应力指标有关；④ 破裂面与大主应力作用面夹角
+45°+φ/2------别反。
+\end{quote}
+
+\end{document}

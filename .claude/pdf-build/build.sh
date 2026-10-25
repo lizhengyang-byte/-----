@@ -7,6 +7,7 @@ set -u
 cd "$(dirname "$0")/../.." || exit 1
 SRC="$(pwd)"
 BUILD="$SRC/.claude/pdf-build"
+MDDIR="$SRC/markdown版本"
 TEX="$BUILD/tex"
 OUT="$SRC/PDF导出"
 mkdir -p "$OUT"
@@ -19,7 +20,7 @@ COMMON=(
 )
 
 fail=0
-for f in "$SRC"/*.md; do
+for f in "$MDDIR"/*.md; do
   name="$(basename "$f" .md)"
   tex="$TEX/$name.tex"
   pdf="$OUT/$name.pdf"
