@@ -10,7 +10,8 @@ BUILD="$SRC/.claude/pdf-build"
 MDDIR="$SRC/markdown版本"
 TEX="$BUILD/tex"
 OUT="$SRC/PDF导出"
-mkdir -p "$OUT"
+LOG="$SRC/latex_log"
+mkdir -p "$OUT" "$LOG"
 
 COMMON=(
   -H "$BUILD/header.tex"
@@ -32,13 +33,12 @@ for f in "$MDDIR"/*.md; do
     echo "fixtex 失败"; cat "$TEX/$name.err"; fail=1; continue
   fi
   if ! xelatex -interaction=nonstopmode -halt-on-error -jobname "$name" \
-       -output-directory="$OUT" "$tex" >"$TEX/$name.log" 2>&1; then
-    echo "xelatex 失败"; tail -15 "$TEX/$name.log"; fail=1; continue
+       -aux-directory="$LOG" -output-directory="$OUT" "$tex" >/dev/null 2>&1; then
+    echo "xelatex 失败"; tail -15 "$LOG/$name.log"; fail=1; continue
   fi
   # 第二遍：解决 hyperref/longtable 的 rerun 警告
   xelatex -interaction=nonstopmode -halt-on-error -jobname "$name" \
-       -output-directory="$OUT" "$tex" >>"$TEX/$name.log" 2>&1
-  rm -f "$OUT/$name.aux" "$OUT/$name.toc" "$OUT/$name.log"
+       -aux-directory="$LOG" -output-directory="$OUT" "$tex" >/dev/null 2>&1
   echo "完成"
 done
 

@@ -8,7 +8,8 @@ SRC="$(pwd)"
 BUILD="$SRC/.claude/pdf-build"
 MDDIR="$SRC/markdown版本"
 OUT="$SRC/LaTeX版本"
-mkdir -p "$OUT"
+LOG="$SRC/latex_log"
+mkdir -p "$OUT" "$LOG"
 
 COMMON=(
   -H "$BUILD/header.tex"
@@ -23,13 +24,13 @@ for f in "$MDDIR"/*.md; do
   tex="$OUT/$name.tex"
   filters=("${COMMON[@]}")
   [ "$name" = "土力学速查手册-总册" ] && filters+=("--lua-filter" "$BUILD/merge_pdf.lua")
-  if ! pandoc -s "$f" -t latex -o "$tex" "${filters[@]}" 2>"$OUT/$name.err"; then
-    echo "✗ $name  pandoc 失败"; cat "$OUT/$name.err"; fail=1; continue
+  if ! pandoc -s "$f" -t latex -o "$tex" "${filters[@]}" 2>"$LOG/$name.err"; then
+    echo "✗ $name  pandoc 失败"; cat "$LOG/$name.err"; fail=1; continue
   fi
-  if ! python -I "$BUILD/fixtex.py" "$tex" 2>>"$OUT/$name.err"; then
-    echo "✗ $name  fixtex 失败"; cat "$OUT/$name.err"; fail=1; continue
+  if ! python -I "$BUILD/fixtex.py" "$tex" 2>>"$LOG/$name.err"; then
+    echo "✗ $name  fixtex 失败"; cat "$LOG/$name.err"; fail=1; continue
   fi
-  rm -f "$OUT/$name.err"
+  rm -f "$LOG/$name.err"
   echo "✓ $name.tex"
 done
 

@@ -15,6 +15,7 @@
 | `markdown版本/土力学速查手册-总册.md` | 合并总册（封面 + 目录 + 各章全文，不含 README） |
 | `PDF导出/` | 各章与总册的 PDF（学术黑白 A4，pandoc + xelatex 构建） |
 | `LaTeX版本/` | 每个 Markdown 对应的独立可编译 `.tex` 源文件 |
+| `latex_log/` | LaTeX 编译过程文件（`.aux`/`.log`/`.toc` 等，自动生成，无需关注） |
 | `.claude/pdf-build/` | 构建管线（版式模板、Lua 过滤器、构建脚本） |
 
 ### LaTeX 版本说明

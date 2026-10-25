@@ -9,6 +9,7 @@
 | [markdown版本/](markdown版本/) | 全部 Markdown 源文档（**唯一编辑入口**：README、9 章、总册） |
 | [PDF导出/](PDF导出/) | 各章 + 总册的 PDF（学术黑白 A4 版式） |
 | [LaTeX版本/](LaTeX版本/) | 每个 Markdown 对应的独立可编译 `.tex` 源文件 |
+| [latex_log/](latex_log/) | LaTeX 编译过程文件（`.aux`/`.log`/`.toc` 等，自动生成，不手动编辑） |
 | [.claude/pdf-build/](.claude/pdf-build/) | 构建管线（版式模板、Lua 过滤器、构建脚本） |
 
 ## 文档版本

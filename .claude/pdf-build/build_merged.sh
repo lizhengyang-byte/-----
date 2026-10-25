@@ -7,7 +7,8 @@ SRC="$(pwd)"
 BUILD="$SRC/.claude/pdf-build"
 TEX="$BUILD/tex"
 OUT="$SRC/PDF导出"
-mkdir -p "$OUT"
+LOG="$SRC/latex_log"
+mkdir -p "$OUT" "$LOG"
 
 NAME="土力学速查手册-总册"
 MD="$SRC/markdown版本/$NAME.md"
@@ -26,19 +27,18 @@ python -I "$BUILD/fixtex.py" "$TEX/$NAME.tex" || { echo "fixtex 失败"; exit 1;
 
 echo "xelatex（第 1 遍）…"
 xelatex -interaction=nonstopmode -halt-on-error -jobname "$NAME" \
-  -output-directory="$OUT" "$TEX/$NAME.tex" >"$TEX/$NAME.log" 2>&1 \
-  || { echo "xelatex 失败"; tail -15 "$TEX/$NAME.log"; exit 1; }
+  -aux-directory="$LOG" -output-directory="$OUT" "$TEX/$NAME.tex" >/dev/null 2>&1 \
+  || { echo "xelatex 失败"; tail -15 "$LOG/$NAME.log"; exit 1; }
 echo "xelatex（第 2 遍，生成目录页码）…"
 xelatex -interaction=nonstopmode -halt-on-error -jobname "$NAME" \
-  -output-directory="$OUT" "$TEX/$NAME.tex" >>"$TEX/$NAME.log" 2>&1 \
-  || { echo "xelatex 第 2 遍失败"; tail -15 "$TEX/$NAME.log"; exit 1; }
+  -aux-directory="$LOG" -output-directory="$OUT" "$TEX/$NAME.tex" >/dev/null 2>&1 \
+  || { echo "xelatex 第 2 遍失败"; tail -15 "$LOG/$NAME.log"; exit 1; }
 
 echo "检查缺字 …"
-if grep -q "Missing character" "$TEX/$NAME.log"; then
-  echo "!!! 日志含 Missing character 警告，需人工查看：$TEX/$NAME.log"
+if grep -q "Missing character" "$LOG/$NAME.log"; then
+  echo "!!! 日志含 Missing character 警告，需人工查看：$LOG/$NAME.log"
 else
   echo "无缺字警告 ✓"
 fi
 
-rm -f "$OUT/$NAME.aux" "$OUT/$NAME.toc" "$OUT/$NAME.log"
 echo "完成：$OUT/$NAME.pdf"

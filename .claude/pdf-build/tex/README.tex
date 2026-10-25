@@ -38,6 +38,44 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
@@ -119,6 +157,65 @@
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\subsection{项目结构}\label{ux9879ux76eeux7ed3ux6784}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+路径
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+说明
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{README.md}（根目录） & 项目总览 README（项目首页） \\
+\texttt{markdown版本/} & 全部 Markdown 源文档（README、各章、总册） \\
+\texttt{markdown版本/README.md} & 本说明文件（手册使用说明） \\
+\texttt{markdown版本/00-全书公式速查总表.md} \textasciitilde{}
+\texttt{08-地基承载力.md} & 各章 Markdown 源文档 \\
+\texttt{markdown版本/土力学速查手册-总册.md} & 合并总册（封面 + 目录 +
+各章全文，不含 README） \\
+\texttt{PDF导出/} & 各章与总册的 PDF（学术黑白 A4，pandoc + xelatex
+构建） \\
+\texttt{LaTeX版本/} & 每个 Markdown 对应的独立可编译 \texttt{.tex}
+源文件 \\
+\texttt{.claude/pdf-build/} & 构建管线（版式模板、Lua
+过滤器、构建脚本） \\
+\end{longtable}
+}
+
+\subsubsection{LaTeX 版本说明}\label{latex-ux7248ux672cux8bf4ux660e}
+
+\texttt{LaTeX版本/} 中每个 \texttt{.tex} 均由对应 Markdown
+生成，内嵌本手册版式模板（ctex
+中文字体、三线表、页眉页脚），\textbf{独立自包含}------直接用
+\texttt{xelatex} 编译即可得到与 \texttt{PDF导出/} 一致版式的 PDF：
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# 在项目根目录执行}
+\ExtensionTok{xelatex} \StringTok{"LaTeX版本/土力学速查手册{-}总册.tex"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  各章 \texttt{.tex} 对应单章 PDF；\texttt{土力学速查手册-总册.tex}
+  已含居中封面与带页码目录。
+\item
+  修改 Markdown 后（在项目根目录）重新生成 LaTeX
+  版本：\texttt{bash\ .claude/pdf-build/build\_tex.sh}；一键导出全部
+  PDF：\texttt{bash\ .claude/pdf-build/build.sh}。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \subsection{使用说明}\label{ux4f7fux7528ux8bf4ux660e}
 
 \subsubsection{目录导航}\label{ux76eeux5f55ux5bfcux822a}
@@ -189,6 +286,9 @@
 \texttt{\$\$...\$\$}，关键结论用 \texttt{\textbackslash{}boxed\{\}}
 高亮，多步推导用
 \texttt{\$\$\textbackslash{}begin\{aligned\}...\textbackslash{}end\{aligned\}\$\$}。
+
+不想在编辑器中预览公式时，可直接用 \texttt{LaTeX版本/} 中的
+\texttt{.tex} 文件编译成 PDF（见「项目结构 · LaTeX 版本说明」）。
 
 \subsubsection{编写维护约定（后续扩充规范）}\label{ux7f16ux5199ux7ef4ux62a4ux7ea6ux5b9aux540eux7eedux6269ux5145ux89c4ux8303}
 

@@ -4,8 +4,8 @@
       "name": "xelatex",
       "command": "xelatex",
       "args": [
-        "-synctex=1",
         "-interaction=nonstopmode",
+        "-aux-directory=%AUXDIR%",
         "%DOC%"
       ]
     }
@@ -17,5 +17,6 @@
     }
   ],
   "latex-workshop.latex.recipe.default": "xelatex 两遍",
-  "latex-workshop.latex.outDir": "%DIR%"
+  "latex-workshop.latex.outDir": "%DIR%",
+  "latex-workshop.latex.auxDir": "%DIR%/../latex_log"
 }
