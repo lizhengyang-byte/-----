@@ -1,0 +1,464 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第三章
+土中应力计算}\label{ux7b2cux4e09ux7ae0-ux571fux4e2dux5e94ux529bux8ba1ux7b97}
+
+\begin{quote}
+\textbf{本章导览}：本章分两大块------\textbf{自重应力}（由土体自重产生，是「不变荷载」）与\textbf{附加应力}（由建筑物荷载产生，导致沉降）。期末考试计算题：①
+成层土自重应力竖图；② 基底压力与偏心判别；③
+矩形均布荷载角点法求附加应力。\textbf{「分层总和法需要画自重应力+附加应力分布图」是专业课综合题主线}，务必把本章算准。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.1 自重应力}\label{ux81eaux91cdux5e94ux529b}
+
+\subsubsection{公式
+3-1　均质土层自重应力}\label{ux516cux5f0f-3-1-ux5747ux8d28ux571fux5c42ux81eaux91cdux5e94ux529b}
+
+\[\sigma_{cz}=\gamma z\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma_{cz}\) 为深度 \(z\)
+  处竖向自重应力（\(\mathrm{kPa}\)）；\(\gamma\)
+  为土层重度（\(\mathrm{kN/m^3}\)）；\(z\) 为计算深度（m）。
+\item
+  \textbf{单位}：\(\mathrm{kPa}=\mathrm{kN/m^2}\)，注意与
+  \(\mathrm{kN/m^3}\times\mathrm{m}\) 对应。
+\end{itemize}
+
+\subsubsection{公式
+3-2　成层土自重应力（叠加）}\label{ux516cux5f0f-3-2-ux6210ux5c42ux571fux81eaux91cdux5e94ux529bux53e0ux52a0}
+
+\[\sigma_{cz}=\sum_{i=1}^{n}\gamma_i h_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\gamma_i,h_i\) 为第 \(i\) 层重度与厚度；\(n\)
+  为计算深度以上土层数。
+\item
+  \textbf{作图注意}：每一层内 \(\sigma_{cz}\)
+  随深度\textbf{线性增大}，图形为折线；在层面处连续、斜率即该层
+  \(\gamma_i\)。
+\item
+  \textbf{地下水位以下}：粉土/砂土用浮重度
+  \(\gamma_i'=\gamma_{sat,i}-\gamma_w\)；不透水的黏性土层用\textbf{饱和重度}
+  \(\gamma_{sat}\) 参与自重（但总应力层面仍加静水压力，见公式 3-4）。
+\end{itemize}
+
+\subsubsection{公式
+3-3　地下水位以下用浮重度}\label{ux516cux5f0f-3-3-ux5730ux4e0bux6c34ux4f4dux4ee5ux4e0bux7528ux6d6eux91cdux5ea6}
+
+\[\sigma_{cz}=\sum_{i=1}^{w}\gamma_i h_i+\sum_{j=w+1}^{n}\gamma_j' h_j\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(w\) 为地下水位以上层数；\(\gamma_j'\)
+  为水位以下各层浮重度。
+\item
+  \textbf{注意}：此时算的是\textbf{总自重压力}（含孔隙水压力部分），与有效应力（公式
+  3-10）相区分。
+\end{itemize}
+
+\subsubsection{公式
+3-4　不透水层处自重应力突变}\label{ux516cux5f0f-3-4-ux4e0dux900fux6c34ux5c42ux5904ux81eaux91cdux5e94ux529bux7a81ux53d8}
+
+\[\sigma_{cz}=\sum\gamma_i h_i+\gamma_w h_w\quad(\text{作用于不透水层顶面})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：水的自重 \(\gamma_w h_w\)
+  全部传递给下伏不透水（隔水）层顶面，故指标在此处\textbf{发生跳跃}。
+\item
+  \textbf{注意}：只在\textbf{不透水层顶面}才加
+  \(\gamma_w h_w\)；普通透水土层层面处无此跳跃（水压力由土粒骨架承托）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.2
+基底压力（接触压力）}\label{ux57faux5e95ux538bux529bux63a5ux89e6ux538bux529b}
+
+设基础上作用竖向荷载 \(N\)（上部结构传来），基础与台阶上土自重
+\(G\)，基础底面面积 \(A=l\times B\)，基础埋深 \(d\)。
+
+\subsubsection{公式
+3-5　中心荷载基底压力}\label{ux516cux5f0f-3-5-ux4e2dux5fc3ux8377ux8f7dux57faux5e95ux538bux529b}
+
+\[p=\frac{N+G}{A}\]
+
+\[G=\gamma_{G}\,A\,d\quad(\text{平均重度取 }20\text{ })\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p\)
+  为基底平均压力（\(\mathrm{kPa}\)）；\(\gamma_G\)
+  为基础与台阶上土平均重度，常取 \(20\,\mathrm{kN/m^3}\)（水下取
+  \(20-\gamma_w\) 即 \(10\)，或用浮容重）。单位：\(N\) 为
+  \(\mathrm{kN}\)，\(A\) 为 \(\mathrm{m^2}\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式 3-6　偏心荷载基底压力（小偏心
+\(e\le B/6\)）}{公式 3-6　偏心荷载基底压力（小偏心 e\textbackslash le B/6）}}\label{ux516cux5f0f-3-6-ux504fux5fc3ux8377ux8f7dux57faux5e95ux538bux529bux5c0fux504fux5fc3-ele-b6}
+
+\[\boxed{p_{max,min}=\frac{N+G}{lB}\left(1\pm\frac{6e}{B}\right)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e=\dfrac{M}{N+G}\) 为偏心距（\(M\)
+  为对基底中心的总力矩）；\(l\)
+  为与偏心方向垂直方向的基底边长（宽度），\(B\) 为偏心方向基底边长。
+\item
+  \textbf{使用条件}：\(e\le B/6\)（合力落在基底核心内有压区），\(p_{min}\ge0\)。
+\end{itemize}
+
+\subsubsection{\texorpdfstring{公式
+3-7　大偏心（\(e>B/6\)）------局部脱离}{公式 3-7　大偏心（e\textgreater B/6）------局部脱离}}\label{ux516cux5f0f-3-7-ux5927ux504fux5fc3eb6ux5c40ux90e8ux8131ux79bb}
+
+\[p_{max}=\frac{2(N+G)}{3al},\qquad a=\frac{B}{2}-e\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(a\) 为合力作用点到受压边缘距离；此时
+  \(p_{min}=0\)（受压区被压缩到底边一侧），三角形分布。
+\item
+  \textbf{注意}：基底不允许出现拉应力------\(e>B/6\)
+  即判别为「脱离」，公式 3-6 的 \(p_{min}<0\) 无物理意义，必须改用 3-7。
+\item
+  \textbf{临界}：\(e=B/6\) 时
+  \(p_{min}=0,\ p_{max}=\dfrac{2(N+G)}{lB}=2p_{aver}\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.3
+基底附加压力（净压力）}\label{ux57faux5e95ux9644ux52a0ux538bux529bux51c0ux538bux529b}
+
+\subsubsection{公式
+3-8　基底附加压力}\label{ux516cux5f0f-3-8-ux57faux5e95ux9644ux52a0ux538bux529b}
+
+\[p_0=p-\gamma_m d=\frac{N+G}{A}-\sum\gamma_i d_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_0\)
+  为基底附加压力（\(\mathrm{kPa}\)）------真正引起地基沉降的净增量；\(\gamma_m d\)
+  为基底以上土的自重压力（成层土的加权平均重度 \(\gamma_m\) × 埋深
+  \(d\)）。
+\item
+  \textbf{来源}：基础位置挖掉原有土体（自重
+  \(\gamma_m d\)），再放上上部荷载 \(p\)，净增量即 \(p_0\)。
+\item
+  \textbf{注意}：\textbf{沉降计算一律用 \(p_0\)}，不是
+  \(p\)------这是最常见的丢分点。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.4
+附加应力（地基中应力分布）}\label{ux9644ux52a0ux5e94ux529bux5730ux57faux4e2dux5e94ux529bux5206ux5e03}
+
+\subsubsection{公式
+3-9　集中力作用下（布辛内斯克解）}\label{ux516cux5f0f-3-9-ux96c6ux4e2dux529bux4f5cux7528ux4e0bux5e03ux8f9bux5185ux65afux514bux89e3}
+
+\[\sigma_z=\frac{3P}{2\pi}\frac{z^3}{R^5}=\frac{3P}{2\pi z^2}\frac{1}{\left[1+\left(\frac{r}{z}\right)^2\right]^{5/2}}=\frac{\alpha P}{z^2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(P\) 为集中力（\(\mathrm{kN}\)）；\(z\)
+  为地表下深度；\(r\)
+  为距作用点水平距离；\(R=\sqrt{r^2+z^2}\)；\(\alpha=\dfrac{3}{2\pi}\dfrac{1}{(1+(r/z)^2)^{5/2}}\)
+  为集中力附加应力系数。
+\item
+  \textbf{特征}：沿深度衰减快；同一深度水平向远离荷载点快速衰减。
+\item
+  \textbf{用途}：理论基石，考试以验证性小题出现；实际计算一般用矩形荷载角点法。
+\end{itemize}
+
+\subsubsection{公式
+3-10　矩形均布荷载角点下的附加应力}\label{ux516cux5f0f-3-10-ux77e9ux5f62ux5747ux5e03ux8377ux8f7dux89d2ux70b9ux4e0bux7684ux9644ux52a0ux5e94ux529b}
+
+\[\sigma_z=\alpha_c\, p_0\]
+
+\[\alpha_c=\frac{1}{2\pi}\left[\arctan\frac{mn}{\sqrt{m^2+n^2+1}}+\frac{mn\left(m^2+n^2+2\right)}{\left(m^2+1\right)\left(n^2+1\right)\sqrt{m^2+n^2+1}}\right]\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(m=l/z,\ n=b/z\)（\(l,b\) 为矩形长边、短边，\(z\)
+  为计算深度）；\(\alpha_c\)
+  为矩形均布荷载\textbf{角点}附加应力系数（表查：按 \(l/b\) 与 \(z/b\)
+  双引数，表见教材附录）。
+\item
+  \textbf{注意}：\(m,n\) 的分母是 \(z\)，查表常用引数为
+  \(l/b\)（横向）与 \(z/b\)（纵向）；两边的次序别混淆。
+\item
+  \textbf{极限验证}：\(z\to0\) 时
+  \(\sigma_z\to p_0/4\)（角点处恰为四分之一荷载），可用以检验公式/查表是否正确。
+\end{itemize}
+
+\subsubsection{公式
+3-11　平均附加应力系数（应力面积法用）}\label{ux516cux5f0f-3-11-ux5e73ux5747ux9644ux52a0ux5e94ux529bux7cfbux6570ux5e94ux529bux9762ux79efux6cd5ux7528}
+
+\[\bar\alpha_c=\frac{1}{z}\int_0^z\alpha_c\,dz\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\bar\alpha_c\) 为从基底到深度 \(z\)
+  的\textbf{平均}附加应力系数（查表，引数与角点法同）；\(\alpha_c\)
+  为公式 3-10 的角点系数。
+\item
+  \textbf{用途}：第四章规范法（应力面积法）需用应力面积
+  \(z\bar\alpha_c\) 计算，此式给出两者的联系。
+\item
+  \textbf{注意}：这是\textbf{平均系数}，与角点系数 \(\alpha_c\)
+  是\textbf{两套表}，沉降计算时别用混。
+\end{itemize}
+
+\subsubsection{公式
+3-12　角点法（任意竖向位置点）}\label{ux516cux5f0f-3-12-ux89d2ux70b9ux6cd5ux4efbux610fux7ad6ux5411ux4f4dux7f6eux70b9}
+
+任一点 \(M\) 的附加应力 = 把荷载面分割、使 \(M\)
+位于各子矩形\textbf{角点}，按叠加或相减：
+
+\begin{itemize}
+\tightlist
+\item
+  \(M\) 在矩形内（或边界上）：子矩形相加；
+\item
+  \(M\) 在矩形外：\(ABCD\) 面积 = 大矩形 − 小矩形\ldots（或「大矩形 +
+  小矩形 − 二小矩形」），按角点法代数叠加。
+\end{itemize}
+
+\[\sigma_z=\sum_{i}\alpha_{c,i}\,p_0\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：角点法是\textbf{矩形均布荷载}专属；\(M\)
+  点必须落在每个参与矩形的一角，分割规则以「使 \(M\) 处于角点」为原则。
+\item
+  考试技巧：先画矩形分割示意图，写清每个 \(l_i,b_i,z\) 再查
+  \(\alpha_{c,i}\)，最后求和/求差。
+\end{itemize}
+
+\subsubsection{公式
+3-13　条形均布荷载下的附加应力（平面问题）}\label{ux516cux5f0f-3-13-ux6761ux5f62ux5747ux5e03ux8377ux8f7dux4e0bux7684ux9644ux52a0ux5e94ux529bux5e73ux9762ux95eeux9898}
+
+\[\sigma_z=\frac{p_0}{\pi}\Big[\beta+\sin\beta\,\cos(\alpha_1-\alpha_2)\Big]\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\alpha_1,\alpha_2\)
+  为由计算点向条形荷载\textbf{两侧边缘}作的连线与竖直线夹角；\(\beta=\alpha_1+\alpha_2\)
+  为两连线夹角。角度\textbf{用弧度}。
+\item
+  \textbf{特例}：位于中心线下方时
+  \(\alpha_1=\alpha_2\)，\(\sigma_z=\dfrac{p_0}{\pi}(\beta+\sin\beta)\)，其中
+  \(\beta=2\arctan\dfrac{B}{2z}\)。
+\item
+  \textbf{注意}：条形荷载按\textbf{每米长度}计算（平面应变），荷载强度
+  \(p_0\) 单位 \(\mathrm{kPa}\)，不再乘宽度。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.5
+有效应力原理（贯穿全书）}\label{ux6709ux6548ux5e94ux529bux539fux7406ux8d2fux7a7fux5168ux4e66}
+
+\subsubsection{公式
+3-14　有效应力原理}\label{ux516cux5f0f-3-14-ux6709ux6548ux5e94ux529bux539fux7406}
+
+\[\sigma=\sigma'\,+u\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\sigma\) 为总应力；\(\sigma'\)
+  为有效应力（土颗粒骨架承担）；\(u\) 为孔隙水压力。
+\item
+  \textbf{静水条件下}：地下水位以下 \(\sigma'=\sigma-u=\gamma' z\)。
+\item
+  \textbf{向上渗流时}：\(\sigma'=\gamma' z-jz\)（渗透力抵消有效应力，见公式
+  2-10）。
+\item
+  \textbf{注意}：\textbf{决定土的强度和变形的是有效应力
+  \(\sigma'\)}；总应力与孔隙水压力分开计算后再合成------三轴试验强度指标用有效应力表达（见第五章）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3-1 & \(\sigma_{cz}=\gamma z\) & 均质土自重应力 \\
+3-2 & \(\sigma_{cz}=\sum\gamma_ih_i\) & 成层土自重应力 \\
+3-3 & 水位以下用 \(\gamma'\) & 水下自重应力 \\
+3-4 & 不透水层顶面加 \(\gamma_wh_w\) & 不透水层处突变 \\
+3-5 & \(p=\dfrac{N+G}{A}\) & 中心荷载基底压力 \\
+3-6 & \(p_{max,min}=\dfrac{N+G}{lB}(1\pm\dfrac{6e}{B})\) &
+偏心荷载（小偏心） \\
+3-7 & \(p_{max}=\dfrac{2(N+G)}{3al}\) & 大偏心局部承压 \\
+3-8 & \(p_0=p-\gamma_md\) & 基底附加压力 \\
+3-9 & \(\sigma_z=\dfrac{3Pz^3}{2\pi R^5}\) & 集中力布辛内斯克解 \\
+3-10 & \(\sigma_z=\alpha_cp_0\) & 矩形角点法 \\
+3-11 & \(\bar\alpha_c=\dfrac{1}{z}\int_0^z\alpha_c\,dz\) &
+平均附加应力系数（规范法用） \\
+3-12 & 角点法叠加/相减 \(\sigma_z=\sum\alpha_{c,i}p_0\) &
+任意竖向位置点 \\
+3-13 &
+\(\sigma_z=\dfrac{p_0}{\pi}(\beta+\sin\beta\cos(\alpha_1-\alpha_2))\) &
+条形荷载 \\
+3-14 & \(\sigma=\sigma'+u\) & 有效应力原理 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 附加应力系数表「先 \(l/b\)、后
+\(z/b\)」，点必在矩形角点上；② 沉降计算用 \(p_0\)；③ 偏心判别先算
+\(e\le B/6\) 还是 \(e>B/6\)，再选公式 3-6 或 3-7；④
+不透水层顶面自重应力「跳跃」，图形上别画成连续斜线。
+\end{quote}
+
+\end{document}

@@ -1,0 +1,364 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第七章
+土坡稳定分析}\label{ux7b2cux4e03ux7ae0-ux571fux5761ux7a33ux5b9aux5206ux6790}
+
+\begin{quote}
+\textbf{本章导览}：考纲集中于两类------\textbf{无黏性土坡}（简单公式
+\(F_s=\tan\varphi/\tan\beta\)，必考）、\textbf{黏性土坡条分法}（瑞典条分法为主，简化毕肖普了解步骤）。期末常考「判断稳定否」与「条分法表格计算」；考研则以推导受力图、公式含义辨析为主。核心思想：\textbf{抗滑力（矩）与滑动力（矩）之比}。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.1 基本概念}\label{ux57faux672cux6982ux5ff5}
+
+\subsubsection{公式
+7-1　安全系数定义（通用）}\label{ux516cux5f0f-7-1-ux5b89ux5168ux7cfbux6570ux5b9aux4e49ux901aux7528}
+
+\[F_s=\frac{\text{抗滑力(矩)}}{\text{滑动力(矩)}}\]
+
+\[F_s=\frac{\tau_{f}}{\tau}=\frac{R\text{（抗滑力矩）}}{M\text{（滑动力矩）}},\qquad F_s\ge1.0\text{ 稳定（工程常要求 }F_s\ge1.2\sim1.5\text{）}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.2
+无黏性土坡（平面滑动）}\label{ux65e0ux9ecfux6027ux571fux5761ux5e73ux9762ux6ed1ux52a8}
+
+\subsubsection{公式
+7-2　无黏性土坡稳定系数}\label{ux516cux5f0f-7-2-ux65e0ux9ecfux6027ux571fux5761ux7a33ux5b9aux7cfbux6570}
+
+\[\boxed{F_s=\frac{\tan\varphi}{\tan\beta}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\varphi\) 为砂土内摩擦角；\(\beta\)
+  为坡角；两者皆取（°）。
+\item
+  \textbf{推导}：沿坡面取土单元，下滑力 \(W\sin\beta\)，抗滑力
+  \(W\cos\beta\tan\varphi\)，令其比即得------与坡高\textbf{无关}。
+\item
+  \textbf{判据}：\(\beta\le\varphi\)
+  恒稳定（无论多高）；\(\beta>\varphi\) 破坏。暴雨/水位骤降时
+  \(\varphi\) 下降（饱和后强度降低）导致滑塌------概念简答题素材。
+\item
+  \textbf{注意}：无黏性土坡稳定\textbf{只取决于坡角}，与坡高无关------这是与黏性土坡的本质区别，考试判断题高频。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{7.3 黏性土坡整体圆弧滑动法（\(\varphi=0\)
+法）}{7.3 黏性土坡整体圆弧滑动法（\textbackslash varphi=0 法）}}\label{ux9ecfux6027ux571fux5761ux6574ux4f53ux5706ux5f27ux6ed1ux52a8ux6cd5varphi0-ux6cd5}
+
+\subsubsection{公式
+7-3　整体圆弧滑动安全系数（力矩平衡）}\label{ux516cux5f0f-7-3-ux6574ux4f53ux5706ux5f27ux6ed1ux52a8ux5b89ux5168ux7cfbux6570ux529bux77e9ux5e73ux8861}
+
+\[F_s=\frac{M_R}{M_S}\]
+
+\textbf{更规范表达}：
+
+\[F_s=\frac{c_u\,L\,R}{W\,d}=\frac{c_u}{W}\cdot\frac{L R}{d}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(c_u\) 为不排水抗剪强度（黏性土饱和快剪
+  \(\varphi_u=0\)）；\(L\) 为滑弧长度；\(R\) 为滑弧半径；\(W\)
+  为滑动土体总重；\(d\) 为 \(W\) 作用线到圆心 O 的水平距离。
+\item
+  \textbf{注意}：本方法适用于均质黏性土、\(\varphi\approx0\)（饱和软黏土）的情形；当
+  \(\varphi>0\) 时需条分法（见 7.4）。
+\end{itemize}
+
+\subsubsection{公式
+7-4　稳定数（泰勒稳定数）}\label{ux516cux5f0f-7-4-ux7a33ux5b9aux6570ux6cf0ux52d2ux7a33ux5b9aux6570}
+
+\[N_s=\frac{c}{\gamma H_{cr}}\]
+
+\[H_{cr}=\frac{c}{\gamma N_s}=\frac{c\,N_{cr}}{\gamma}\quad(N_s\ \text{由坡角与}\ \varphi\ \text{查图})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(H_{cr}\) 为临界（极限）坡高；\(N_s\)
+  为稳定数（泰勒解曲线，按坡角与 \(\varphi\) 查）；\(c,\gamma\)
+  为土强度与重度。
+\item
+  \textbf{用途}：已知坡形求极限坡高、或已知高度判断稳定（\(H\le H_{cr}\)）。
+\item
+  \textbf{注意}：\(N_s\) 随坡角增大而增大；对 \(\varphi=0\) 饱和黏土坡
+  \(N_s\approx0.181\times\cdots\) 具体查表，考试以查图/给数为主。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.4
+条分法（圆弧滑动法的一般情形）}\label{ux6761ux5206ux6cd5ux5706ux5f27ux6ed1ux52a8ux6cd5ux7684ux4e00ux822cux60c5ux5f62}
+
+将滑动土体竖向分为若干土条（每条约宽 \(b_i\)），逐条受力分析后求和。
+
+\subsubsection{公式
+7-5　瑞典条分法（费兰纽斯法，忽略条间作用力）}\label{ux516cux5f0f-7-5-ux745eux5178ux6761ux5206ux6cd5ux8d39ux5170ux7ebdux65afux6cd5ux5ffdux7565ux6761ux95f4ux4f5cux7528ux529b}
+
+\[\boxed{F_s=\frac{\sum\limits_{i=1}^{n}\Big[c_i\,l_i+\big(W_i\cos\alpha_i-u_i\,l_i\big)\tan\varphi_i\Big]}{\sum\limits_{i=1}^{n}W_i\sin\alpha_i}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(W_i\) 为第 \(i\) 条土条自重；\(\alpha_i\)
+  为该条滑面中点切线与水平面夹角；\(l_i\) 为该条滑弧长度；\(u_i\)
+  为滑面上的孔隙水压力；\(c_i,\varphi_i\) 为抗剪强度指标。
+\item
+  \textbf{分析}：分子为抗滑力总和（黏聚力项 +
+  摩擦项），分母为下滑力总和；自重用 \(\sum W\sin\alpha\) 投影。
+\item
+  \textbf{注意}：\(\alpha_i\) 取度，切线与水平夹角------靠近坡顶的条
+  \(\alpha\) 为正、坡底处为负；\(W\cos\alpha_i-u_il_i\)
+  是扣除孔压后的有效法向力。
+\item
+  忽略条间力使结果\textbf{偏保守}（\(F_s\) 偏小）。
+\end{itemize}
+
+\subsubsection{公式
+7-6　简化毕肖普法（条间力只考虑水平分量）}\label{ux516cux5f0f-7-6-ux7b80ux5316ux6bd5ux8096ux666eux6cd5ux6761ux95f4ux529bux53eaux8003ux8651ux6c34ux5e73ux5206ux91cf}
+
+\[F_s=\frac{\sum\limits_{i=1}^{n}\dfrac{\Big[c_i' b_i+\big(W_i-u_i b_i\big)\tan\varphi_i'\Big]}{\cos\alpha_i\left(1+\dfrac{\tan\alpha_i\,\tan\varphi_i'}{F_s}\right)}}{\sum\limits_{i=1}^{n}W_i\sin\alpha_i}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(b_i\)
+  为条宽（\(b_i=l_i\cos\alpha_i\)）；\(c',\varphi'\)
+  为\textbf{有效应力}指标；其余同前。
+\item
+  \textbf{特点}：上式右端含 \(F_s\)（隐式），需\textbf{迭代}：先设
+  \(F_s\) 初值代入右端 → 得新值 → 反复至收敛（一般 2\textasciitilde3
+  次）。
+\item
+  \textbf{注意}：简化毕肖普
+  得到的结果比瑞典法略大（更接近严格解）；某些教材强调「简化毕肖普不满足所有静力平衡」但仍可接受。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.5
+最危险滑动面与判别（图解法/经验法）}\label{ux6700ux5371ux9669ux6ed1ux52a8ux9762ux4e0eux5224ux522bux56feux89e3ux6cd5ux7ecfux9a8cux6cd5}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{费尔纽斯最危险滑面法}：对于均质黏性土坡，最危险滑弧通过\textbf{坡脚}；圆心位于由坡角
+  \(\beta\) 决定的\textbf{两条等角线交点}附近（\(\varphi=0\)
+  时直接由两角定圆心，\(\varphi>0\) 时在交点的径向延长线上试算）。
+\item
+  \textbf{简化处理}：先定圆心范围 → 试算若干圆弧求 \(F_{s,min}\) →
+  该面为最危险滑面。
+\item
+  \textbf{考试呈现}：只要求按给定滑面验算
+  \(F_s\)，最危险面搜索属方法了解。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.6
+渗流作用下的坡稳定性（概念）}\label{ux6e17ux6d41ux4f5cux7528ux4e0bux7684ux5761ux7a33ux5b9aux6027ux6982ux5ff5}
+
+\subsubsection{公式
+7-7　无黏性土坡顺坡渗流（渗流平行坡面）的安全系数}\label{ux516cux5f0f-7-7-ux65e0ux9ecfux6027ux571fux5761ux987aux5761ux6e17ux6d41ux6e17ux6d41ux5e73ux884cux5761ux9762ux7684ux5b89ux5168ux7cfbux6570}
+
+\[F_s=\frac{\gamma'}{\gamma_{sat}}\cdot\frac{\tan\varphi}{\tan\beta}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\gamma',\gamma_{sat}\)
+  为无黏性土的浮重度与饱和重度；\(\varphi,\beta\) 为内摩擦角与坡角。
+\item
+  \textbf{物理意义}：顺坡渗流时流线与坡面平行，下滑力按 \(\gamma_{sat}\)
+  计、抗滑的有效法向力按 \(\gamma'\) 计，故比无渗流的
+  \(F_s=\tan\varphi/\tan\beta\)（公式 7-2）多乘
+  \(\gamma'/\gamma_{sat}\)（常为 0.5 左右）。判据
+  \(\beta\le\arctan\left(\dfrac{\gamma'}{\gamma_{sat}}\tan\varphi\right)\)。
+\item
+  \textbf{其他渗流方向}：渗流方向改变时分母项随之变化------如渗流竖直向下时回到
+  \(F_s=\tan\varphi/\tan\beta\)
+  附近，水平向外渗流时一般比顺坡情形更不利；考试以\textbf{平行坡面（顺坡出流）}为最常见情形。
+\item
+  \textbf{注意}：此式是「无黏性土坡 +
+  渗流」专题的核心式，务必能由「有效应力法受力分析」推导出来。
+\end{itemize}
+
+\subsubsection{渗流对条分法的影响}\label{ux6e17ux6d41ux5bf9ux6761ux5206ux6cd5ux7684ux5f71ux54cd}
+
+\begin{itemize}
+\tightlist
+\item
+  渗流（尤其\textbf{平行坡面向外流}）使坡内孔隙水压力升高、有效应力降低，\(F_s\)
+  下降。
+\item
+  处理：条分法中 \(u_i\)
+  计入孔压（有效应力法）；极端水压（暴雨水位骤升/骤降）是滑坡诱因。
+\item
+  工程措施：排水沟/盲沟、削坡减载、坡脚反压、挡土结构------「措施题」备三类。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7.7
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+7-1 & \(F_s=\dfrac{\text{抗滑}}{\text{滑动}}\) & 定义 \\
+7-2 & \(F_s=\dfrac{\tan\varphi}{\tan\beta}\) & 无黏性土坡 \\
+7-3 & \(F_s=\dfrac{c_uLR}{Wd}\) & 整体圆弧滑动（φ=0 法） \\
+7-4 & \(N_s=\dfrac{c}{\gamma H_{cr}}\) & 泰勒稳定数/极限坡高 \\
+7-5 & 瑞典条分法
+\(F_s=\dfrac{\sum\left[c_il_i+(W_i\cos\alpha_i-u_il_i)\tan\varphi_i\right]}{\sum W_i\sin\alpha_i}\)
+& 一般圆弧滑动（总应力） \\
+7-6 & 简化毕肖普
+\(F_s=\dfrac{\sum\dfrac{c'b+(W-ub)\tan\varphi'}{\cos\alpha(1+\tan\alpha\tan\varphi'/F_s)}}{\sum W\sin\alpha}\)
+& 有效应力条分法 \\
+7-7 &
+\(F_s=\dfrac{\gamma'}{\gamma_{sat}}\cdot\dfrac{\tan\varphi}{\tan\beta}\)
+& 无黏性土坡顺坡渗流 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 无黏性土坡
+\(F_s=\tan\varphi/\tan\beta\)、只看坡角；② 条分法分母是
+\(\sum W_i\sin\alpha_i\)，分子黏聚力项\textbf{乘以弧长}、摩擦项用有效法向力；③
+简化毕肖普是隐式迭代，写清初值与收敛步骤；④ \(\alpha_i\)
+符号别弄反------坡顶条为「下滑」，坡底条可抵消；⑤
+有渗流必用有效应力指标与 \(u_i\)。
+\end{quote}
+
+\end{document}

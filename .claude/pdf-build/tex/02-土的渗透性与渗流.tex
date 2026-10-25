@@ -1,0 +1,402 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第二章
+土的渗透性与渗流}\label{ux7b2cux4e8cux7ae0-ux571fux7684ux6e17ux900fux6027ux4e0eux6e17ux6d41}
+
+\begin{quote}
+\textbf{本章导览}：本章核心是\textbf{达西定律 +
+渗透力的概念}。期末考试计算题常见：常/变水头试验求渗透系数、多层土等效渗透系数、渗流引起的临界状态判别（流土）。考研则常结合有效应力原理考「渗透压力对有效应力的影响」简答题。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.1 达西定律}\label{ux8fbeux897fux5b9aux5f8b}
+
+\subsubsection{公式
+2-1　达西定律（层流渗透基本规律）}\label{ux516cux5f0f-2-1-ux8fbeux897fux5b9aux5f8bux5c42ux6d41ux6e17ux900fux57faux672cux89c4ux5f8b}
+
+\[v=k\,i=k\frac{\Delta h}{L}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(v\) 为渗透流速（虚拟流速，\(\mathrm{m/d}\) 或
+  \(\mathrm{cm/s}\)）；\(k\) 为渗透系数；\(i=\dfrac{\Delta h}{L}\)
+  为水力梯度（无量纲）；\(\Delta h\) 为上下游总水头差（m），\(L\)
+  为渗流路径长度（m）。
+\item
+  \textbf{单位}：\(k\) 量的单位与 \(v\)
+  相同------\(\mathrm{m/s}\)、\(\mathrm{cm/s}\)、\(\mathrm{m/d}\)（记住
+  \(1\,\mathrm{cm/s}\approx864\,\mathrm{m/d}\)）。
+\item
+  \textbf{适用}：\textbf{层流}（绝大多数土中地下渗流）。粗砾石、卵石中为紊流时不适用。
+\item
+  \textbf{注意}：\(v\)
+  是\textbf{假想的全断面流速}，不是真正的孔隙中流速。
+\end{itemize}
+
+\subsubsection{公式
+2-2　实际孔隙流速与虚拟流速}\label{ux516cux5f0f-2-2-ux5b9eux9645ux5b54ux9699ux6d41ux901fux4e0eux865aux62dfux6d41ux901f}
+
+\[v'=\frac{v}{n}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(v'\) 为实际平均孔隙流速；\(n\)
+  为孔隙率。因水流只在孔隙断面中流动，\(v' = Q/(nA) = v/n\)。
+\item
+  \textbf{注意}：\(v'\) 是平均概化速度，实际孔道中流速分布并不均匀。
+\end{itemize}
+
+\subsubsection{公式
+2-3　渗透流量（连续流）}\label{ux516cux5f0f-2-3-ux6e17ux900fux6d41ux91cfux8fdeux7eedux6d41}
+
+\[Q=vA=kiA\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(Q\) 为渗流量（\(\mathrm{m^3/d}\)）；\(A\)
+  为过水断面面积（垂直于渗流方向）；其余同公式 2-1。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.2 渗透系数}\label{ux6e17ux900fux7cfbux6570}
+
+\subsubsection{公式
+2-4　常水头试验（适用砂土等透水性较强的土）}\label{ux516cux5f0f-2-4-ux5e38ux6c34ux5934ux8bd5ux9a8cux9002ux7528ux7802ux571fux7b49ux900fux6c34ux6027ux8f83ux5f3aux7684ux571f}
+
+\[k=\frac{QL}{Ah}=\frac{V\,L}{A\,h\,t}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(Q\) 为时间 \(t\) 内的渗流量（\(V=Qt\)）；\(L\)
+  为试样高度；\(A\) 为试样横截面积；\(h\) 为恒定水头差。
+\item
+  \textbf{单位}：\(L,h\) 用 \(\mathrm{cm}\)，\(A\) 用
+  \(\mathrm{cm^2}\)，\(t\) 用 \(\mathrm{s}\)，得 \(k=\mathrm{cm/s}\)。
+\item
+  \textbf{试验原理}：保持水头恒定，测单位时间流量，由达西定律反算。
+\end{itemize}
+
+\subsubsection{公式
+2-5　变水头试验（适用黏性土等透水性弱的土）}\label{ux516cux5f0f-2-5-ux53d8ux6c34ux5934ux8bd5ux9a8cux9002ux7528ux9ecfux6027ux571fux7b49ux900fux6c34ux6027ux5f31ux7684ux571f}
+
+\[k=2.3\frac{aL}{At}\lg\frac{h_1}{h_2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(a\) 为测压管（量管）横截面积；\(h_1,h_2\)
+  为试验开始、结束时水头差；\(t\) 为测读时间；其余同前。
+\item
+  \textbf{注意}：试验过程中水头差 \(h\)
+  随时间变化，积分达西定律得到上式；\(2.3=\ln10\)。
+\end{itemize}
+
+\subsubsection{公式
+2-6　成层土等效渗透系数（平行/垂直渗流）}\label{ux516cux5f0f-2-6-ux6210ux5c42ux571fux7b49ux6548ux6e17ux900fux7cfbux6570ux5e73ux884cux5782ux76f4ux6e17ux6d41}
+
+平行层面渗流（水平等效渗透系数）：
+
+\[k_{x}=\frac{k_1h_1+k_2h_2+\cdots+k_nh_n}{H}=\frac{\sum k_i h_i}{\sum h_i}\]
+
+垂直层面渗流（竖直等效渗透系数）：
+
+\[k_{z}=\frac{H}{\dfrac{h_1}{k_1}+\dfrac{h_2}{k_2}+\cdots}=\frac{\sum h_i}{\sum \dfrac{h_i}{k_i}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(k_i,h_i\) 为第 \(i\) 层渗透系数与厚度；\(H\)
+  为总厚。
+\item
+  \textbf{结论}：\(k_x>k_z\)（平行渗流快），即\textbf{水平向等效渗透系数总大于竖直向}；这是成层土的定向性。
+\item
+  \textbf{注意}：整体流量一样时，垂直渗流电水头损失按 \(h_i/k_i\)
+  加权------计算两层时特别容易代错分母。
+\end{itemize}
+
+\subsubsection{公式
+2-7　渗透系数经验值（速记表）}\label{ux516cux5f0f-2-7-ux6e17ux900fux7cfbux6570ux7ecfux9a8cux503cux901fux8bb0ux8868}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+土类 & 渗透系数 \(k\)（cm/s） & 土类 & 渗透系数 \(k\)（cm/s） \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+粗砂/砾砂 & \(10^{-1}\sim10^{-2}\) & 粉土 & \(10^{-4}\sim10^{-5}\) \\
+中砂 & \(10^{-2}\sim10^{-3}\) & 粉质黏土 & \(10^{-5}\sim10^{-6}\) \\
+细砂 & \(10^{-3}\sim10^{-4}\) & 黏土 & \(<10^{-6}\) \\
+\end{longtable}
+}
+
+\subsubsection{公式 2-8　渗透系数的经验估算（Hazen
+公式）}\label{ux516cux5f0f-2-8-ux6e17ux900fux7cfbux6570ux7684ux7ecfux9a8cux4f30ux7b97hazen-ux516cux5f0f}
+
+\[k\approx C\,d_{10}^{\,2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(d_{10}\) 为有效粒径（mm）；\(C\)
+  为经验系数（细砂常取 \(100\sim150\)）；代入后 \(k\) 单位
+  \(\mathrm{cm/s}\)。
+\item
+  \textbf{适用}：级配较均匀的中细砂，在无试验资料时作初步估算；粗粒、级配不均土不适用。
+\item
+  \textbf{注意}：这是经验式，考试出现时按题目给的形式直接代入；与真实值可有量级差异。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.3
+渗透力（动水力）与渗透破坏}\label{ux6e17ux900fux529bux52a8ux6c34ux529bux4e0eux6e17ux900fux7834ux574f}
+
+\subsubsection{公式
+2-9　渗透力}\label{ux516cux5f0f-2-9-ux6e17ux900fux529b}
+
+\[j=i\,\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(j\)
+  为渗透力（单位体积土体内渗流施加于土粒的力，\(\mathrm{kN/m^3}\)）；\(i\)
+  为水力梯度；\(\gamma_w=10\,\mathrm{kN/m^3}\)。
+\item
+  \textbf{方向}：\textbf{顺渗流方向}（由高水头指向低水头）。如竖直向上渗流，渗透力向上，相当于\textbf{减小有效应力}。
+\item
+  \textbf{注意}：渗透力是\textbf{体积力}，方向与渗流方向一致；它作用于土颗粒，改变有效应力，挤压或拉疏土体。
+\end{itemize}
+
+\subsubsection{公式
+2-10　竖直向上渗流时的有效应力}\label{ux516cux5f0f-2-10-ux7ad6ux76f4ux5411ux4e0aux6e17ux6d41ux65f6ux7684ux6709ux6548ux5e94ux529b}
+
+\[\sigma'=\gamma'h-j\,h=(\gamma'-i\gamma_w)h\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\gamma'\) 为浮重度；\(h\)
+  为考察深度（或土柱高度）；\(\sigma'\) 为有效应力；\(j\) 同前。
+\item
+  \textbf{物理意义}：向上渗流的渗透力部分抵消土体自重引起的有效应力。
+\end{itemize}
+
+\subsubsection{公式
+2-11　流土（流动）破坏------临界水力梯度}\label{ux516cux5f0f-2-11-ux6d41ux571fux6d41ux52a8ux7834ux574fux4e34ux754cux6c34ux529bux68afux5ea6}
+
+\[i_{cr}=\frac{\gamma'}{\gamma_w}=\frac{d_s-1}{1+e}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(i_{cr}\) 为临界水力梯度；\(\gamma'\)
+  为浮重度；\(d_s,e\) 为土粒相对密度与孔隙比。
+\item
+  \textbf{推导}：取单位土柱，向上渗流使有效应力降为零
+  \(\Rightarrow i_{cr}\gamma_w=\gamma'\)。
+\item
+  \textbf{判据}：\(i>i_{cr}\)
+  时发生\textbf{流土}（土体整体浮动、翻涌）。
+\item
+  \textbf{注意}：工程安全要求 \(i\le i_{cr}/K\)（\(K\) 为安全系数，通常
+  2 左右）；考试计算流土临界条件时用 \(i_{cr}=\dfrac{d_s-1}{1+e}\)
+  一步到位。
+\end{itemize}
+
+\subsubsection{公式 2-12　管涌}\label{ux516cux5f0f-2-12-ux7ba1ux6d8c}
+
+\begin{itemize}
+\tightlist
+\item
+  管涌：在渗流作用下，细颗粒被渗流从骨架孔隙中\textbf{带走、掏空}的渐进破坏，多发生于级配不均的无黏性土，\textbf{临界梯度}常小于流土的
+  \(i_{cr}\)，与粒径组合有关。
+\item
+  \textbf{判别要点}：流土＝整体（黏性土/粉细砂），管涌＝颗粒逐个被带走（砂砾层、级配不连续）。
+\item
+  \textbf{工程措施}：降低水头（防渗墙、减压井）、加反滤层、压重------考前常考「措施题」，背三类方向。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.4
+渗流场与流网（概念层）}\label{ux6e17ux6d41ux573aux4e0eux6d41ux7f51ux6982ux5ff5ux5c42}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{流网}：由流线（渗流路径，与等势线正交）与等势线组成的正交网格。
+\item
+  \textbf{测管水头}：\(h= z + \dfrac{u}{\gamma_w}\)，渗流由\textbf{总水头}（\(z+\dfrac{u}{\gamma_w}+\dfrac{v^2}{2g}\)，土的渗流中流速项可略）高者向低者流动。
+\item
+  \textbf{水头损失}：上下游水头差 \(\Delta h\)
+  分配在每个流段的等水头降；流网格数 \(N_d\) 与水力梯度关系
+  \(i=\dfrac{\Delta h}{N_d\,\Delta l}\)。
+\item
+  \textbf{注意}：渗流场中渗透力由\textbf{水头梯度}驱动，与土的压实程度无关。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2.5
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2-1 & \(v=ki\) & 达西定律 \\
+2-2 & \(v'=v/n\) & 实际孔隙流速 \\
+2-3 & \(Q=kiA\) & 渗流量 \\
+2-4 & \(k=\dfrac{VL}{Aht}\) & 常水头试验 \\
+2-5 & \(k=2.3\dfrac{aL}{At}\lg\dfrac{h_1}{h_2}\) & 变水头试验 \\
+2-6 & \(k_x=\dfrac{\sum k_ih_i}{H},\ k_z=\dfrac{H}{\sum h_i/k_i}\) &
+成层土等效渗透系数 \\
+2-8 & \(k\approx Cd_{10}^2\) & 渗透系数经验估算（Hazen） \\
+2-9 & \(j=i\gamma_w\) & 渗透力 \\
+2-10 & \(\sigma'=\gamma'h-jh\) & 向上渗流有效应力 \\
+2-11 & \(i_{cr}=\dfrac{d_s-1}{1+e}\) & 临界水力梯度（流土） \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 达西定律中的 \(v\) 是虚拟流速，算孔隙流速再除以
+\(n\)；② 渗透力方向是「顺水流」，算有效应力增减先判渗流方向；③
+多层土垂直渗流求 \(k_z\) 用「厚度除以渗透系数」的通分式，勿倒置；④
+临界梯度公式 \(i_{cr}=(d_s-1)/(1+e)\) 要能独立推导（从 \(\sigma'=0\)）。
+\end{quote}
+
+\end{document}

@@ -1,0 +1,509 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第四章
+土的压缩性与地基沉降计算}\label{ux7b2cux56dbux7ae0-ux571fux7684ux538bux7f29ux6027ux4e0eux5730ux57faux6c89ux964dux8ba1ux7b97}
+
+\begin{quote}
+\textbf{本章导览}：本章是\textbf{专业课最核心大题}------常考「分层总和法/规范法求最终沉降」与「一维固结求任意时刻沉降」两大计算题，另有压缩系数/压缩模量/压缩指数的概念小题。综合性极强，务必把「试验曲线
+→ 压缩指标 → 沉降公式 → 固结时间」这条链打通。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.1
+压缩性指标（由室内压缩试验得到）}\label{ux538bux7f29ux6027ux6307ux6807ux7531ux5ba4ux5185ux538bux7f29ux8bd5ux9a8cux5f97ux5230}
+
+\subsubsection{公式 4-1　压缩系数（e-p
+曲线）}\label{ux516cux5f0f-4-1-ux538bux7f29ux7cfbux6570e-p-ux66f2ux7ebf}
+
+\[\boxed{a=-\frac{\Delta e}{\Delta p}=\frac{e_1-e_2}{p_2-p_1}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(a\) 为压缩系数（\(\mathrm{MPa^{-1}}\) 或
+  \(\mathrm{kPa^{-1}}\)）；\(e_1,e_2\) 为压力 \(p_1,p_2\)
+  作用下土样孔隙比；负号表示 \(p\) 增大 \(e\) 减小。
+\item
+  \textbf{压缩性评价}（用 \(a_{1-2}\)，即
+  \(p_1=100\,\mathrm{kPa},\ p_2=200\,\mathrm{kPa}\) 区间）：
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(a_{1-2}<0.1\ \mathrm{MPa^{-1}}\)：低压缩性；
+  \item
+    \(0.1\le a_{1-2}<0.5\)：中压缩性；
+  \item
+    \(a_{1-2}\ge0.5\)：高压缩性。
+  \end{itemize}
+\item
+  \textbf{注意}：\(a\)
+  不是常数，随压力区间变化------\textbf{评价必须标明压力段}（标定
+  \(a_{1-2}\) 才可比较）。
+\end{itemize}
+
+\subsubsection{公式
+4-2　压缩模量与体积压缩系数}\label{ux516cux5f0f-4-2-ux538bux7f29ux6a21ux91cfux4e0eux4f53ux79efux538bux7f29ux7cfbux6570}
+
+\[E_s=\frac{p_2-p_1}{e_1-e_2}(1+e_1)=\frac{1+e_1}{a}\]
+
+\[m_v=\frac{a}{1+e_1}=\frac{1}{E_s}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(E_s\) 为侧限压缩模量（\(\mathrm{MPa}\)）；\(m_v\)
+  为体积压缩系数；\(a,e_1\) 同上。
+\item
+  \textbf{注意}：\(E_s\) 与 \(a\) 互成倒数关系但\textbf{必须配上
+  \((1+e_1)\)}，别只记 \(E_s=1/a\)。
+\item
+  \textbf{单位一致化}：\(a\) 用 \(\mathrm{kPa^{-1}}\) 时 \(E_s\) 得
+  \(\mathrm{kPa}\)；用 \(\mathrm{MPa^{-1}}\) 时得 \(\mathrm{MPa}\)。
+\end{itemize}
+
+\subsubsection{公式 4-3　压缩指数与回弹指数（e-lgp
+曲线）}\label{ux516cux5f0f-4-3-ux538bux7f29ux6307ux6570ux4e0eux56deux5f39ux6307ux6570e-lgp-ux66f2ux7ebf}
+
+\[C_c=\frac{e_1-e_2}{\lg p_2-\lg p_1}=\frac{\Delta e}{\lg(p_2/p_1)}\]
+
+\[C_s=\frac{e_1-e_2}{\lg p_2-\lg p_1}\quad(\text{回弹-再压缩段})\]
+
+\begin{itemize}
+\item
+  \textbf{参数说明}：\(C_c\) 为压缩指数（正常固结段 e-lgp
+  直线斜率）；\(C_s\) 为回弹指数（卸载回弹/再压缩，远小于
+  \(C_c\)，约为其 \(1/10\sim1/5\)）。\(p\) 用 \(\mathrm{kPa}\)。
+\item
+  \textbf{注意}：e-lgp 曲线中正常固结段为直线，斜率为
+  \(C_c\)（随土不同约 \(0.1\sim0.5\)，大于约 \(0.19\)
+  视为高压缩性）；各教材经验表达式不同，考试以给出指标为主，不需死记经验公式。
+\item
+  \begin{quote}
+  \textbf{双义警示}：\(C_c\)
+  在此是\textbf{压缩指数}，而第一章级配评价中作\textbf{曲率系数}------含义不同，注意区分（详见第一章公式
+  1-17 旁提示）。
+  \end{quote}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.2
+应力历史与先期固结压力}\label{ux5e94ux529bux5386ux53f2ux4e0eux5148ux671fux56faux7ed3ux538bux529b}
+
+\subsubsection{公式
+4-4　先期固结压力与超固结比}\label{ux516cux5f0f-4-4-ux5148ux671fux56faux7ed3ux538bux529bux4e0eux8d85ux56faux7ed3ux6bd4}
+
+\[OCR=\frac{p_c}{p_0}\]
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+OCR & 土类 & 意义 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(OCR=1\) & 正常固结土 & 历史上受应力恰为现自重应力 \\
+\(OCR>1\) & 超固结土 & 历史上受过更大固结压力（曾卸荷） \\
+\(OCR<1\) & 欠固结土 & 自重固结未完成（新填土） \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(p_c\)
+  为先期固结压力（由图中压缩曲线直线段转折点处推得，如 Casagrande
+  图解法）；\(p_0\) 为现有自重应力。
+\item
+  \textbf{注意}：OCR
+  判别是简答题高频点；\textbf{欠固结土的自重沉降仍会继续发展}。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.3
+基础最终沉降计算}\label{ux57faux7840ux6700ux7ec8ux6c89ux964dux8ba1ux7b97}
+
+\subsubsection{公式 4-5　分层总和法原理（e-p
+曲线法）}\label{ux516cux5f0f-4-5-ux5206ux5c42ux603bux548cux6cd5ux539fux7406e-p-ux66f2ux7ebfux6cd5}
+
+对每一层（取 \(h_i\le0.4B\)，压缩层底部满足
+\(\sigma_{z,n}\le0.2\sigma_{cz,n}\)，软土 \(\le0.1\)）：
+
+\[s_i=\frac{e_{1i}-e_{2i}}{1+e_{1i}}\,h_i\]
+
+\[s=\sum_{i=1}^{n}s_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e_{1i}\) 为加荷前该层中部对应初始自重应力
+  \(p_{1i}\) 的孔隙比；\(e_{2i}\) 为加压后对应
+  \(p_{2i}=p_{1i}+\Delta p_i\) 的孔隙比；\(h_i\) 为层厚；\(s_i\)
+  为单层压缩量；\(s\) 为总沉降（cm）。
+\item
+  \textbf{荷载}：\(\Delta p_i\) 取该层\textbf{中点}处附加应力
+  \(\sigma_{z,i}\)（用第三章角点法）。
+\item
+  \textbf{步骤速记}：画分层图 → 算层面自重应力与附加应力 → 由 e-p 曲线查
+  \(e_1,e_2\)（或由 \(E_s=\dfrac{1+e_1}{a_{1-2}}\) 计算）→ 逐层累加。
+\item
+  \textbf{注意}：分母是
+  \(1+e_1\)（初始孔隙比），分子是孔隙比差------变形公式的来源是
+  \(\Delta h/h=\Delta e/(1+e)\)。
+\end{itemize}
+
+\subsubsection{公式
+4-6　用压缩模量表达的每层沉降}\label{ux516cux5f0f-4-6-ux7528ux538bux7f29ux6a21ux91cfux8868ux8fbeux7684ux6bcfux5c42ux6c89ux964d}
+
+\[s_i=\frac{\Delta p_i}{E_{si}}\,h_i\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(E_{si}\)
+  为该层压缩模量（与附加应力范围对应，一般取 \(p_{1i}\sim p_{2i}\) 段的
+  \(E_s\)）；\(\Delta p_i\) 为该层中点附加应力；\(h_i\) 层厚。
+\item
+  \textbf{适用}：题目直接给 \(E_s\) 时最常用；与公式 4-5
+  完全等价，不要两边都算。
+\end{itemize}
+
+\subsubsection{公式
+4-7　规范法（应力面积法）}\label{ux516cux5f0f-4-7-ux89c4ux8303ux6cd5ux5e94ux529bux9762ux79efux6cd5}
+
+\[s=\psi_s\,s'=\psi_s\sum_{i=1}^{n}\frac{p_0}{E_{si}}\Big(z_i\bar{\alpha}_i-z_{i-1}\bar{\alpha}_{i-1}\Big)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(s'\)
+  为按应力面积原理计算的沉降；\(\bar{\alpha}_i\) 为从基底到第 \(i\)
+  层底的\textbf{平均附加应力系数}（查表，引数与角点法同，为「平均」系数
+  \(\bar\alpha_c\)）；\(z_i\) 为第 \(i\) 层底面到基底的距离；\(p_0\)
+  为基底附加压力；\(\psi_s\) 为沉降经验修正系数（按 \(E_s\) 与
+  \(f_{ak}\) 查规范修正，一般 \(0.2\sim1.4\)）。
+\item
+  \textbf{注意}：应力面积法用「平均附加应力系数
+  \(\bar\alpha\)」而非角点系数 \(\alpha\)，查表两套表，别混用；最终乘
+  \(\psi_s\) 一步必须保留。
+\item
+  \textbf{压缩层深度}：按 \(\Delta z\)（规范小厚度）控制或
+  \(\sigma_{z}\le0.2\sigma_{cz}\)（软土 0.1）确定。
+\end{itemize}
+
+\subsubsection{公式 4-8　e-lgp
+法（分层，按应力状态分段）}\label{ux516cux5f0f-4-8-e-lgp-ux6cd5ux5206ux5c42ux6309ux5e94ux529bux72b6ux6001ux5206ux6bb5}
+
+\textbf{① 正常固结土（\(p_{0i}=p_{ci}\)）}：
+
+\[s_i=\frac{C_{ci}}{1+e_{0i}}\,h_i\,\lg\frac{p_{0i}+\Delta p_i}{p_{0i}}\]
+
+\textbf{②
+超固结土，且终点应力不超先期固结压力（\(p_{0i}+\Delta p_i\le p_{ci}\)，沿再压缩段）}：
+
+\[s_i=\frac{C_{si}}{1+e_{0i}}\,h_i\,\lg\frac{p_{0i}+\Delta p_i}{p_{0i}}\]
+
+\textbf{③
+超固结土，且终点应力超过先期固结压力（\(p_{0i}+\Delta p_i>p_{ci}\)，先回弹段后压缩段）}：
+
+\[s_i=\frac{C_{si}}{1+e_{0i}}\,h_i\,\lg\frac{p_{ci}}{p_{0i}}+\frac{C_{ci}}{1+e_{0i}}\,h_i\,\lg\frac{p_{0i}+\Delta p_i}{p_{ci}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(C_c\) 压缩指数；\(C_s\) 回弹指数；\(p_0\)
+  该层中部自重应力；\(p_c\) 先期固结压力；\(\Delta p\)
+  该层中点附加应力；\(e_0\) 初始孔隙比。
+\item
+  \textbf{思路}：先按 OCR 判别固结状态 → 判断终点应力与 \(p_c\) 的关系 →
+  选式。① 式只有压缩段；② 全在再压缩段用 \(C_s\)；③ 先 \(C_s\)（从
+  \(p_0\) 到 \(p_c\)）再 \(C_c\)（从 \(p_c\) 到终点）。
+\item
+  \textbf{注意}：\(p\)、\(\Delta p\) 都用 \(\mathrm{kPa}\)，保证 \(\lg\)
+  内无量纲；三类别选错曲线，尤其②别误用 \(C_c\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.4
+一维固结理论（太沙基）}\label{ux4e00ux7ef4ux56faux7ed3ux7406ux8bbaux592aux6c99ux57fa}
+
+\subsubsection{公式
+4-9　固结方程与固结系数}\label{ux516cux5f0f-4-9-ux56faux7ed3ux65b9ux7a0bux4e0eux56faux7ed3ux7cfbux6570}
+
+\[\frac{\partial u}{\partial t}=c_v\frac{\partial^2 u}{\partial z^2}\]
+
+\[c_v=\frac{k(1+e)}{a\gamma_w}=\frac{kE_s}{\gamma_w}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(u\) 为超静孔隙水压力（\(\mathrm{kPa}\)）；\(t\)
+  为时间；\(z\) 为排水坐标；\(c_v\) 为固结系数（\(\mathrm{m^2/a}\) 或
+  \(\mathrm{cm^2/s},\ \mathrm{m^2/d}\)）；\(k\) 渗透系数；\(a,E_s\)
+  为压缩系数与压缩模量；\(e\) 孔隙比；\(\gamma_w=10\ \mathrm{kN/m^3}\)。
+\item
+  \textbf{注意}：固结是\textbf{超静孔隙水压力消散}的过程；同一种土
+  \(c_v\) 需注明试验条件。
+\end{itemize}
+
+\subsubsection{公式
+4-10　时间因子}\label{ux516cux5f0f-4-10-ux65f6ux95f4ux56e0ux5b50}
+
+\[\boxed{T_v=\frac{c_v\,t}{H^2}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(T_v\) 时间因子（无量纲）；\(H\)
+  为\textbf{排水距离}------单面排水取土层全厚
+  \(H_0\)，\textbf{双面排水取 \(H_0/2\)}；\(c_v\)、\(t\) 同前。
+\item
+  \textbf{注意}：\(H\)
+  的取值是最常见丢分点------换向思维：「最近的排水面到该点的距离」。
+\end{itemize}
+
+\subsubsection{公式
+4-11　固结度定义}\label{ux516cux5f0f-4-11-ux56faux7ed3ux5ea6ux5b9aux4e49}
+
+\[U_t=\frac{s_t}{s_\infty}=\frac{\text{时刻 }t\text{ 的沉降}}{\text{最终固结沉降}}\]
+
+\[U_t=1-\frac{\int_0^H u(z,t)\,dz}{\int_0^H u_0(z)\,dz}\quad(\text{按平均孔隙水压力定义})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(U_t\) 为平均固结度；\(s_t\) 为 \(t\)
+  时刻沉降；\(s_\infty\) 为最终沉降；\(u_0\) 为初始超静孔隙水压力。
+\item
+  \textbf{注意}：考试计算有两种路径------已知 \(U_t\) 求
+  \(s_t=s_\infty U_t\)，或反求时间。
+\end{itemize}
+
+\subsubsection{公式 4-12　Tv--Ut
+关系（大面积均布荷载，初始超孔压沿深度均匀分布）}\label{ux516cux5f0f-4-12-tvut-ux5173ux7cfbux5927ux9762ux79efux5747ux5e03ux8377ux8f7dux521dux59cbux8d85ux5b54ux538bux6cbfux6df1ux5ea6ux5747ux5300ux5206ux5e03}
+
+级数解：
+
+\[U_t=1-\frac{8}{\pi^2}\sum_{m=1}^{\infty}\frac{1}{(2m-1)^2}\exp\left[-\frac{(2m-1)^2\pi^2}{4}T_v\right]\]
+
+实用近似式：
+
+\[U_t=2\sqrt{\frac{T_v}{\pi}}\quad(0<U_t\le60\%)\]
+
+\[U_t=1-\frac{8}{\pi^2}\exp\left(-\frac{\pi^2}{4}T_v\right)\quad(U_t>60\%)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：按上述区间选用近似式，误差在工程允许范围；级数式用于精确复核。
+\item
+  \textbf{考试用法}：已知 \(\bar{U}=50\%\)，由
+  \(\bar{U}=2\sqrt{T_v/\pi}\) 反解
+  \(T_v=\dfrac{\pi}{4}\bar{U}^2\)，再代公式 4-10
+  求时间------「求达到某固结度所需时间」必考。
+\item
+  \textbf{注意}：\textbf{沉降量相等时所需时间与 \(H^2\)
+  成正比}（\(t\propto H^2\)），双面排水比单面排水快 4
+  倍------定性判断题高频。
+\item
+  \textbf{初始超孔压分布形状的影响（考研定性题）}：上式针对初始超孔压\textbf{沿深度均匀分布}（大面积均布加载、常见工况）。若初始超孔压呈\textbf{三角形等非均匀分布}，同一
+  \(T_v\) 对应的 \(U_t\) 不同------\textbf{不可把均匀分布的
+  \(U\)--\(T_v\)
+  曲线直接套到非均匀分布上}；精确值需用相应边界条件的级数解（教材附录另有曲线/表格）。一般原则：超孔压越靠\textbf{排水面}集中、水力梯度越大，排水越快；越偏在不透水面一侧则越慢。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.5
+沉降的时间组成（概念）}\label{ux6c89ux964dux7684ux65f6ux95f4ux7ec4ux6210ux6982ux5ff5}
+
+\begin{itemize}
+\tightlist
+\item
+  瞬时沉降 \(s_d\)：加荷瞬间剪切变形（不排水），砂土大、黏土小；
+\item
+  固结沉降
+  \(s_c\)：超静水压力消散引起的体积压缩，\textbf{黏性土的主要部分}；
+\item
+  次固结沉降 \(s_s\)：骨架蠕变，发生于主固结完成后，\(e-\lg t\)
+  曲线上由次固结系数 \(C_\alpha=\dfrac{\Delta e}{\lg t}\) 描述。
+\end{itemize}
+
+\[s=s_d+s_c+s_s\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：分层总和法/规范法算的是\textbf{固结沉降（主固结）}部分；粗粒土通常只考虑瞬时沉降。此考点多为「概念排序
+  + 主次关系」简答题。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+4-1 & \(a=\dfrac{e_1-e_2}{p_2-p_1}\) & 压缩系数 \\
+4-2 & \(E_s=\dfrac{1+e_1}{a},\ m_v=\dfrac{a}{1+e_1}\) &
+压缩模量/体积压缩系数 \\
+4-3 & \(C_c=\dfrac{\Delta e}{\lg(p_2/p_1)}\) & 压缩指数/回弹指数 \\
+4-4 & \(OCR=\dfrac{p_c}{p_0}\) & 先期固结/超固结比 \\
+4-5 & \(s_i=\dfrac{e_1-e_2}{1+e_1}h_i\) & 分层总和法 \\
+4-6 & \(s_i=\dfrac{\Delta p_i}{E_{si}}h_i\) & 压缩模量法 \\
+4-7 & \(s=\psi_s\sum\dfrac{p_0}{E_s}(z\bar\alpha-z\bar\alpha')\) &
+规范应力面积法 \\
+4-8 & ① \(s=\dfrac{C_c}{1+e_0}h\lg\dfrac{p_0+\Delta p}{p_0}\)　② 用
+\(C_s\)　③ 两段相加 & e-lgp 法（按 OCR 分段） \\
+4-9 & \(c_v=\dfrac{kE_s}{\gamma_w}\) & 固结系数 \\
+4-10 & \(T_v=\dfrac{c_vt}{H^2}\) & 时间因子（排水距离） \\
+4-11 &
+\(U_t=\dfrac{s_t}{s_\infty}=1-\dfrac{\int_0^H u\,dz}{\int_0^H u_0\,dz}\)
+& 固结度定义 \\
+4-12 & \(U_t\approx2\sqrt{T_v/\pi}\) 或
+\(1-\dfrac{8}{\pi^2}e^{-\pi^2T_v/4}\) & 固结度估算 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 压缩层底面判别 \(\sigma_z\le0.2\sigma_{cz}\)；②
+双面排水 \(H=H_0/2\)、时间与 \(H^2\) 成正比；③ 「求时间」先求
+\(T_v=\dfrac{\pi}{4}U^2\)（\(U\le60\%\)）；④
+分层总和法每层用\textbf{中点附加应力}；⑤ \(e_{1}\)
+是层顶既有状态的孔隙比，别写成最终值。
+\end{quote}
+
+\end{document}

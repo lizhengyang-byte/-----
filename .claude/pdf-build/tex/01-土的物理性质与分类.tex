@@ -1,0 +1,585 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第一章
+土的物理性质与工程分类}\label{ux7b2cux4e00ux7ae0-ux571fux7684ux7269ux7406ux6027ux8d28ux4e0eux5de5ux7a0bux5206ux7c7b}
+
+\begin{quote}
+\textbf{本章导览}：本章是全部后续章节的计算基础，考试中以\textbf{三相比例指标的定义与互相换算}为最高频考点（几乎每年必考），其次是液限/塑限与土的分类判别。计算题常给出任意三个实测指标，要求推出其余指标------建议背熟「换算组」（公式
+1-8 至 1-13）。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.1
+土的三相组成与基本记号}\label{ux571fux7684ux4e09ux76f8ux7ec4ux6210ux4e0eux57faux672cux8bb0ux53f7}
+
+土 = 固相（土粒）+ 液相（水）+ 气相（空气）。按质量、体积分别记为：
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+物理量 & 记号 & & 物理量 & 记号 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+土粒质量 & \(m_s\) & & 土粒体积 & \(V_s\) \\
+水质量 & \(m_w\) & & 水体积 & \(V_w\) \\
+空气质量 & \(m_a\approx0\) & & 空气体积 & \(V_a\) \\
+土样总质量 & \(m=m_s+m_w\) & & 孔隙体积 & \(V_v=V_w+V_a\) \\
+--- & --- & & 总体积 & \(V=V_s+V_v\) \\
+\end{longtable}
+}
+
+实验中直接测得的三个基本指标：\textbf{密度 \(\rho\)、含水率
+\(\omega\)、土粒相对密度 \(d_s\)}，其余指标均可由它们换算。
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.2
+三相比例指标（九个基本指标定义）}\label{ux4e09ux76f8ux6bd4ux4f8bux6307ux6807ux4e5dux4e2aux57faux672cux6307ux6807ux5b9aux4e49}
+
+\subsubsection{公式
+1-1　含水率}\label{ux516cux5f0f-1-1-ux542bux6c34ux7387}
+
+\[\omega=\frac{m_w}{m_s}\times100\%\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\omega\)
+  为含水率（\%）------土中水的质量与土粒质量之比；\(m_w\)、\(m_s\)
+  同上节。
+\item
+  \textbf{单位}：无量纲（常以百分数表达）。
+\item
+  \textbf{注意}：含水率以\textbf{干土质量}为分母，切莫写成
+  \(m_w/(m_s+m_w)\)。
+\end{itemize}
+
+\subsubsection{公式
+1-2　土的质量密度与重度}\label{ux516cux5f0f-1-2-ux571fux7684ux8d28ux91cfux5bc6ux5ea6ux4e0eux91cdux5ea6}
+
+\[\rho=\frac{m}{V},\qquad \gamma=\rho g=\frac{mg}{V}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\rho\) 为土的质量密度（\(\mathrm{g/cm^3}\) 或
+  \(\mathrm{kg/m^3}\)）；\(\gamma\)
+  为土的重度（\(\mathrm{kN/m^3}\)）；\(g\) 为重力加速度，取
+  \(10\,\mathrm{m/s^2}\)；\(m\)、\(V\) 为总质量与总体积。
+\item
+  \textbf{换算}：\(1\,\mathrm{kN/m^3}=1000\,\mathrm{kg/m^3}\times10\,\mathrm{m/s^2}/1000\)，即
+  \(\gamma(\mathrm{kN/m^3})=10\rho(\mathrm{g/cm^3})\)。
+\item
+  \textbf{注意}：水的重度
+  \(\gamma_w=10\,\mathrm{kN/m^3}\)，\(\rho_w=1\,\mathrm{g/cm^3}\)。
+\end{itemize}
+
+\subsubsection{公式
+1-3　土粒相对密度（土粒比重）}\label{ux516cux5f0f-1-3-ux571fux7c92ux76f8ux5bf9ux5bc6ux5ea6ux571fux7c92ux6bd4ux91cd}
+
+\[d_s=\frac{m_s}{V_s\rho_w}=\frac{m_s}{V_s}\cdot\frac{1}{\rho_w}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(d_s\)
+  为土粒相对密度（无量纲），数值上等于土粒密度与 4℃
+  纯水密度之比；\(\rho_w\) 取 \(1\,\mathrm{g/cm^3}\)（此时
+  \(d_s=\rho_s/\rho_w\)，\(\rho_s\) 为土粒密度）。
+\item
+  \textbf{经验值}：砂土 \(2.65\)，粉土 \(2.68\)，黏性土
+  \(2.72\sim2.75\)。
+\item
+  \textbf{注意}：\(d_s\) 与土的密度 \(\rho\)
+  是\textbf{完全不同}的概念，前者是土粒自身，后者是三相整体的平均密度。
+\end{itemize}
+
+\subsubsection{公式
+1-4　孔隙比与孔隙率}\label{ux516cux5f0f-1-4-ux5b54ux9699ux6bd4ux4e0eux5b54ux9699ux7387}
+
+\[e=\frac{V_v}{V_s},\qquad n=\frac{V_v}{V}\times100\%\]
+
+\[n=\frac{e}{1+e},\qquad e=\frac{n}{1-n}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e\) 为孔隙比；\(n\)
+  为孔隙率（\%）；\(V_v\)、\(V_s\)、\(V\) 意义同上。
+\item
+  \textbf{换算}：二者一一对应，考试中常需互转。\(e\) 常为小数（砂土
+  \(0.4\sim0.8\)，黏性土 \(0.6\sim1.2\)）。
+\item
+  \textbf{注意}：\(e\) 以 \(V_s\) 为分母，\(n\) 以 \(V\)
+  为分母，分子都是 \(V_v\)，切勿混淆分母。
+\end{itemize}
+
+\subsubsection{公式
+1-5　饱和度}\label{ux516cux5f0f-1-5-ux9971ux548cux5ea6}
+
+\[S_r=\frac{V_w}{V_v}\times100\%\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(S_r\)
+  为饱和度（\%），反映孔隙被水充满的程度。\(S_r=100\%\)
+  即饱和土；\(S_r=0\) 即干土。
+\item
+  \textbf{工程分类参考}：稍湿 \(S_r<50\%\)，很湿 \(50\sim80\%\)，饱和
+  \(>80\%\)。
+\end{itemize}
+
+\subsubsection{公式
+1-6　干密度与干重度}\label{ux516cux5f0f-1-6-ux5e72ux5bc6ux5ea6ux4e0eux5e72ux91cdux5ea6}
+
+\[\rho_d=\frac{m_s}{V},\qquad \gamma_d=\rho_d g\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\rho_d\) 为干密度；\(\gamma_d\)
+  为干重度（\(\mathrm{kN/m^3}\)）。烘干后土的质量与总体积之比。
+\item
+  \textbf{用途}：填土压实质量控制以 \(\rho_d\)（或压实系数
+  \(\lambda_c=\rho_d/\rho_{d,\max}\)）为标准。
+\end{itemize}
+
+\subsubsection{公式
+1-7　饱和密度与浮密度（有效重度）}\label{ux516cux5f0f-1-7-ux9971ux548cux5bc6ux5ea6ux4e0eux6d6eux5bc6ux5ea6ux6709ux6548ux91cdux5ea6}
+
+\[\rho_{sat}=\frac{m_s+V_v\rho_w}{V}=\frac{m_s+V_v}{V}\,\mathrm{(g/cm^3)}\]
+
+\[\rho'=\frac{m_s-\rho_w V_s}{V}\approx\rho_{sat}-\rho_w,\qquad \gamma'=\gamma_{sat}-\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\rho_{sat}\) 为饱和密度；\(\rho'\)
+  为浮密度（水中单位体积土所受浮力折减后的等效密度）；\(\gamma'\)
+  为浮重度（有效重度）。\(\gamma_{sat}=\rho_{sat}g\)。
+\item
+  \textbf{单位}：\(\rho\) 用 \(\mathrm{g/cm^3}\)，\(\gamma\) 用
+  \(\mathrm{kN/m^3}\)。
+\item
+  \textbf{注意}：\textbf{水下自重应力计算必须用
+  \(\gamma'\)；\(\gamma'=\gamma_{sat}-\gamma_w\)}
+  是最常用的换算关系（浮力原理），推导时用阿基米德浮力：土粒体积 \(V_s\)
+  排开水重 \(\rho_w V_s g\)。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.3
+三相比例指标的互相换算（考点核心）}\label{ux4e09ux76f8ux6bd4ux4f8bux6307ux6807ux7684ux4e92ux76f8ux6362ux7b97ux8003ux70b9ux6838ux5fc3}
+
+令 \(\rho_w=1\,\mathrm{g/cm^3}\)，设一个代表性三相图（以 \(V_s=1\) 或
+\(m_s=1\)
+为基准即可推出全部关系）。\textbf{掌握以下换算组}，考试任一已知组合均可求解：
+
+\subsubsection{\texorpdfstring{公式 1-8　已知 \(\rho,\omega,d_s\) →
+求全部}{公式 1-8　已知 \textbackslash rho,\textbackslash omega,d\_s → 求全部}}\label{ux516cux5f0f-1-8-ux5df2ux77e5-rhoomegad_s-ux6c42ux5168ux90e8}
+
+\[e=\frac{d_s(1+\omega)\rho_w}{\rho}-1=\frac{d_s(1+\omega)}{\rho}-1\quad(\rho_w=1)\]
+
+\[n=\frac{e}{1+e},\qquad S_r=\frac{\omega d_s}{e},\qquad \rho_d=\frac{\rho}{1+\omega}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{推导骨架}（以 \(m_s=1\) 为基准）：令 \(m_s=1\)，则
+  \(m_w=\omega\)，\(V_s=\dfrac{1}{d_s}\)（因
+  \(d_s=\dfrac{m_s}{V_s\rho_w}=\dfrac{1}{V_s}\)），\(V_w=\omega\)，\(m=1+\omega\)，\(V=\dfrac{m}{\rho}=\dfrac{1+\omega}{\rho}\)；于是
+  \(V_v=V-V_s\)，由
+  \(e=\dfrac{V_v}{V_s}\)、\(n=\dfrac{V_v}{V}\)、\(S_r=\dfrac{V_w}{V_v}\)
+  逐项化简即得上式。
+\item
+  \textbf{单位}：\(\rho\) 用 \(\mathrm{g/cm^3}\) 时与 \(\rho_w=1\)
+  直接相除；若 \(\rho\) 给的是 \(\mathrm{kN/m^3}\) 需先换回。
+\item
+  \textbf{注意}：这是\textbf{唯一必须记住的推导链}------考场上一旦忘公式，用「\(m_s=1\)
+  基准法」30 秒内可全推出来。
+\end{itemize}
+
+\subsubsection{公式
+1-9　饱和度-孔隙比-含水率关系（常用总式）}\label{ux516cux5f0f-1-9-ux9971ux548cux5ea6-ux5b54ux9699ux6bd4-ux542bux6c34ux7387ux5173ux7cfbux5e38ux7528ux603bux5f0f}
+
+\[\boxed{S_r=\frac{\omega d_s}{e}}\]
+
+\(\omega,\ d_s,\ e,\ S_r\)
+四者知三求一。特别地，\textbf{饱和土（\(S_r=1\)）}时：
+
+\[e=\omega_{sat} d_s,\qquad \omega_{sat}=\frac{e}{d_s}=\frac{n}{d_s(1-n)}\]
+
+\subsubsection{公式
+1-10　密度/干密度/孔隙比互转}\label{ux516cux5f0f-1-10-ux5bc6ux5ea6ux5e72ux5bc6ux5ea6ux5b54ux9699ux6bd4ux4e92ux8f6c}
+
+\[\rho=\rho_d(1+\omega)\]
+
+\[\rho_d=\frac{d_s}{1+e}\quad(\rho_w=1),\qquad \rho=\frac{d_s(1+\omega)}{1+e}\]
+
+\[\gamma=\frac{d_s(1+\omega)}{1+e}\gamma_w,\qquad \gamma_d=\frac{d_s}{1+e}\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：各符号同上；乘以 \(\gamma_w\) 即得对应重度单位
+  \(\mathrm{kN/m^3}\)。
+\item
+  \textbf{注意}：计算时务必统一 \(d_s\)（无量纲）与
+  \(\rho_w=1\ \mathrm{g/cm^3}\)；若直接代 \(\gamma\) 表达式则
+  \(\gamma_w=10\ \mathrm{kN/m^3}\)。
+\end{itemize}
+
+\subsubsection{公式
+1-11　饱和密度/浮密度的另一种表达式}\label{ux516cux5f0f-1-11-ux9971ux548cux5bc6ux5ea6ux6d6eux5bc6ux5ea6ux7684ux53e6ux4e00ux79cdux8868ux8fbeux5f0f}
+
+\[\rho_{sat}=\frac{d_s+e}{1+e},\qquad \rho'=\frac{d_s-1}{1+e}\]
+
+\[\gamma_{sat}=\frac{d_s+e}{1+e}\gamma_w,\qquad \gamma'=\frac{d_s-1}{1+e}\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{推导要点}：令 \(V_s=1\)，则
+  \(V_v=e\)，\(V=1+e\)，\(m_s=d_s\)，恰好可验。显然
+  \(\rho'=\rho_{sat}-\rho_w\) 与公式 1-7 一致。
+\item
+  \textbf{注意}：此组公式将「重度计算」压缩为仅依赖
+  \(d_s,e\)，考试粒子题（给 \(d_s,e\) 求
+  \(\gamma,\gamma_d,\gamma_{sat},\gamma'\)）直接用。
+\end{itemize}
+
+\subsubsection{公式
+1-12　用密度直接求浮重度}\label{ux516cux5f0f-1-12-ux7528ux5bc6ux5ea6ux76f4ux63a5ux6c42ux6d6eux91cdux5ea6}
+
+\[\gamma'=\gamma_{sat}-\gamma_w\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：地下水位以下土层若给的是\textbf{湿密度}，一般按\textbf{饱和处理}（水位以下地基土通常
+  \(S_r=100\%\)），即令 \(\rho=\rho_{sat}\)
+  后用上式；若题目明示非饱和，按「水中自重 = 总重 −
+  浮力」逐分步计算（浮力 = \(V_s\gamma_w\)）。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.4
+黏性土的物理状态指标}\label{ux9ecfux6027ux571fux7684ux7269ux7406ux72b6ux6001ux6307ux6807}
+
+\subsubsection{公式
+1-13　界限含水率与稠度}\label{ux516cux5f0f-1-13-ux754cux9650ux542bux6c34ux7387ux4e0eux7a20ux5ea6}
+
+\[\omega_L\ \text{（液限）：} \ \text{流动}\leftrightarrow\text{可塑}\]
+\[\omega_P\ \text{（塑限）：} \ \text{可塑}\leftrightarrow\text{半固态}\]
+\[\omega_S\ \text{（缩限）：} \ \text{半固态}\leftrightarrow\text{固态}\]
+
+\subsubsection{公式
+1-14　塑性指数}\label{ux516cux5f0f-1-14-ux5851ux6027ux6307ux6570}
+
+\[\boxed{I_p=\omega_L-\omega_P}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(I_p\) 为塑性指数（直接以百分数数值表示，不带 \%
+  号），数值越大，黏粒含量越高、可塑范围越宽。
+\item
+  \textbf{工程分类}：粉土 \(I_p\le10\)；黏性土 \(I_p>10\)（其中黏土
+  \(I_p>17\)，粉质黏土 \(10<I_p\le17\)）。
+\item
+  \textbf{注意}：塑性指数各教材取下限临界值方式不同（有的取 \(I_p>17\)
+  为黏土），以本校教材为准。
+\end{itemize}
+
+\subsubsection{公式
+1-15　液性指数与稠度状态}\label{ux516cux5f0f-1-15-ux6db2ux6027ux6307ux6570ux4e0eux7a20ux5ea6ux72b6ux6001}
+
+\[I_L=\frac{\omega-\omega_P}{I_p}=\frac{\omega-\omega_P}{\omega_L-\omega_P}\]
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\(I_L\) 范围 & 稠度状态 & 力学行为 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(I_L\le0\) & 坚硬（固态） & 强度高 \\
+\(0<I_L\le0.25\) & 硬塑 & --- \\
+\(0.25<I_L\le0.75\) & 可塑 & 一般地基/填土控制 \\
+\(0.75<I_L\le1.0\) & 软塑 & --- \\
+\(I_L>1\) & 流塑 & 强度低，需处理 \\
+\end{longtable}
+}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意点}：\(I_L\) 描述\textbf{天然状态}黏性土的软硬，\(I_p\)
+  描述\textbf{可塑范围}，一个是状态量、一个是材料属性，勿混。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.5
+无黏性土的密实度}\label{ux65e0ux9ecfux6027ux571fux7684ux5bc6ux5b9eux5ea6}
+
+\subsubsection{公式
+1-16　相对密实度}\label{ux516cux5f0f-1-16-ux76f8ux5bf9ux5bc6ux5b9eux5ea6}
+
+\[D_r=\frac{e_{max}-e}{e_{max}-e_{min}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(e_{max}\)、\(e_{min}\)
+  为最大、最小孔隙比（试验测出）；\(e\) 为天然孔隙比。\(D_r=0\sim1\)。
+\item
+  \textbf{分级}：松散 \(0<D_r\le1/3\)；中密 \(1/3<D_r\le2/3\)；密实
+  \(2/3<D_r\le1\)。
+\item
+  \textbf{注意}：只适用于\textbf{无黏性土}；砂土也可用标准贯入锤击数
+  \(N\) 判别（\(N>30\) 密实，\(10<N\le30\) 中密，\(N\le10\) 松散）。
+\end{itemize}
+
+\subsubsection{公式
+1-17　颗粒级配评价指标}\label{ux516cux5f0f-1-17-ux9897ux7c92ux7ea7ux914dux8bc4ux4ef7ux6307ux6807}
+
+\[C_u=\frac{d_{60}}{d_{10}},\qquad C_c=\frac{d_{30}^{\,2}}{d_{60}\,d_{10}}\]
+
+\begin{itemize}
+\item
+  \textbf{参数说明}：\(d_{60},d_{30},d_{10}\) 为累计含量达
+  \(60\%\text{、}30\%\text{、}10\%\) 时对应的粒径（mm），\(d_{10}\)
+  又称有效粒径；\(C_u\) 为不均匀系数，\(C_c\) 为曲率系数。
+\item
+  \textbf{判别}：级配良好需 \textbf{\(C_u\ge5\) 且 \(C_c=1\sim3\)}
+  同时满足（粗粒土）。
+\item
+  \textbf{工程意义}：\(C_u\) 越大级配越良好、易于压实；\(C_u\)
+  过小的均粒土不密实。
+\item
+  \begin{quote}
+  \textbf{双义警示}：\(C_c\) 在此是\textbf{曲率系数}（级配），而在第四章
+  e-lgp
+  压缩曲线中另作\textbf{压缩指数}------两处含义不同，跨章复习注意区分；\(C_u\)（不均匀系数）与第五章
+  \(c_u\)（不排水抗剪强度）也仅大小写之别，阅读时看清下标。
+  \end{quote}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.6
+土的工程分类（速记）}\label{ux571fux7684ux5de5ux7a0bux5206ux7c7bux901fux8bb0}
+
+\subsubsection{大类划分（按粒径组成）}\label{ux5927ux7c7bux5212ux5206ux6309ux7c92ux5f84ux7ec4ux6210}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2308}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5385}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2308}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+大类
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+粒组组成（mm）
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+特征
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+碎石土 & 粒径 \(>2\,\mathrm{mm}\) 含量 \(>50\%\) & 由碎石/角砾组成 \\
+砂土 & \(>2\,\mathrm{mm}\) 含量 \(\le50\%\)，\(>0.075\,\mathrm{mm}\)
+含量 \(>50\%\) & 砾砂/粗砂/中砂/细砂/粉砂 \\
+粉土 & \(>0.075\,\mathrm{mm}\) 含量 \(\le50\%\)，塑性指数 \(I_p\le10\) &
+介于砂土与黏性土之间 \\
+黏性土 & \(I_p>10\) & 粉质黏土 \(10<I_p\le17\)，黏土 \(I_p>17\) \\
+\end{longtable}
+}
+
+\subsubsection{黏性土的判别要点}\label{ux9ecfux6027ux571fux7684ux5224ux522bux8981ux70b9}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{用 \(I_p\) 分类，用 \(I_L\) 判状态}------两类指标分工不同。
+\item
+  判别流程：先判断是否粉土（按粒径与 \(I_p\)），再按 \(I_p\)
+  细分黏性土。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1.7
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1-1 & \(\omega=m_w/m_s\) & 含水率 \\
+1-2 & \(\rho=m/V,\ \gamma=\rho g\) & 密度/重度 \\
+1-3 & \(d_s=m_s/(V_s\rho_w)\) & 土粒比重 \\
+1-4 & \(e=V_v/V_s,\ n=V_v/V,\ n=e/(1+e)\) & 孔隙比/孔隙率 \\
+1-5 & \(S_r=V_w/V_v\) & 饱和度 \\
+1-6 & \(\rho_d=m_s/V\) & 干密度 \\
+1-7 & \(\rho_{sat}=\rho_{sat},\rho'=\rho_{sat}-\rho_w\) & 饱和/浮密度 \\
+1-8 & \(e=\dfrac{d_s(1+\omega)}{\rho}-1\) & 已知 \(\rho,\omega,d_s\)
+换算 \\
+1-9 & \(S_r=\omega d_s/e\) & 四量互求 \\
+1-10 & \(\rho_d=\dfrac{d_s}{1+e},\ \rho=\dfrac{d_s(1+\omega)}{1+e}\) &
+重度组 \\
+1-11 &
+\(\gamma_{sat}=\dfrac{d_s+e}{1+e}\gamma_w,\ \gamma'=\dfrac{d_s-1}{1+e}\gamma_w\)
+& 饱和/浮重度 \\
+1-14 & \(I_p=\omega_L-\omega_P\) & 塑性指数 \\
+1-15 & \(I_L=\dfrac{\omega-\omega_P}{I_p}\) & 液性指数 \\
+1-16 & \(D_r=\dfrac{e_{max}-e}{e_{max}-e_{min}}\) & 相对密实度 \\
+1-17 &
+\(C_u=\dfrac{d_{60}}{d_{10}},\ C_c=\dfrac{d_{30}^2}{d_{60}d_{10}}\) &
+级配评价 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 三相换算以「\(m_s=1\)」为基准可防止一切记混；②
+地下水位以下一律 \(\gamma'\)；③ \(S_r=\omega d_s/e\)
+记得指数与饱和度随时互推；④ 水利/岩土考题常给「饱和重度
+\(\gamma_{sat}\)」直接使用，不再绕密度。
+\end{quote}
+
+\end{document}

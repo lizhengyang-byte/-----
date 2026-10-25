@@ -1,0 +1,430 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[a4paper, hmargin=2.2cm, vmargin=2.4cm, headheight=14.5pt, footskip=0.9cm, includehead, includefoot]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ============================================================
+% 土力学速查手册 —— 学术黑白 A4 版式（xelatex / pandoc）
+% 主题：严谨、黑白、无彩色、无装饰
+% ============================================================
+\usepackage[fontset=windows]{ctex}            % 中文排版（宋体正文/黑体标题，自动伪粗体）
+% 把常用符号划入 CJK 字体（SimSun），避免落到拉丁字体缺字：
+% 带圈数字 ①-⑩、几何符号 ◆■□、箭头 →、希腊字母 αφ、数学符号 ≈
+\xeCJKDeclareCharClass{CJK}{"2460->"24FF}
+\xeCJKDeclareCharClass{CJK}{"25A0->"25FF}
+\xeCJKDeclareCharClass{CJK}{"2190->"21FF}
+\xeCJKDeclareCharClass{CJK}{"0370->"03FF}
+\xeCJKDeclareCharClass{CJK}{"2248->"2248}% ≈（SimSun 有；− 等保留拉丁字体）
+\usepackage{amsmath, amssymb}                 % 数学符号
+\usepackage{booktabs}                         % 三线表
+\usepackage{longtable}                        % 跨页表格
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\setlist{itemsep=2pt, topsep=4pt, leftmargin=1.6em}
+
+% ---------- 页眉页脚：简洁学术 ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\kaishu 土力学速查手册}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ---------- 表格：黑白三线风格 ----------
+\renewcommand{\arraystretch}{1.35}
+\setlength{\aboverulesep}{2pt}
+\setlength{\belowrulesep}{2pt}
+
+% ---------- 其他 ----------
+\raggedbottom
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={black},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{第六章
+土压力与挡土墙}\label{ux7b2cux516dux7ae0-ux571fux538bux529bux4e0eux6321ux571fux5899}
+
+\begin{quote}
+\textbf{本章导览}：核心计算是\textbf{朗肯土压力}（主动/被动，无黏性土与黏性土两类分布），考研常结合挡土墙稳定性（抗倾覆/抗滑）出综合题。库仑土压力主要考公式与\textbf{适用条件辨析}。务必分清三种土压力大小关系与适用条件。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.1 三种土压力}\label{ux4e09ux79cdux571fux538bux529b}
+
+\subsubsection{公式
+6-1　土压力类型与大小关系}\label{ux516cux5f0f-6-1-ux571fux538bux529bux7c7bux578bux4e0eux5927ux5c0fux5173ux7cfb}
+
+\[E_a<E_0<E_p\]
+
+\[E_0=K_0\gamma H\qquad(\text{分布强度 }p_0=K_0\gamma z)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(E_a,E_0,E_p\)
+  为单位墙长的主动、静止、被动土压力合力（\(\mathrm{kN/m}\)）；\(H\)
+  挡墙高度；\(K_0\) 静止土压力系数；\(\gamma z\) 竖向自重应力。
+\item
+  \textbf{触发条件}：墙体\textbf{离开土体}------主动状态（达
+  \(E_a\)）；墙体\textbf{挤压土体}------被动状态（达 \(E_p\)）。
+\item
+  \textbf{注意}：仅当墙有微小位移的方向与大小对应时，土压力才趋近对应值；无位移墙体用静止土压力。
+\end{itemize}
+
+\subsubsection{公式
+6-2　静止土压力系数}\label{ux516cux5f0f-6-2-ux9759ux6b62ux571fux538bux529bux7cfbux6570}
+
+\[K_0=1-\sin\varphi'\quad(\text{正常固结土，Jaky 经验式})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\varphi'\) 为有效内摩擦角；其他经验式常取
+  \(K_0=0.5\sim0.7\)（砂土约 0.4，黏土约 0.5）。
+\item
+  \textbf{注意}：\(K_0\)
+  为\textbf{静止条件}独有；朗肯/库仑土压力系数见下。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.2
+朗肯土压力理论}\label{ux6717ux80afux571fux538bux529bux7406ux8bba}
+
+\textbf{适用条件（背记）}：墙背\textbf{竖直}、墙背\textbf{光滑}（墙土摩擦角
+\(\delta=0\)）、填土面\textbf{水平}。 墙背土单元处于极限平衡：主动时
+\(\sigma_3\) 沿水平向，被动时 \(\sigma_1\) 沿水平向。
+
+\subsubsection{公式
+6-3　主动土压力系数与被主动系数}\label{ux516cux5f0f-6-3-ux4e3bux52a8ux571fux538bux529bux7cfbux6570ux4e0eux88abux4e3bux52a8ux7cfbux6570}
+
+\[K_a=\tan^2\left(45^{\circ}-\frac{\varphi}{2}\right),\qquad K_p=\tan^2\left(45^{\circ}+\frac{\varphi}{2}\right)\]
+
+\[K_a\cdot K_p=1\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：\(K_a<K_0<K_p\)；\(K_p=1/K_a\) 可快速互推。
+\end{itemize}
+
+\subsubsection{公式
+6-4　无黏性土主动土压力（三角形分布）}\label{ux516cux5f0f-6-4-ux65e0ux9ecfux6027ux571fux4e3bux52a8ux571fux538bux529bux4e09ux89d2ux5f62ux5206ux5e03}
+
+\[p_a=\gamma zK_a,\qquad E_a=\frac{1}{2}\gamma H^2K_a\]
+
+破坏面与水平面夹角 \(45^{\circ}+\varphi/2\)；合力作用点距墙底 \(H/3\)。
+
+\subsubsection{公式
+6-5　黏性土主动土压力（含拉应力区与临界深度）}\label{ux516cux5f0f-6-5-ux9ecfux6027ux571fux4e3bux52a8ux571fux538bux529bux542bux62c9ux5e94ux529bux533aux4e0eux4e34ux754cux6df1ux5ea6}
+
+\[p_a=\gamma zK_a-2c\sqrt{K_a}\]
+
+\[z_0=\frac{2c}{\gamma\sqrt{K_a}}\quad(\text{临界深度，拉应力区 }0\sim z_0)\]
+
+\[E_a=\frac{1}{2}\gamma(H-z_0)^2K_a\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(z_0\) 为墙顶拉裂区深度（m）；\(E_a\)
+  合力即三角形区域（从 \(z_0\) 到 \(H\)）面积，作用点在距墙底
+  \((H-z_0)/3\) 处。
+\item
+  \textbf{注意}：沿深度 \(0\sim z_0\)
+  段土压力为负（拉应力），\textbf{不考虑它，从 \(z_0\)
+  起积分}------作图与取合力时别把负段算进去。
+\item
+  若墙顶填土面有均布超载 \(q\)：土压力分布整体上移一个矩形
+  \(\sigma_a=qK_a\)（梯形），零压点（拉应力区底缘）深度修正为：
+\end{itemize}
+
+\[z_0'=\frac{2c\sqrt{K_a}-qK_a}{\gamma K_a}=\frac{2c-q\sqrt{K_a}}{\gamma\sqrt{K_a}}\quad(q<\frac{2c}{\sqrt{K_a}}\ \text{时 }z_0'>0)\]
+
+合力：\(E_a=\dfrac{1}{2}\gamma(H-z_0')^2K_a+qK_a(H-z_0')\)，即「三角形 +
+矩形」两段相加。
+
+\subsubsection{公式
+6-6　无黏性土被动土压力}\label{ux516cux5f0f-6-6-ux65e0ux9ecfux6027ux571fux88abux52a8ux571fux538bux529b}
+
+\[p_p=\gamma zK_p,\qquad E_p=\frac{1}{2}\gamma H^2K_p\]
+
+合力作用点距墙底 \(H/3\)，三角形分布。
+
+\subsubsection{公式
+6-7　黏性土被动土压力}\label{ux516cux5f0f-6-7-ux9ecfux6027ux571fux88abux52a8ux571fux538bux529b}
+
+\[p_p=\gamma zK_p+2c\sqrt{K_p}\]
+
+\[E_p=\frac{1}{2}\gamma H^2K_p+2cH\sqrt{K_p}\]
+
+梯形分布（由 \(z=0\) 处 \(2c\sqrt{K_p}\)
+起），不能用简单的「三角形中心」取合力位置------要按梯形求形心。
+
+\subsubsection{公式
+6-8　朗肯土压力计算步骤汇总（计算题模板）}\label{ux516cux5f0f-6-8-ux6717ux80afux571fux538bux529bux8ba1ux7b97ux6b65ux9aa4ux6c47ux603bux8ba1ux7b97ux9898ux6a21ux677f}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  判断墙型条件是否满足朗肯（竖直、光滑、填土面水平）；
+\item
+  查/算 \(K_a,K_p\)；
+\item
+  区分无黏性土（\(c=0\)，三角形）或黏性土（先算 \(z_0\)，三角形/梯形）；
+\item
+  分布图 → 面积（合力 \(E\)），标注作用点位置；
+\item
+  若有地下水：水位以上用 \(\gamma\)、以下用 \(\gamma'\)
+  且再加\textbf{静水压力}
+  \(p_w=\gamma_w z_w\)（水压力单独叠加，作用于墙身）。
+\end{enumerate}
+
+\begin{quote}
+\textbf{注意}：有地下水的挡土墙，土压力与水压力必须\textbf{分算再叠加}，不能用
+\(\gamma_{sat}\) 直接乘------这是考研综合题的常扣分点。
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.3
+库仑土压力理论}\label{ux5e93ux4ed1ux571fux538bux529bux7406ux8bba}
+
+\textbf{适用条件（背记）}：墙背可\textbf{倾斜}、可\textbf{粗糙（\(\delta\ne0\)）}、填土面可\textbf{倾斜
+\(\beta\)}；适用无黏性土（也可推广）。核心思路是\textbf{滑动楔体极限平衡}。
+
+\subsubsection{公式
+6-9　库仑主动土压力系数（一般式）}\label{ux516cux5f0f-6-9-ux5e93ux4ed1ux4e3bux52a8ux571fux538bux529bux7cfbux6570ux4e00ux822cux5f0f}
+
+\[K_a=\frac{\sin^2(\alpha+\varphi)}{\sin^2\alpha\,\sin(\alpha-\delta)\left(1+\sqrt{\dfrac{\sin(\varphi+\delta)\sin(\varphi-\beta)}{\sin(\alpha-\delta)\sin(\alpha+\beta)}}\right)^2}\]
+
+\[E_a=\frac{1}{2}\gamma H^2K_a\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\alpha\) 为墙背与水平面夹角（竖直墙
+  \(\alpha=90^{\circ}\)）；\(\delta\) 为墙背与填土间摩擦角；\(\beta\)
+  为填土面倾角；\(\varphi\) 为填土内摩擦角。
+\item
+  \textbf{退化验证}：令
+  \(\alpha=90^{\circ},\ \delta=0,\ \beta=0\)，上式化为
+  \(K_a=\tan^2(45^{\circ}-\varphi/2)\)------朗肯是库仑的特例。
+\item
+  \textbf{作用点}：无黏性土（三角形分布）作用于距墙底
+  \(H/3\)；合力方向与墙背法线成 \(\delta\) 角（不水平！）。
+\item
+  \textbf{注意}：计算中角度取\textbf{弧度}或角度制要统一；\(\delta\)
+  的符号工程上常偏安全取负。
+\end{itemize}
+
+\subsubsection{公式
+6-10　库仑被动土压力}\label{ux516cux5f0f-6-10-ux5e93ux4ed1ux88abux52a8ux571fux538bux529b}
+
+\[K_p=\frac{\sin^2(\alpha-\varphi)}{\sin^2\alpha\,\sin(\alpha+\delta)\left(1-\sqrt{\dfrac{\sin(\varphi+\delta)\sin(\varphi+\beta)}{\sin(\alpha+\delta)\sin(\alpha+\beta)}}\right)^2},\quad E_p=\frac{1}{2}\gamma H^2K_p\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{注意}：\(K_p\) 的 \(\varphi\)
+  全变号、分母括号取减号------公式形似而符号相反，考场照抄易错，建议记住括号里是
+  \(\varphi+\beta\) 且根号前置负号。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.4
+挡土墙的稳定性验算}\label{ux6321ux571fux5899ux7684ux7a33ux5b9aux6027ux9a8cux7b97}
+
+设墙每米自重为 \(W\)（作用线距墙趾 \(x_0\)），主动土压力合力
+\(E_a\)（水平向分量），\(E_a\) 作用点距墙趾竖直高度 \(y_0\)。
+
+\subsubsection{公式
+6-11　抗倾覆稳定}\label{ux516cux5f0f-6-11-ux6297ux503eux8986ux7a33ux5b9a}
+
+\[K_t=\frac{W\,x_0}{E_a\,y_0}\ge1.5\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：规范要求 \(K_t\ge1.5\)（部分教材取
+  1.6）；分母为土压力使墙绕墙趾 A
+  的倾覆力矩。若挡土墙为混凝土，墙背土压力的水平分量为
+  \(E_{ax}=E_a\cos(\delta-\alpha')\)，竖直分量为
+  \(E_{ay}=E_a\sin(\delta-\alpha')\)，用水平分量求倾覆矩即可。
+\item
+  \textbf{注意}：\(x_0,y_0\)
+  都取到墙趾（转动点）的力臂；这是最常配错误的正负号题。
+\end{itemize}
+
+\subsubsection{公式
+6-12　抗滑稳定}\label{ux516cux5f0f-6-12-ux6297ux6ed1ux7a33ux5b9a}
+
+\[K_s=\frac{(W+E_{ay})\mu}{E_{ax}}\ge1.3\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(\mu\) 为墙底与地基摩擦系数；\(E_{ax},E_{ay}\)
+  为主动土压力水平、竖向分量；规范要求 \(K_s\ge1.3\)。
+\item
+  \textbf{注意}：竖向分量 \(E_{ay}\)
+  增大了墙底正压力、有助于抗滑，别漏；水平分量才是滑动力。
+\end{itemize}
+
+\subsubsection{公式
+6-13　挡墙基底压力验算}\label{ux516cux5f0f-6-13-ux6321ux5899ux57faux5e95ux538bux529bux9a8cux7b97}
+
+\[p_{max}=\frac{N}{A}\left(1+\frac{6e}{B}\right)\le1.2f\]
+
+\[p_{min}=\frac{N}{A}\left(1-\frac{6e}{B}\right)\ge0,\qquad e=\frac{B}{2}-\frac{M_{\text{稳}}-M_{\text{倾}}}{N}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{参数说明}：\(N\) 为基底竖向合力；\(e\) 偏心距；\(B\)
+  基底宽；\(f\) 持力层承载力特征值。判定同第三章公式 3-6/3-7。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.5
+常见挡土墙类型（概念题）}\label{ux5e38ux89c1ux6321ux571fux5899ux7c7bux578bux6982ux5ff5ux9898}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{重力式}：依靠自重抗滑抗倾覆，造价低，适用墙高不大；回填要求低，应用最广。
+\item
+  \textbf{悬臂式}：钢筋混凝土，利用底板土重，适用中等墙高。
+\item
+  \textbf{扶壁式}：悬臂墙+扶壁，适用高墙。
+\item
+  结构形式选择与「挡墙高 + 地基土质」相关------多为判断题/简答题。
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6.6
+本章公式索引小结}\label{ux672cux7ae0ux516cux5f0fux7d22ux5f15ux5c0fux7ed3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+编号
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+公式
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+用途
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+6-1 & \(E_a<E_0<E_p\) & 三种土压力关系 \\
+6-2 & \(K_0=1-\sin\varphi'\) & 静止土压力系数 \\
+6-3 &
+\(K_a=\tan^2(45^{\circ}-\varphi/2),\ K_p=\tan^2(45^{\circ}+\varphi/2)\)
+& 朗肯系数 \\
+6-4 & \(p_a=\gamma zK_a,\ E_a=\dfrac{1}{2}\gamma H^2K_a\) &
+无黏性土主动 \\
+6-5 &
+\(p_a=\gamma zK_a-2c\sqrt{K_a},\ z_0=\dfrac{2c}{\gamma\sqrt{K_a}}\) &
+黏性土主动 \\
+6-6 & \(E_p=\dfrac{1}{2}\gamma H^2K_p\) & 无黏性土被动 \\
+6-7 & \(E_p=\dfrac{1}{2}\gamma H^2K_p+2cH\sqrt{K_p}\) & 黏性土被动 \\
+6-9 & 库仑 \(K_a\) 一般式 & 倾斜/粗糙墙背 \\
+6-10 & 库仑 \(K_p\) 一般式 & 被动状态（符号易混） \\
+6-11 & \(K_t=\dfrac{Wx_0}{E_ay_0}\ge1.5\) & 抗倾覆 \\
+6-12 & \(K_s=\dfrac{(W+E_{ay})\mu}{E_{ax}}\ge1.3\) & 抗滑 \\
+6-13 & \(p_{max}=\dfrac{N}{A}(1+\dfrac{6e}{B})\le1.2f\) &
+挡墙基底压力验算 \\
+\end{longtable}
+}
+
+\begin{quote}
+\textbf{考试高频提醒}：① 朗肯适用条件脱口而出：竖直、光滑、填土面水平；②
+黏性土主动取合力时\textbf{从 \(z_0\) 开始}、别算拉力区；③
+有水时土压力与水压力\textbf{分算叠加}；④ 库仑 \(K_a\) 公式在
+\(\alpha=90^{\circ},\delta=0,\beta=0\) 时退化为朗肯，可自检；⑤
+抗倾覆对\textbf{墙趾}取矩，抗滑用\textbf{水平分量}。
+\end{quote}
+
+\end{document}

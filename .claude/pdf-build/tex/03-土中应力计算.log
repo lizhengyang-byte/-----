@@ -1,0 +1,289 @@
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(C:/Users/30353/Desktop/土力学资料/.claude/pdf-build/tex/03-土中应力计算.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-06-18>
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def)
+ (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
+))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\svgnam.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\x11nam.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/unicode-math\unicode-ma
+th.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
+ex.def))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/unicode-math\unicode-ma
+th-xetex.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3k
+eys2e.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex
+.sty (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg))
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\fix-cm.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.def))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/unicode-math\unicode-ma
+th-table.tex)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-xet
+ex.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+)) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+))) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/footnotehyper\footnoteh
+yper.sty) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctex.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctexhook.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctexpatch.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/config\ctexopts.cf
+g)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/engine\ctex-engine
+-xetex.def
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xtemplate\xt
+emplate.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK.cfg)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/zhnumber\zhnumber.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/zhnumber\zhnumber-utf8.
+cfg))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/scheme\ctex-scheme
+-chinese.def
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/config\ctex-name-u
+tf8.cfg))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\indentfirst.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctex-c5size.clo)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/fontset\ctex-fonts
+et-windows.def))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/config\ctex.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hxetex.def
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-xetex.def)
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty)
+No file 03-土中应力计算.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-LatinModer
+nRoman.cfg)
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg)
+[1] [2]
+Underfull \hbox (badness 1521) in paragraph at lines 290--295
+[]\TU/SimSun(0)/b/n/10.53937 参 数 说 明\TU/SimSun(0)/m/n/10.53937 ：| $[]$ 为 集 中 力 
+ |（$[]$） ；| $[]$ 为 地 表 下 深 度；| $[]$ 为 距 作 用 点 水 平 距 离；| $[] [] []$；|
+[3] [4] [5] (C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+Output written on C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.pdf (5 pages).
+Transcript written on C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.log.
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(C:/Users/30353/Desktop/土力学资料/.claude/pdf-build/tex/03-土中应力计算.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-06-18>
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def)
+ (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
+))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics\dvipsnam.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\svgnam.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\x11nam.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty))
+
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/unicode-math\unicode-ma
+th.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xet
+ex.def))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/unicode-math\unicode-ma
+th-xetex.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpars
+e.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/l3keys2e\l3k
+eys2e.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xetex
+.sty (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg))
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\fix-cm.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.def))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/unicode-math\unicode-ma
+th-table.tex)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/upquote\upquote.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype-xet
+ex.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\microtype.cfg
+)) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+))) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/footnotehyper\footnoteh
+yper.sty) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctex.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctexhook.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctexpatch.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/config\ctexopts.cf
+g)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/engine\ctex-engine
+-xetex.def
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xtemplate\xt
+emplate.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/xelatex/xecjk\xeCJK.cfg)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/zhnumber\zhnumber.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/zhnumber\zhnumber-utf8.
+cfg))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/scheme\ctex-scheme
+-chinese.def
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/config\ctex-name-u
+tf8.cfg))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/tools\indentfirst.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex\ctex-c5size.clo)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/fontset\ctex-fonts
+et-windows.def))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/ctex/config\ctex.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
+.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.s
+ty) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hxetex.def
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty)))
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-xetex.def)
+) (C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/xurl\xurl.sty)
+(C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-LatinModer
+nRoman.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+(C:\Users\30353\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg)
+[1] [2]
+Underfull \hbox (badness 1521) in paragraph at lines 290--295
+[]\TU/SimSun(0)/b/n/10.53937 参 数 说 明\TU/SimSun(0)/m/n/10.53937 ：| $[]$ 为 集 中 力 
+ |（$[]$） ；| $[]$ 为 地 表 下 深 度；| $[]$ 为 距 作 用 点 水 平 距 离；| $[] [] []$；|
+[3] [4] [5] (C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.aux) )
+(see the transcript file for additional information)
+Output written on C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.pdf (5 pages).
+Transcript written on C:/Users\30353\Desktop\土力学资料\PDF导出\03-土中应力计算.log.
