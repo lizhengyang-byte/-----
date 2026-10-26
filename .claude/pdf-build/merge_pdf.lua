@@ -15,13 +15,13 @@ function Header(el)
     return pandoc.RawBlock('latex',
       '\\thispagestyle{plain}\n' ..
       '\\begin{center}\n' ..
-      '\\vspace*{1.5cm}\n' ..
+      '\\vspace*{2.2cm}\n' ..
       '{\\fontsize{14pt}{20pt}\\selectfont 成都锦城学院}\n' ..
       '\n' ..
-      '\\vspace{0.5cm}\n' ..
+      '\\vspace{0.9cm}\n' ..
       '\\rule{10cm}{0.4pt}\n' ..
       '\n' ..
-      '\\vspace{6.5cm}\n' ..
+      '\\vspace{5.4cm}\n' ..
       '{\\fontsize{32pt}{44pt}\\selectfont\\heiti ' .. text .. '}\n' ..
       '\n' ..
       '\\vspace{0.9cm}\n' ..
